@@ -3,25 +3,26 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++  DFix_Wait();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
++++  DFix_CheckRollback();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
 
 In the Leader.java
 
 +++    public Semaphore se_dfix = new Semaphore(0);
 
 ---              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
-+++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Signal();
++++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Set();
 
 
 --------  IMPL  DETAILS  --------
 
 In the LearnerHandler.java
 
+DFix_CheckRollback():
 leader.se_dfix.tryAcquire(1,7,java.util.concurrent.TimeUnit.SECONDS);
 
 In the Leader.java
 
-DFix_Signal():
+DFix_Set():
 se_dfix.release(9999);
 
 

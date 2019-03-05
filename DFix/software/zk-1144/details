@@ -3,24 +3,24 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++  DFix_Repeat();
++++  DFix_RollDestiny();
 
 In the Leader.java
 
 +++    public static HashMap<String, Semaphore > hm_dfix = new HashMap<String,Semaphore>();
 
 ---              newLeaderProposal.ackSet.add(self.getId());
-+++  DFix_Signal(newLeaderProposal.ackSet);
++++  DFix_Set(newLeaderProposal.ackSet);
 
 
 ---          if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
-+++  DFix_Wait(p.ackSet);        if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
++++  DFix_CheckRollback(p.ackSet);        if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
 
 --------  IMPL  DETAILS  --------
 
 In the LearnerHandler.java
 
-DFix_Repeat():
+DFix_RollDestiny():
   int i = 0;
   while(true){ try{
   if (i>100) break; 
@@ -31,11 +31,11 @@ DFix_Repeat():
 
 In the Leader.java
 
-DFix_Signal():
+DFix_Set():
 String dfixkey = Integer.toString( System.identityHashCode(newLeaderProposal.ackSet));hm_dfix.put(dfixkey, new Semaphore(9999));
 
 
-DFix_Wait(p.ackSet):
+DFix_CheckRollback(p.ackSet):
  String key =Integer.toString( System.identityHashCode(p.ackSet)) ;if (hm_dfix.get(key) == null) throw new Exception("DFIX EXCEPTION ");
 
 --------  CLONE DETAILS  --------

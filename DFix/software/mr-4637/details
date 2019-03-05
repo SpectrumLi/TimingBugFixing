@@ -7,14 +7,14 @@ In the StateMachineFactory.java
 In the ClientServiceDelegate.java
 
 ---          return methodOb.invoke(dfix_proxy, args);
-+++  return DFix_Rpc();
++++  return DFix_RollDestiny();
 
 In the TaskAttemptImpl.java
 
 +++    public Semaphore se_dfix = new Semaphore(0);
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++          stateMachine.doTransition(event.getType(), event); DFix_Signal();
++++          stateMachine.doTransition(event.getType(), event); DFix_Set();
 
 
 ---          stateMachine.doTransition(event.getType(), event);
@@ -30,7 +30,7 @@ In the MRClientService.java
 
 In the ClientServiceDelegate.java
 
-DFix_Rpc():
+DFix_RollDestiny():
 int i = 0;
 while (true) {
 try{
@@ -45,7 +45,7 @@ if (!e_e.getMessage().contains("dfix")) throw e;
 
 In the TaskAttemptImpl.java
 
-DFix_Signal():
+DFix_Set():
  if (event.getType().toString().equals("TA_ASSIGNED" ))se_dfix.release(9999);
  
 

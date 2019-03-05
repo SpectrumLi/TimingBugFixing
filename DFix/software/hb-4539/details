@@ -3,13 +3,13 @@
 In the ZKAssign.java
 
 ---      version = ZKUtil.checkExists(zkw, node);
-+++      version  = DFix_Rpc();
++++      version  = DFix_RollDestiny();
 
 --------  IMPL  DETAILS  --------
 
 In the ZKAssign.java
 
-DFix_Rpc():
+DFix_RollDestiny():
 int i = 0;
 String dfixcss = "";
 for (StackTraceElement dfix_ste : Thread.currentThread().getStackTrace()) {dfixcss += dfix_ste.toString();}

@@ -602,7 +602,7 @@ public abstract class TaskAttemptImpl implements org.apache.hadoop.mapreduce.v2.
             final TaskAttemptState oldState = getState();
             try {
         DFix_EventWait(event);
- DFix_Signal();
+ DFix_Set();
 
             } catch (InvalidStateTransitonException e) {
                 //        if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){

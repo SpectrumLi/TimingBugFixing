@@ -265,7 +265,7 @@ public class ClientServiceDelegate {
         while (true) {
             try {
                 MRClientProtocol dfix_proxy = getProxy();
-        return DFix_Rpc();
+        return DFix_RollDestiny();
             } catch (YarnRemoteException yre) {
                 LOG.warn("Exception thrown by remote end.", yre);
                 throw yre;

@@ -402,7 +402,7 @@ public class LearnerHandler extends Thread {
                 LOG.error("Next packet was supposed to be an ACK");
                 return;
             }
-DFix_Wait();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+DFix_CheckRollback();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
             /*
              * Wait until leader starts up
              */

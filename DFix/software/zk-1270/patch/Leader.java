@@ -315,7 +315,7 @@ public class Leader {
             if ((newLeaderProposal.packet.getZxid() & 0xffffffffL) != 0) {
                 LOG.info("NEWLEADER proposal has Zxid of " + Long.toHexString(newLeaderProposal.packet.getZxid()));
             }
-            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Signal();
+            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Set();
 
             newLeaderProposal.ackSet.add(self.getId());
             waitForEpochAck(self.getId(), leaderStateSummary);

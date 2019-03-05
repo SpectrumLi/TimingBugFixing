@@ -336,7 +336,7 @@ public class TaskAttemptListenerImpl extends CompositeService implements TaskUmb
         // TODO: Child.java's firstTaskID isn't really firstTaskID. Ask for update
         // to jobId and task-type.
         WrappedJvmID wJvmID = new WrappedJvmID(jvmId.getJobId(), jvmId.isMap, jvmId.getId());
-        org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix_Signal(jvmIDToAttemptMap,wJvmID);
+        org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix_Set(jvmIDToAttemptMap,wJvmID);
 
         if (task != null) {
             //there may be lag in the attempt getting added here

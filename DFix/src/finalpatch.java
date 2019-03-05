@@ -200,12 +200,12 @@ public class finalpatch{
 	    String st = getCodeAfterClone(l);
 	    String tg = getLinefromfile(l);
 	    String brk ="";
-	    String tgs ="  DFix_Rpc();";
+	    String tgs ="  DFix_RollDestiny();";
 	    String itgs = "";
 	    if (tg.contains("="))
- 	    tgs = tg.split("=")[0] +" = DFix_Rpc();";
+ 	    tgs = tg.split("=")[0] +" = DFix_RollDestiny();";
 	    if (tg.contains("return"))
-		tgs = "return DFix_Rpc();";
+		tgs = "return DFix_RollDestiny();";
 	    if (!tg.contains("return")) brk = "break;";
 	    if (table.get("zookeepapi") == null){		
 	           itgs = "int i = 0;\n" +  
@@ -245,7 +245,7 @@ public class finalpatch{
 	    }
 	    if (tg.contains("="))
                itgs = itgs+"return " + tg.split("=")[0] + "\n";
-	    itgs = "DFix_Rpc():\n" + itgs;
+	    itgs = "DFix_RollDestiny():\n" + itgs;
 	    safeAdd(implpatch, this.currentCN, itgs);
 	    replaceCode(st, tg, tgs, l);
 	    System.out.println("RPC repeat added");
@@ -254,9 +254,9 @@ public class finalpatch{
             String st = getCodeAfterClone(l);
             String tg = getLinefromfile(l);
             String brk ="";
-	    String tgs = rv + " = DFix_Socket();\n";
+	    String tgs = rv + " = DFix_RollDestiny();\n";
             if (!tg.contains("return")) brk = "break;";
-            String itgs = "DFix_Socket():\n" + 
+            String itgs = "DFix_RollDestiny():\n" + 
 		    	  " int i = 0;\n "+
 		  	  "  while (true) {\n"+
 			  " if (i>100) break; \n i++;\n" +
@@ -434,8 +434,8 @@ public class finalpatch{
 	        String st = getCodeAfterClone(l);
 	        String obj = findCalledObj(l,wcs);
 	        String tg = getLinefromfile(l);
-		String tgs = "DFix_Wait();" + tg;
-	        String itgs = obj+".se_dfix.tryAcquire(1,7,java.util.concurrent.TimeUnit.SECONDS);";
+		String tgs = "DFix_CheckRollback();" + tg;
+	        String itgs = "DFix_CheckRollback():\n"+obj+".se_dfix.tryAcquire(1,7,java.util.concurrent.TimeUnit.SECONDS);";
 		safeAdd(implpatch, this.currentCN, itgs);
 	        replaceCode(st, tg, tgs, l);
 	    } else{
@@ -445,10 +445,10 @@ public class finalpatch{
 		location lc = new location(stsc[1], stsc[2], stsc[3]);
 		String str = getCodeAfterClone(lr);
 		String tg = getLinefromfile(lr);
-		String tgs = "DFix_Repeat();";
+		String tgs = "DFix_RollDestiny();";
 		if (tg.contains("="))
-		    tgs = tg.split("=")[0] + " = DFix_Repeat();\n";
-		String itgs = "DFix_Repeat():\n" +
+		    tgs = tg.split("=")[0] + " = DFix_RollDestiny();\n";
+		String itgs = "DFix_RollDestiny():\n" +
 			      "  int i = 0;\n" +
 			      "  while(true){ try{\n" + 
 			      "  if (i>100) break; \n i++;\n" + 
@@ -462,7 +462,7 @@ public class finalpatch{
 		tg = getLinefromfile(lc);
 		String obj = findCalledObj(lc,wcs);
 		String mapcheck = "";
-		tgs = "DFix_Wait(" + table.get("waitvariable") +");";
+		tgs = "DFix_CheckRollback(" + table.get("waitvariable") +");";
 		if (obj.equals("")) mapcheck = "hm_dfix.get(key) == null";
 		    else mapcheck = obj + ".hm_dfix.get(key) == null";
 		String tgst = table.get("addresscode")+ "if ("+mapcheck+") throw new Exception(\"DFIX EXCEPTION \");";	
@@ -474,7 +474,7 @@ public class finalpatch{
 		    itgs = tgst;
 		    tgs = tg + tgs;
 		}
-		itgs = "DFix_Wait("+ table.get("waitvariable") +"):\n" + itgs;
+		itgs = "DFix_CheckRollback("+ table.get("waitvariable") +"):\n" + itgs;
 		safeAdd(implpatch, this.currentCN , itgs );
 		replaceCode(stc , tg, tgs, lc);
 
@@ -494,8 +494,8 @@ public class finalpatch{
 		    if (scn.contains("$")) scn = scn.split("\\$")[0];
 		    String st = getCodeAfterClone(l);
                     String tg = getLinefromfile(l);
-		    String tgs = table.get("waitvariable")+" = DFix_Wait();";
-		    String itgs = "DFix_Wait():\ntry { \n" +
+		    String tgs = table.get("waitvariable")+" = DFix_CheckRollback();";
+		    String itgs = "DFix_CheckRollback():\ntry { \n" +
 			"if ("+scn+".se_dfix.tryAcquire(1,5,java.util.concurrent.TimeUnit.SECONDS) ) \n" + tg+"\n"+
 		      "else " + table.get("waitvariable") + " =\"00000000000000000000000\";\n} catch (InterruptedException e_dfix) {\n}\n return " + table.get("waitvariable")+";\n"; //illeage string all 0s
 		    safeAdd(implpatch, this.currentCN, itgs);
@@ -640,12 +640,12 @@ public class finalpatch{
 	    String sv = table.get("signalvariable");
 	    if (!sv.contains("+")){
 	        release = "String dfixkey = Integer.toString( System.identityHashCode("+sv +"));"+obj+"hm_dfix.put(dfixkey, new Semaphore("+relcount+"));";
-	    	tgs = "DFix_Signal(" + sv + ");\n";
+	    	tgs = "DFix_Set(" + sv + ");\n";
 	    }
 	    else{
 		String key = "";
 	        String [] svs = sv.split("\\+");
-		tgs = "DFix_Signal(";
+		tgs = "DFix_Set(";
 		for (int i=0; i< svs.length; i++){
 		    key = key + "Integer.toString( System.identityHashCode("+svs[i]+")) +";
 		    tgs = tgs + svs[i] + ",";
@@ -665,7 +665,7 @@ public class finalpatch{
 	    if (table.get("type").equals("AV"))
 		fd = (FieldDeclaration) JavaParser.parseClassBodyDeclaration("public static Semaphore se_dfix = new Semaphore(1);");
 	    release = obj+"se_dfix.release("+relcount+");";
-	    tgs = tg + " DFix_Signal();\n";
+	    tgs = tg + " DFix_Set();\n";
 	}
 	tc.addMember(fd);
 	System.out.println("~~~ add semaphore to " + cn);
@@ -681,7 +681,7 @@ public class finalpatch{
 	if (table.get("seventtype") != null)
 	    itgs = " if (event.getType().toString().equals(\"" + table.get("seventtype") +"\" ))" + release + "\n ";
 	else    itgs =  release +"\n";
-	itgs = "DFix_Signal(" + vss + "):\n" + itgs;
+	itgs = "DFix_Set(" + vss + "):\n" + itgs;
 	/*
 	int occur = (st.length() - st.replace(tg,"").length())/tg.length();
 	if (occur >1) {

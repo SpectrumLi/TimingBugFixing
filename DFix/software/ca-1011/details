@@ -3,25 +3,25 @@
 In the BootStrapper.java
 
 ---              tokenString = ss.getBootstrapToken().toString();
-+++  tokenString = DFix_Wait();
++++  tokenString = DFix_CheckRollback();
 
 In the StorageService.java
 
 +++    public Semaphore se_dfix = new Semaphore(0);
 
 ---          calculatePendingRanges(1);
-+++          calculatePendingRanges(1); DFix_Signal();
++++          calculatePendingRanges(1); DFix_Set();
 
 
 ---              token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
-+++  token = DFix_Socket();
++++  token = DFix_RollDestiny();
 
 
 --------  IMPL  DETAILS  --------
 
 In the BootStrapper.java
 
-DFix_Wait():
+DFix_CheckRollback():
 try { 
 if (StorageService.se_dfix.tryAcquire(1,5,java.util.concurrent.TimeUnit.SECONDS) ) 
             tokenString = ss.getBootstrapToken().toString();
@@ -33,11 +33,11 @@ else tokenString ="00000000000000000000000";
 
 In the StorageService.java
 
-DFix_Signal():
+DFix_Set():
 se_dfix.release(1);
 
 
-DFix_Socket():
+DFix_RollDestiny():
  int i = 0;
    while (true) {
  if (i>100) break; 
