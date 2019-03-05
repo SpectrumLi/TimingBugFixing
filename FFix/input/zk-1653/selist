@@ -1,0 +1,5 @@
+this.zk.takeSnapshot();
+this.txnLogFactory.save( this.zkDb.getDataTree(),this.zkDb.getSessionWithTimeOuts());
+
+this.self.setCurrentEpoch( newEpoch);
+this.writeLongToFile( e);

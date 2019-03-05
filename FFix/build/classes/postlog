@@ -1,0 +1,943 @@
+Jarfile loaded !! 1
+Jarfile loaded !! 2
+Jarfile loaded !! 3
+Jarfile loaded !! 4
+Jarfile loaded !! 5
+Jarfile loaded !! 6
+ClassHirerarchy is ready!
+Primordial
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/alt-rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/plugin.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/local_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/security/US_export_policy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/resources.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfxrt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jce.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/deploy.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jsse.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/jfr.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/zipfs.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/dnsns.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunec.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunpkcs11.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/sunjce_provider.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/ext/localedata.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/management-agent.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/rt.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/charsets.jar
+ JarFileModule:/mnt/storage/packages/java/jdk1.7.0_79/jre/lib/javaws.jar
+ JarFileModule:/mnt/storage/packages/wala/WALA-R_1.3.5/com.ibm.wala.core/bin/primordial.jar.model
+Extension
+Application
+ ClassFileModule:/home/haopliu/CFinder/app_src/hb-10090/hbase-mod/hbase-client/target/classes/org/apache/hadoop/hbase/HRegionInfo.class
+ ClassFileModule:/home/haopliu/CFinder/app_src/hb-10090/hbase-mod/hbase-common/target/classes/org/apache/hadoop/hbase/TableName.class
+ JarFileModule:/home/haopliu/CFinder/app_src/hb-10090/hbase-mod/hbase-assembly/target/hbase-0.96.1/lib/hbase-common-0.96.1.jar
+ ClassFileModule:/home/haopliu/CFinder/app_src/hb-10090/hbase-mod/hbase-common/target/classes/org/apache/hadoop/hbase/HBaseConfiguration.class
+ ClassFileModule:/home/haopliu/CFinder/app_src/hb-10090/hbase-mod/hbase-common/target/classes/org/apache/hadoop/hbase/KeyValue.class
+ JarFileModule:/home/haopliu/CFinder/app_src/hb-3596/hbase-mod/target/hbase-0.91.0-SNAPSHOT.jar
+ JarFileModule:/home/haopliu/CFinder/app_src/hb-3596/hbase-mod/target/dependency/zookeeper-3.3.2.jar
+Synthetic
+Exclusions: (java\/awt\/.*)|(javax\/swing\/.*)|(sun\/awt\/.*)|(sun\/swing\/.*)|(com\/sun\/.*)|(sun\/.*)|(org\/netbeans\/.*)|(org\/openide\/.*)|(com\/ibm\/crypto\/.*)|(com\/ibm\/security\/.*)|(org\/apache\/xerces\/.*)|()
+
+EmptyCallGraph is ready!
+84 3 = getstatic < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+84 4 = new <Application,Ljava/lang/StringBuilder>@3
+84 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 4 @7 exception:5
+84 8 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 4,6 @12 exception:7
+84 9 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+84 11 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > 9 @19 exception:10
+84 13 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 8,11 @22 exception:12
+84 16 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 13,14 @27 exception:15
+84 18 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 16 @30 exception:17
+84 invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 3,18 @33 exception:19
+88 20 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+88 22 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, getZooKeeper()Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher; > 20 @42 exception:21
+88 23 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+88 25 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > 23 @51 exception:24
+88 27 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, deleteOpenedNode(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Z > 22,25 @54 exception:26
+93 goto
+91 29 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+91 30 = new <Application,Ljava/lang/StringBuilder>@66
+91 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 30 @70 exception:31
+91 34 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 30,32 @75 exception:33
+91 35 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+91 37 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > 35 @82 exception:36
+91 39 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 34,37 @85 exception:38
+91 42 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 39,40 @90 exception:41
+91 44 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 42 @93 exception:43
+91 invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, abort(Ljava/lang/String;Ljava/lang/Throwable;)V > 29,44,28 @97 exception:45
+94 47 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, assignmentManager, <Application,Lorg/apache/hadoop/hbase/master/AssignmentManager> > 1
+94 48 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+94 49 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, serverInfo, <Application,Lorg/apache/hadoop/hbase/HServerInfo> > 1
+94 invokevirtual < Application, Lorg/apache/hadoop/hbase/master/AssignmentManager, regionOnline(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/HServerInfo;)V > 47,48,49 @114 exception:50
+95 51 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, assignmentManager, <Application,Lorg/apache/hadoop/hbase/master/AssignmentManager> > 1
+95 53 = invokevirtual < Application, Lorg/apache/hadoop/hbase/master/AssignmentManager, getZKTable()Lorg/apache/hadoop/hbase/zookeeper/ZKTable; > 51 @121 exception:52
+95 54 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+95 56 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor; > 54 @128 exception:55
+95 58 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getNameAsString()Ljava/lang/String; > 56 @131 exception:57
+95 60 = invokevirtual < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKTable, isDisablingOrDisabledTable(Ljava/lang/String;)Z > 53,58 @134 exception:59
+95 conditional branch(eq) 60,61
+97 84 = getstatic < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+97 85 = new <Application,Ljava/lang/StringBuilder>@143
+97 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 85 @147 exception:86
+97 88 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 85,65 @152 exception:87
+97 89 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+97 91 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionNameAsString()Ljava/lang/String; > 89 @159 exception:90
+97 93 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 88,91 @162 exception:92
+97 96 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 93,94 @167 exception:95
+97 99 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 96,97 @172 exception:98
+97 101 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 99 @175 exception:100
+97 invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 84,101 @178 exception:102
+99 103 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, assignmentManager, <Application,Lorg/apache/hadoop/hbase/master/AssignmentManager> > 1
+99 104 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+99 invokevirtual < Application, Lorg/apache/hadoop/hbase/master/AssignmentManager, unassign(Lorg/apache/hadoop/hbase/HRegionInfo;)V > 103,104 @191 exception:105
+99 goto
+101 62 = getstatic < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+101 63 = new <Application,Ljava/lang/StringBuilder>@200
+101 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 63 @204 exception:64
+101 67 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 63,65 @209 exception:66
+101 68 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+101 70 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionNameAsString()Ljava/lang/String; > 68 @216 exception:69
+101 72 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 67,70 @219 exception:71
+101 75 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 72,73 @224 exception:74
+101 76 = getfield < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, serverInfo, <Application,Lorg/apache/hadoop/hbase/HServerInfo> > 1
+101 78 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HServerInfo, getServerName()Ljava/lang/String; > 76 @231 exception:77
+101 80 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 75,78 @234 exception:79
+101 82 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 80 @237 exception:81
+101 invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 62,82 @240 exception:83
+104 return
+5 SSAs found for org/apache/hadoop/hbase/master/handler/OpenedRegionHandler process 88
+72 3 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+72 5 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionNameAsString()Ljava/lang/String; > 3 @4 exception:4
+73 6 = getstatic < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+73 7 = new <Application,Ljava/lang/StringBuilder>@11
+73 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 7 @15 exception:8
+73 11 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 7,9 @20 exception:10
+73 13 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 11,5 @24 exception:12
+73 15 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 13 @27 exception:14
+73 invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 6,15 @30 exception:16
+74 17 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+74 19 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, isStopped()Z > 17 @39 exception:18
+74 conditional branch(ne) 19,20
+74 21 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+74 23 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, isStopping()Z > 21 @51 exception:22
+74 conditional branch(eq) 23,20
+75 77 = getstatic < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+75 78 = new <Application,Ljava/lang/StringBuilder>@62
+75 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 78 @66 exception:79
+75 82 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 78,80 @71 exception:81
+75 84 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 82,5 @75 exception:83
+75 86 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 84 @78 exception:85
+75 invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > 77,86 @81 exception:87
+76 return
+78 24 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+78 26 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > 24 @91 exception:25
+81 27 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+81 29 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, getFromOnlineRegions(Ljava/lang/String;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 27,26 @100 exception:28
+82 conditional branch(eq) 29,30
+83 63 = getstatic < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+83 64 = new <Application,Ljava/lang/StringBuilder>@113
+83 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 64 @117 exception:65
+83 68 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 64,66 @122 exception:67
+83 70 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 68,5 @126 exception:69
+83 73 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 70,71 @131 exception:72
+83 75 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 73 @134 exception:74
+83 invokeinterface < Application, Lorg/apache/commons/logging/Log, warn(Ljava/lang/Object;)V > 63,75 @137 exception:76
+85 return
+90 32 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > 1,26 @145 exception:31
+90 conditional branch(ne) 32,20
+90 return
+94 34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33
+95 conditional branch(ne) 34,30
+95 return
+97 38 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > 1,36 @168 exception:37
+97 conditional branch(eq) 38,20
+98 40 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, updateMeta(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 1,34 @176 exception:39
+98 conditional branch(eq) 40,20
+100 conditional branch(ne) 41,20
+100 42 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+100 44 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, isStopped()Z > 42 @194 exception:43
+100 conditional branch(ne) 44,20
+100 45 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+100 47 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, isStopping()Z > 45 @206 exception:46
+100 conditional branch(eq) 47,20
+101 invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, cleanupFailedOpen(Lorg/apache/hadoop/hbase/regionserver/HRegion;)V > 1,34 @216 exception:62
+102 return
+105 49 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 1,34 @222 exception:48
+105 conditional branch(ne) 49,20
+106 invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, cleanupFailedOpen(Lorg/apache/hadoop/hbase/regionserver/HRegion;)V > 1,34 @230 exception:61
+107 return
+111 50 = getstatic < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+111 51 = new <Application,Ljava/lang/StringBuilder>@237
+111 invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 51 @241 exception:52
+111 55 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 51,53 @246 exception:54
+111 57 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 55,5 @250 exception:56
+111 59 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 57 @253 exception:58
+111 invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 50,59 @256 exception:60
+112 return
+2 SSAs found for org/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler process 105
+Node: < Application, Lorg/apache/hadoop/hbase/master/handler/OpenedRegionHandler, process()V > Context: Everywhere
+--------------------=====---------------------
+SSACFG  has 67 blocks
+start ib BB[SSA:-1..-2]0 - org.apache.hadoop.hbase.regionserver.handler.OpenRegionHandler.process()V has 67reachable blocks
+end ib BB[SSA:107..108]56 - org.apache.hadoop.hbase.regionserver.handler.OpenRegionHandler.process()V has 38previous blocks
+BBlock----0 -1->-2
+BBlock----1 0->1
+null
+3 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+BBlock----2 2->2
+5 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionNameAsString()Ljava/lang/String; > 3 @4 exception:4
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, hasEncodedName([B)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/JenkinsHash, getInstance()Lorg/apache/hadoop/hbase/util/Hash; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, encodeRegionName([B)Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionNameAsString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+BBlock----3 3->5
+null
+6 = getstatic < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, LOG, <Application,Lorg/apache/commons/logging/Log> >
+7 = new <Application,Ljava/lang/StringBuilder>@11
+BBlock----4 6->7
+null
+invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 7 @15 exception:8
+BBlock----5 8->9
+null
+11 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 7,9 @20 exception:10
+BBlock----6 10->11
+null
+13 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 11,5 @24 exception:12
+BBlock----7 12->12
+15 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 13 @27 exception:14
+BBlock----8 13->13
+invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 6,15 @30 exception:16
+BBlock----9 14->15
+null
+17 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+BBlock----10 16->16
+19 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, isStopped()Z > 17 @39 exception:18
+BBlock----11 17->18
+null
+conditional branch(ne) 19,20
+BBlock----12 19->20
+null
+21 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+BBlock----13 21->21
+23 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, isStopping()Z > 21 @51 exception:22
+BBlock----14 22->23
+null
+conditional branch(eq) 23,20
+BBlock----22 35->36
+null
+24 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, regionInfo, <Application,Lorg/apache/hadoop/hbase/HRegionInfo> > 1
+BBlock----23 37->37
+26 = invokevirtual < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedName()Ljava/lang/String; > 24 @91 exception:25
+BBlock----24 38->40
+null
+null
+27 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+BBlock----25 41->42
+null
+29 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, getFromOnlineRegions(Ljava/lang/String;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 27,26 @100 exception:28
+BBlock----26 43->46
+null
+null
+null
+conditional branch(eq) 29,30
+BBlock----35 60->62
+null
+null
+32 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > 1,26 @145 exception:31
+LALALALAL : 
+32 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > 1,26 @145 exception:31 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+12 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, transitionNodeOpening(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;)I > 6,7,10 @23 exception:11 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > 296
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, isGoodVersion()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionZookeeperOfflineToOpening(Ljava/lang/String;)Z > Context: Everywhere has seeffect 1
+BBlock----36 63->64
+null
+conditional branch(ne) 32,20
+BBlock----38 66->67
+null
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler$1, <init>(Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/FSUtils, getRootDir(Lorg/apache/hadoop/conf/Configuration;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getTableDir(Lorg/apache/hadoop/fs/Path;[B)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, newHRegion(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getFamilies()Ljava/util/Collection; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getColumnFamilies()[Lorg/apache/hadoop/hbase/HColumnDescriptor; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toBytes(Ljava/lang/String;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/ImmutableBytesWritable, <init>([BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/ImmutableBytesWritable, <init>([B)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/ImmutableBytesWritable, get()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getValue([B)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getValue(Ljava/lang/String;)Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm, valueOf(Ljava/lang/String;)Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getCompression()Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm; > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Enum, ordinal()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm, getName()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm, getCompressor()Lorg/apache/hadoop/io/compress/Compressor; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm, returnCompressor(Lorg/apache/hadoop/io/compress/Compressor;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/CompressionTest, testCompression(Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getCompactionCompression()Lorg/apache/hadoop/hbase/io/hfile/Compression$Algorithm; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkCompressionCodecs()V > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getValues()Ljava/util/Map; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority, valueOf(Ljava/lang/String;)Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority; > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HBaseConfiguration create()Lorg/apache/hadoop/conf/Configuration;
+Ignore this method now, solve it later
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, preOpen()V > 6 @11 exception:7 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, loadTableCoprocessors()V > 1 @1 exception:3 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, preOpen()V > Context: Everywhere
+invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, load(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority;)V > 1,40,47,52 @141 exception:53 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, loadTableCoprocessors()V > Context: Everywhere
+73 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, deleteOnExit(Lorg/apache/hadoop/fs/Path;)Z > 46,47 @189 exception:72 
+ in Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost, load(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority;)V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost, load(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority;)V > 136
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost, access$000()Lorg/apache/commons/logging/Log; > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Enum, toString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost$Environment, startup()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost, load(Ljava/lang/Class;Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost, load(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;Lorg/apache/hadoop/hbase/coprocessor/Coprocessor$Priority;)V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, loadTableCoprocessors()V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost$Environment, getInstance()Lorg/apache/hadoop/hbase/coprocessor/Coprocessor; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost$Environment, shouldComplete()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, preOpen()V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getRegionDir()Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getTmpDir()Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > 1 @31 exception:13 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+25 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, create(Lorg/apache/hadoop/fs/Path;Z)Lorg/apache/hadoop/fs/FSDataOutputStream; > 22,18,23 @62 exception:24 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > 441
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getVersion()B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, writeByteArray(Ljava/io/DataOutput;[BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, writeByteArray(Ljava/io/DataOutput;[B)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, getName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, write(Ljava/io/DataOutput;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, isOffline()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, isSplit()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, toString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > 1 @31 exception:13 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+42 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 40,18,3 @122 exception:41 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > 450
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, checkRegioninfoOnFilesystem()V > Context: Everywhere has seeffect 2
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, cleanupTmpDir()V > 1 @35 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+7 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/FSUtils, deleteDirectory(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 3,5 @8 exception:6 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, cleanupTmpDir()V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, cleanupTmpDir()V > 718
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, cleanupTmpDir()V > Context: Everywhere has seeffect 1
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getStoreHomedir(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;[B)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+30 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, instantiateHStore(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/HColumnDescriptor;)Lorg/apache/hadoop/hbase/regionserver/Store; > 1,28,27 @88 exception:29 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/Store, <init>(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/regionserver/HRegion;Lorg/apache/hadoop/hbase/HColumnDescriptor;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/conf/Configuration;)V > 5,2,1,3,6,7 @15 exception:8 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, instantiateHStore(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/HColumnDescriptor;)Lorg/apache/hadoop/hbase/regionserver/Store; > Context: Everywhere
+34 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, mkdirs(Lorg/apache/hadoop/fs/Path;)Z > 31,32 @119 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, <init>(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/regionserver/HRegion;Lorg/apache/hadoop/hbase/HColumnDescriptor;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/conf/Configuration;)V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/Store, <init>(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/regionserver/HRegion;Lorg/apache/hadoop/hbase/HColumnDescriptor;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/conf/Configuration;)V > 155
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, isBlockCacheEnabled()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getBlocksize()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getRegionName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getTableName([B)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, getQualifier()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, equals([BLjava/nio/ByteBuffer;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, getNamespace()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, isLegalNamespaceName([BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, isLegalNamespaceName([B)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, isLegalTableQualifierName([BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, isLegalTableQualifierName([B)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, <init>(Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, createTableNameIfNecessary(Ljava/nio/ByteBuffer;Ljava/nio/ByteBuffer;)Lorg/apache/hadoop/hbase/TableName; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, valueOf([B)Lorg/apache/hadoop/hbase/TableName; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getTable([B)Lorg/apache/hadoop/hbase/TableName; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getTable()Lorg/apache/hadoop/hbase/TableName; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/TableName, equals(Ljava/lang/Object;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, isMetaRegion()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getComparator()Lorg/apache/hadoop/hbase/KeyValue$KVComparator; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getTimeToLive()I > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/KeyValue$KVComparator getComparatorIgnoringTimestamps()Lorg/apache/hadoop/hbase/KeyValue$KVComparator;
+Ignore this method now, solve it later
+This method is not found in the class org/apache/hadoop/hbase/KeyValue$KVComparator getComparatorIgnoringType()Lorg/apache/hadoop/hbase/KeyValue$KVComparator;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/KeyValueSkipListSet, <init>(Lorg/apache/hadoop/hbase/KeyValue$KVComparator;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/TimeRangeTracker, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB, <init>(Lorg/apache/hadoop/conf/Configuration;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStore, <init>(Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/KeyValue$KVComparator;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, isInMemory()Z > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getValue(Lorg/apache/hadoop/hbase/io/ImmutableBytesWritable;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, getMaxFileSize()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getNextMajorCompactTime()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile$BloomType, valueOf(Ljava/lang/String;)Lorg/apache/hadoop/hbase/regionserver/StoreFile$BloomType; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HColumnDescriptor, getBloomFilterType()Lorg/apache/hadoop/hbase/regionserver/StoreFile$BloomType; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, isReference(Lorg/apache/hadoop/fs/Path;Ljava/util/regex/Matcher;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, isReference(Lorg/apache/hadoop/fs/Path;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, len([B)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getKeyDataStructureSize(III)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, checkParameters([BI[BIII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getKeyValueDataStructureSize(IIII)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putInt([BII)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putShort([BIS)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putBytes([BI[BII)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putByte([BIB)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putByteBuffer([BILjava/nio/ByteBuffer;)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, putLong([BIJ)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue$Type, getCode()B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, createByteArray([BII[BIILjava/lang/Object;IIJLorg/apache/hadoop/hbase/KeyValue$Type;Ljava/lang/Object;II)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, <init>([BII[BII[BIIJLorg/apache/hadoop/hbase/KeyValue$Type;[BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, <init>([B[B[BJLorg/apache/hadoop/hbase/KeyValue$Type;[B)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, <init>([B[B[BJLorg/apache/hadoop/hbase/KeyValue$Type;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, createFirstOnRow([BJ)Lorg/apache/hadoop/hbase/KeyValue; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, createFirstOnRow([B)Lorg/apache/hadoop/hbase/KeyValue; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, explainWrongLengthOrOffset([BIII)Ljava/lang/IllegalArgumentException; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toInt([BII)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toInt([BI)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getKeyLength()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getBuffer()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getKeyOffset()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getKey()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, <init>([BLorg/apache/hadoop/hbase/io/Reference$Range;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, readByteArray(Ljava/io/DataInput;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, readFields(Ljava/io/DataInput;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, read(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/hbase/io/Reference; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getReferredToFile(Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, <init>(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;ZLorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/StoreFile$BloomType;Z)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, isReference()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache$CacheStats, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache, calculateOverhead(JJI)J > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Thread, setDaemon(Z)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache$EvictionThread, <init>(Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache;)V > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Thread, start()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache$StatisticsThread, <init>(Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache, <init>(JJZIFIFFFFF)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache, <init>(JJZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/LruBlockCache, <init>(JJ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getBlockCache(Lorg/apache/hadoop/conf/Configuration;)Lorg/apache/hadoop/hbase/io/hfile/BlockCache; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getBlockCache()Lorg/apache/hadoop/hbase/io/hfile/BlockCache; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/HFile$Reader, <init>(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/FSDataInputStream;JLorg/apache/hadoop/hbase/io/hfile/BlockCache;ZZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/HFile$Reader, <init>(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/io/hfile/BlockCache;ZZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader, <init>(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/io/hfile/BlockCache;ZZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, getSplitKey()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, getFileRegion()Lorg/apache/hadoop/hbase/io/Reference$Range; > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Enum, equals(Ljava/lang/Object;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/Reference, isTopFileRegion(Lorg/apache/hadoop/hbase/io/Reference$Range;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/HalfStoreFileReader, <init>(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/io/hfile/BlockCache;Lorg/apache/hadoop/hbase/io/Reference;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toLong([BII)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toLong([B)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader, setSequenceID(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toBoolean([B)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/MurmurHash, getInstance()Lorg/apache/hadoop/hbase/util/Hash; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Hash, getInstance(I)Lorg/apache/hadoop/hbase/util/Hash; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/ByteBloomFilter, sanityCheck()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/ByteBloomFilter, <init>(Ljava/nio/ByteBuffer;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/io/hfile/HFile$Reader, getName()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader, loadBloomfilter()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Writables, copyWritable([BLorg/apache/hadoop/io/Writable;)Lorg/apache/hadoop/io/Writable; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, open()Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, createReader()Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getReader()Lorg/apache/hadoop/hbase/regionserver/StoreFile$Reader; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, isBulkLoadResult()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getBulkLoadTimestamp()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getMaxSequenceId()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, isMajorCompaction()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, toStringDetailed()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, loadStoreFiles()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, sortAndClone(Ljava/util/List;)Lcom/google/common/collect/ImmutableList; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, <init>(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/regionserver/HRegion;Lorg/apache/hadoop/hbase/HColumnDescriptor;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/conf/Configuration;)V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, instantiateHStore(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/hbase/HColumnDescriptor;)Lorg/apache/hadoop/hbase/regionserver/Store; > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getStorefiles()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/StoreFile, getMaxSequenceIdInList(Ljava/util/Collection;)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getMaxSequenceId()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, getRegionDirRecoveredEditsDir(Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog$1, <init>(Lorg/apache/hadoop/fs/FileSystem;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, getSplitEditFilesSorted(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Ljava/util/NavigableSet; > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+43 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,41,40,2 @137 exception:42 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+36 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, isZeroLengthThenDelete(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 34,19 @117 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+26 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 1,2,10 @54 exception:25 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, isZeroLengthThenDelete(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, isZeroLengthThenDelete(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 2148
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, isZeroLengthThenDelete(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, getReader(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/conf/Configuration;)Lorg/apache/hadoop/hbase/regionserver/wal/HLog$Reader; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/EnvironmentEdgeManager, getDelegate()Lorg/apache/hadoop/hbase/util/EnvironmentEdge; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/EnvironmentEdgeManager, currentTimeMillis()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog$Entry, getKey()Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog$Entry, getEdit()Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit, size()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getRegionInfo()Lorg/apache/hadoop/hbase/HRegionInfo; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/coprocessor/CoprocessorHost$Environment, shouldBypass()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, preWALRestore(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey;Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey, getLogSeqNum()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit, getKeyValues()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toShort([BII)S > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toShort([BI)S > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getRowLength()S > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getFamilyOffset(I)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getFamilyOffset()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getFamilyLength(I)B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getFamilyLength()B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, equals([BII[BII)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, matchingFamily([B)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey, getEncodedRegionName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HRegionInfo, getEncodedNameAsBytes()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, compareTo([B[B)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, equals([B[B)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getFamily()Lorg/apache/hadoop/hbase/HColumnDescriptor; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/CellUtil, copyFamilyTo(Lorg/apache/hadoop/hbase/Cell;[BI)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/CellUtil, cloneFamily(Lorg/apache/hadoop/hbase/Cell;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getFamily()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getLength()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk, <init>(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk, <init>(ILorg/apache/hadoop/hbase/regionserver/MemStoreLAB$1;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk, init()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB, getOrMakeChunk()Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk, alloc(I)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk, access$000(Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Allocation, <init>([BI)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Allocation, <init>([BILorg/apache/hadoop/hbase/regionserver/MemStoreLAB$1;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB, tryRetireChunk(Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Chunk;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB, allocateBytes(I)Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Allocation; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Allocation, getData()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getOffset()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStoreLAB$Allocation, getOffset()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, <init>([BII)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getMvccVersion()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getMemstoreTS()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, setMvccVersion(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, setMemstoreTS(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStore, maybeCloneWithAllocator(Lorg/apache/hadoop/hbase/KeyValue;)Lorg/apache/hadoop/hbase/KeyValue; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/KeyValueSkipListSet, add(Lorg/apache/hadoop/hbase/KeyValue;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/ClassSize, align(J)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/ClassSize, align(I)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, heapSize()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStore, heapSizeChange(Lorg/apache/hadoop/hbase/KeyValue;Z)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getTimestampOffset(I)I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toLong([BI)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getTimestamp(I)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getTimestamp()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/TimeRangeTracker, includeTimestamp(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, getTypeByte()B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, isDeleteColumnOrFamily()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/TimeRangeTracker, includeTimestamp(Lorg/apache/hadoop/hbase/KeyValue;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStore, internalAdd(Lorg/apache/hadoop/hbase/KeyValue;)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/MemStore, add(Lorg/apache/hadoop/hbase/KeyValue;)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, add(Lorg/apache/hadoop/hbase/KeyValue;)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, isFlushSize(J)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, restoreEdit(Lorg/apache/hadoop/hbase/regionserver/Store;Lorg/apache/hadoop/hbase/KeyValue;)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, obtainSeqNum()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, startCacheFlush()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getCompleteCacheFlushSequenceId(J)J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store$StoreFlusherImpl, <init>(Lorg/apache/hadoop/hbase/regionserver/Store;J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store$StoreFlusherImpl, <init>(Lorg/apache/hadoop/hbase/regionserver/Store;JLorg/apache/hadoop/hbase/regionserver/Store$1;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/Store, getStoreFlusher(J)Lorg/apache/hadoop/hbase/regionserver/StoreFlusher; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, abortCacheFlush()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getRegionName()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/DroppedSnapshotException, <init>(Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Throwable, initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable; > Context: Everywhere has seeffect 0
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/KeyValue, <init>([B[B[BJ[B)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit, add(Lorg/apache/hadoop/hbase/KeyValue;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, completeCacheFlushLogEdit()Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey, <init>([B[BJJ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, makeKey([B[BJJ)Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog$Entry, <init>(Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey;Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, getLogReplication()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, requestLogRoll()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, checkLowReplication()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, sync()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, completeCacheFlush([B[BJZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Pair, <init>(Ljava/lang/Object;Ljava/lang/Object;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, internalFlushcache(Lorg/apache/hadoop/hbase/regionserver/wal/HLog;J)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, postWALRestore(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLogKey;Lorg/apache/hadoop/hbase/regionserver/wal/WALEdit;)V > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+43 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,41,40,2 @137 exception:42 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+38 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEdits(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,19,64,4 @133 exception:37 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+197 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, moveAsideBadEditsFile(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > 195,2 @526 exception:196 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEdits(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+24 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 1,2,4 @43 exception:23 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, moveAsideBadEditsFile(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, moveAsideBadEditsFile(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > 1390
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, moveAsideBadEditsFile(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEdits(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere has seeffect 2
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+43 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,41,40,2 @137 exception:42 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+77 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 75,74,12 @276 exception:76 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1984
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, replayRecoveredEditsIfAny(Lorg/apache/hadoop/fs/Path;JLorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere has seeffect 5
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, getSplitDir(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getFilesystem()Lorg/apache/hadoop/fs/FileSystem; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/FSUtils$DirFilter, <init>(Lorg/apache/hadoop/fs/FileSystem;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getTableDir()Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, getRegionDir(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;)Lorg/apache/hadoop/fs/Path; > Context: Everywhere has seeffect 0
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupAnySplitDetritus(Lorg/apache/hadoop/hbase/regionserver/HRegion;)V > 1 @142 exception:44 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupDaughterRegion(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Ljava/lang/String;)V > 6,16,21 @58 exception:22 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupAnySplitDetritus(Lorg/apache/hadoop/hbase/regionserver/HRegion;)V > Context: Everywhere
+invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, deleteDir(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Z)V > 1,6,7 @9 exception:8 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupDaughterRegion(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Ljava/lang/String;)V > Context: Everywhere
+10 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 1,2,8 @45 exception:9 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, deleteDir(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Z)V > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, deleteDir(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Z)V > 432
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, deleteDir(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Z)V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupDaughterRegion(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;Ljava/lang/String;)V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupSplitDir(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)V > Context: Everywhere has seeffect 1
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/SplitTransaction, cleanupAnySplitDetritus(Lorg/apache/hadoop/hbase/regionserver/HRegion;)V > Context: Everywhere has seeffect 2
+LALALALAL : 
+34 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > 1 @153 exception:33 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+15 = invokestatic < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 4,7,10,11,12 @36 exception:14 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+36 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > 34,5 @89 exception:35 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+6 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 1,2 @6 exception:5 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere
+51 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/FSUtils, deleteDirectory(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 45,46 @162 exception:50 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > 379
+This method is not found in the class org/apache/hadoop/hbase/HRegionInfo getTableDesc()Lorg/apache/hadoop/hbase/HTableDescriptor;
+Ignore this method now, solve it later
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, isSomething(Lorg/apache/hadoop/hbase/io/ImmutableBytesWritable;Z)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/HTableDescriptor, isReadOnly()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion$WriteState, setReadOnly(Z)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, toString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/RegionCoprocessorHost, postOpen()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, initialize(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)J > Context: Everywhere has seeffect 13
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/wal/HLog, setSequenceNumber(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere has seeffect 13
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/HRegion, openHRegion(Lorg/apache/hadoop/hbase/HRegionInfo;Lorg/apache/hadoop/hbase/regionserver/wal/HLog;Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Lorg/apache/hadoop/hbase/util/CancelableProgressable;)Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere has seeffect 13
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, openRegion()Lorg/apache/hadoop/hbase/regionserver/HRegion; > Context: Everywhere has seeffect 13
+BBlock----39 68->71
+null
+null
+null
+conditional branch(ne) 34,30
+BBlock----41 73->77
+null
+null
+null
+null
+38 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > 1,36 @168 exception:37
+LALALALAL : 
+38 = invokevirtual < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > 1,36 @168 exception:37 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+19 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, retransitionNodeOpening(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;I)I > 12,13,16,17 @44 exception:18 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > 322
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, tickleOpening(Ljava/lang/String;)Z > Context: Everywhere has seeffect 1
+BBlock----42 78->79
+null
+conditional branch(eq) 38,20
+BBlock----46 87->89
+null
+null
+conditional branch(ne) 41,20
+BBlock----43 80->82
+null
+null
+40 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, updateMeta(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 1,34 @176 exception:39
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler$PostOpenDeployTasksThread, <init>(Lorg/apache/hadoop/hbase/regionserver/HRegion;Lorg/apache/hadoop/hbase/Server;Lorg/apache/hadoop/hbase/regionserver/RegionServerServices;Ljava/util/concurrent/atomic/AtomicBoolean;)V > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Thread, interrupt()V > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Thread, join()V > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Thread, interrupted()Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler$PostOpenDeployTasksThread, getException()Ljava/lang/Exception; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, updateMeta(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > Context: Everywhere has seeffect 1
+BBlock----47 90->91
+null
+42 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, server, <Application,Lorg/apache/hadoop/hbase/Server> > 1
+BBlock----44 83->84
+null
+conditional branch(eq) 40,20
+BBlock----48 92->92
+44 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Server, isStopped()Z > 42 @194 exception:43
+BBlock----45 85->86
+null
+null
+BBlock----49 93->94
+null
+conditional branch(ne) 44,20
+BBlock----50 95->96
+null
+45 = getfield < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, rsServices, <Application,Lorg/apache/hadoop/hbase/regionserver/RegionServerServices> > 1
+BBlock----51 97->97
+47 = invokeinterface < Application, Lorg/apache/hadoop/hbase/regionserver/RegionServerServices, isStopping()Z > 45 @206 exception:46
+BBlock----52 98->99
+null
+conditional branch(eq) 47,20
+BBlock----55 104->106
+null
+null
+49 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 1,34 @222 exception:48
+LALALALAL : 
+49 = invokespecial < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 1,34 @222 exception:48 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, process()V > Context: Everywhere
+17 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, transitionNodeOpened(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;I)I > 11,6,14,15 @36 exception:16 
+ in Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > Context: Everywhere
+ < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > 238
+Node: < Application, Lorg/apache/hadoop/hbase/regionserver/handler/OpenRegionHandler, transitionToOpened(Lorg/apache/hadoop/hbase/regionserver/HRegion;)Z > Context: Everywhere has seeffect 1
+BBlock----56 107->108
+null
+conditional branch(ne) 49,20
+--------GLOBINS----------------
+12 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, transitionNodeOpening(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;)I > 6,7,10 @23 exception:11
+ 
+73 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, deleteOnExit(Lorg/apache/hadoop/fs/Path;)Z > 46,47 @189 exception:72
+ 
+25 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, create(Lorg/apache/hadoop/fs/Path;Z)Lorg/apache/hadoop/fs/FSDataOutputStream; > 22,18,23 @62 exception:24
+ 
+42 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 40,18,3 @122 exception:41
+ 
+7 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/FSUtils, deleteDirectory(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 3,5 @8 exception:6
+ 
+34 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, mkdirs(Lorg/apache/hadoop/fs/Path;)Z > 31,32 @119 exception:33
+ 
+26 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 1,2,10 @54 exception:25
+ 
+24 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 1,2,4 @43 exception:23
+ 
+24 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 1,2,4 @43 exception:23
+ 
+24 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, rename(Lorg/apache/hadoop/fs/Path;Lorg/apache/hadoop/fs/Path;)Z > 1,2,4 @43 exception:23
+ 
+77 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 75,74,12 @276 exception:76
+ 
+10 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 1,2,8 @45 exception:9
+ 
+10 = invokevirtual < Application, Lorg/apache/hadoop/fs/FileSystem, delete(Lorg/apache/hadoop/fs/Path;Z)Z > 1,2,8 @45 exception:9
+ 
+51 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/FSUtils, deleteDirectory(Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/fs/Path;)Z > 45,46 @162 exception:50
+ 
+19 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, retransitionNodeOpening(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;I)I > 12,13,16,17 @44 exception:18
+ 
+19 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, retransitionNodeOpening(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;I)I > 12,13,16,17 @44 exception:18
+ 
+17 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKAssign, transitionNodeOpened(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Lorg/apache/hadoop/hbase/HRegionInfo;Ljava/lang/String;I)I > 11,6,14,15 @36 exception:16
+ 
+--------GLOBINS----------------
