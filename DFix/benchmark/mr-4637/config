@@ -1,0 +1,14 @@
+messagetype=blocking
+lastcheck=address
+sourcecode=/home/guanpu/Desktop/DFix-Public/public/DFix/software/mr-4637
+waitvariable=currentState
+signalvariable=currentState
+callsite=org/apache/hadoop/mapred/ClientServiceDelegate invoke 289
+blockingexception=org/apache/hadoop/yarn/exceptions/impl/pb/YarnRemoteExceptionPBImpl
+signalsite=org/apache/hadoop/yarn/state/StateMachineFactory$InternalStateMachine doTransition 443
+sehandlersite=org/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl handle 926
+wehandlersite=org/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl handle 926
+weventtype=TA_DIAGNOSTICS_UPDATE
+seventtype=TA_ASSIGNED
+type=OV
+ef=/home/guanpu/Desktop/DFix-Public/public/DFix/Exclusion.txt

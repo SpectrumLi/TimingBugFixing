@@ -1,0 +1,28 @@
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:3 = getstatic < Application, Ljava/lang/System, out, <Application,Ljava/io/PrintStream> > Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:4 = new <Application,Ljava/lang/StringBuilder>@3 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 4 @7 exception:5 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:8 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 4,6 @12 exception:7 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:9 = getstatic < Application, Lfoo, xi, <Primordial,I> > Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:11 = invokevirtual < Application, Ljava/lang/StringBuilder, append(I)Ljava/lang/StringBuilder; > 8,9 @18 exception:10 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:12 = getfield < Application, Lfoo, i, <Primordial,I> > 1 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:14 = invokevirtual < Application, Ljava/lang/StringBuilder, append(I)Ljava/lang/StringBuilder; > 11,12 @25 exception:13 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:16 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 14 @28 exception:15 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, doIt()V >:16
+NORMAL doIt:invokevirtual < Application, Ljava/io/PrintStream, println(Ljava/lang/String;)V > 3,16 @31 exception:17 Node: < Application, Lfoo, doIt()V > Context: Everywhere
+< Application, Lfoo, main([Ljava/lang/String;)V >:8
+NORMAL main:invokevirtual < Application, Lfoo, doIt()V > 4 @18 exception:7 Node: < Application, Lfoo, main([Ljava/lang/String;)V > Context: Everywhere
+< Application, Lfoo, main([Ljava/lang/String;)V >:8
+NORMAL main:invokevirtual < Application, Lfoo, doIt()V > 4 @18 exception:7 Node: < Application, Lfoo, main([Ljava/lang/String;)V > Context: Everywhere
+< Application, Lfoo, main([Ljava/lang/String;)V >:6
+NORMAL main:4 = new <Application,Lfoo>@4 Node: < Application, Lfoo, main([Ljava/lang/String;)V > Context: Everywhere
+< Application, Lfoo, main([Ljava/lang/String;)V >:6
+NORMAL main:invokespecial < Application, Lfoo, <init>()V > 4 @8 exception:5 Node: < Application, Lfoo, main([Ljava/lang/String;)V > Context: Everywhere

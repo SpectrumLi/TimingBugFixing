@@ -1,0 +1,14 @@
+messagetype=blocking
+lastcheck=address
+sourcecode=/home/guanpu/Desktop/DFix-Public/public/DFix/software/mr-3274
+waitvariable=jvmIDToAttemptMap+jvmID
+signalvariable=jvmIDToAttemptMap+wJvmID
+callsite=org/apache/hadoop/mapreduce/v2/api/impl/pb/service/MRClientProtocolPBServiceImpl killTaskAttempt 217
+blockingexception=org/apache/hadoop/yarn/exceptions/impl/pb/YarnRemoteExceptionPBImpl
+weventhandler=org/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl handle 828
+signalsite=org/apache/hadoop/mapred/TaskAttemptListenerImpl getTask 419
+weventclone=yes
+weventtype=TA_KILL
+type=OV
+ef=/home/guanpu/Desktop/DFix-Public/public/DFix/Exclusion.txt
+eesite=org/apache/hadoop/mapreduce/v2/app/client/MRClientService$MRClientProtocolHandler killTaskAttempt 346

@@ -1,0 +1,8 @@
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:52 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader, outstandingProposals, <Application,Ljava/util/concurrent/ConcurrentMap> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:54 = invokeinterface < Application, Ljava/util/concurrent/ConcurrentMap, size()I > 52 @137 exception:53 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:conditional branch(ne) 54,9 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:443
+NORMAL run:invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > 386,387,389,392 @1256 exception:393 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere

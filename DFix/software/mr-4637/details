@@ -1,0 +1,81 @@
+--------  PATCH DETAILS  --------
+
+In the StateMachineFactory.java
+
++++    public static AtomicInteger dfixeventflag = new AtomicInteger();
+
+In the ClientServiceDelegate.java
+
+---          return methodOb.invoke(dfix_proxy, args);
++++  return DFix_Rpc();
+
+In the TaskAttemptImpl.java
+
++++    public Semaphore se_dfix = new Semaphore(0);
+
+---          stateMachine.doTransition(event.getType(), event);
++++          stateMachine.doTransition(event.getType(), event); DFix_Signal();
+
+
+---          stateMachine.doTransition(event.getType(), event);
++++  DFix_EventWait(event);
+
+
+In the MRClientService.java
+
+---        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
++++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix_EventWait();
+
+--------  IMPL  DETAILS  --------
+
+In the ClientServiceDelegate.java
+
+DFix_Rpc():
+int i = 0;
+while (true) {
+try{
+  if (i>100) break;
+  i++;
+        return methodOb.invoke(dfix_proxy, args);
+} catch(YarnRemoteExceptionPBImpl e_e){
+if (!e_e.getMessage().contains("dfix")) throw e;
+}
+}
+
+
+In the TaskAttemptImpl.java
+
+DFix_Signal():
+ if (event.getType().toString().equals("TA_ASSIGNED" ))se_dfix.release(9999);
+ 
+
+DFix_EventWait(event):
+if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
+if (se_dfix.availablePermits() >1) {
+if (StateMachineFactory.dfixeventflag.get() > 1000) {
+StateMachineFactory.dfixeventflag.getAndDecrement(); return ;}
+StateMachineFactory.dfixeventflag.getAndAdd(1000);
+}else{
+StateMachineFactory.dfixeventflag.getAndDecrement(); return ;}
+}
+        stateMachine.doTransition(event.getType(), event);
+
+In the MRClientService.java
+
+DFix_EventWait(): 
+ int t_dfix=0;StateMachineFactory.dfixeventflag.getAndAdd(1);
+while (true) { 
+ try{ Thread.sleep(200); } catch (Exception e){}
+ if (StateMachineFactory.dfixeventflag.get() >= 1000 ) break;
+ t_dfix++; if (t_dfix > 20) throw new YarnRemoteExceptionPBImpl("dfix");
+}
+
+--------  CLONE DETAILS  --------
+In the TaskAttemptImpl.java
+
+---          stateMachine.doTransition(event.getType(), event);
++++  if (event.getType().equals("TA_ASSIGNED"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
+
+---          stateMachine.doTransition(event.getType(), event);
++++  if (event.getType().equals("TA_DIAGNOSTICS_UPDATE"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
+

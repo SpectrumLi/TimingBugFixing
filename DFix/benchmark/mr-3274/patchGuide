@@ -1,0 +1,5 @@
+RSite:=before org/apache/hadoop/mapreduce/v2/api/impl/pb/service/MRClientProtocolPBServiceImpl killTaskAttempt 217
+CSite:=before org/apache/hadoop/mapred/TaskAttemptListenerImpl unregister 452
+ProveResult:=true
+AddRel:=yes
+addresscode:= String key =Integer.toString( System.identityHashCode(jvmIDToAttemptMap)) +Integer.toString( System.identityHashCode(jvmID)) ;

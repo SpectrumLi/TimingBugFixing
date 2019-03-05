@@ -1,0 +1,6 @@
+RSite:=before org/apache/hadoop/mapred/ClientServiceDelegate invoke 289
+CSite:=before org/apache/hadoop/yarn/state/StateMachineFactory$InternalStateMachine doTransition 443
+ProveResult:=true
+AddRel:=no
+addresscode:= String key =Integer.toString( System.identityHashCode(currentState)) ;
+eesite:=org/apache/hadoop/mapreduce/v2/app/client/MRClientService$MRClientProtocolHandler killTaskAttempt 323

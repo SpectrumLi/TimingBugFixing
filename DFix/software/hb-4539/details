@@ -1,0 +1,24 @@
+--------  PATCH DETAILS  --------
+
+In the ZKAssign.java
+
+---      version = ZKUtil.checkExists(zkw, node);
++++      version  = DFix_Rpc();
+
+--------  IMPL  DETAILS  --------
+
+In the ZKAssign.java
+
+DFix_Rpc():
+int i = 0;
+String dfixcss = "";
+for (StackTraceElement dfix_ste : Thread.currentThread().getStackTrace()) {dfixcss += dfix_ste.toString();}
+while (version!=-1) {
+  if (i>100) break; 
+  i++;    version = ZKUtil.checkExists(zkw, node);try{Thread.sleep(1000);}catch(Exception e_e){}
+if (!dfixcss.contains("ServerShutdownHandler")) break;
+}
+return     version 
+
+
+--------  CLONE DETAILS  --------

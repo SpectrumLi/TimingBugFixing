@@ -1,0 +1,8 @@
+messagetype=blocking
+lastcheck=address
+sourcecode=/home/guanpu/Desktop/DFix-Public/public/DFix/software/hb-4729
+waitvariable=ZKAssign
+callsite=org/apache/hadoop/hbase/master/AssignmentManager unassign 1751
+zookeepapi=y
+blockingexception=KeeperException.NodeExistsException
+type=AV

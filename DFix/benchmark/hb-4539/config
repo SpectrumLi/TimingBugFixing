@@ -1,0 +1,10 @@
+messagetype=blocking
+lastcheck=address
+sourcecode=/home/guanpu/Desktop/DFix-Public/public/DFix/software/hb-4539
+waitvariable=version
+waittargetv=-1
+callsite=org/apache/hadoop/hbase/zookeeper/ZKAssign createOrForceNodeOffline 272
+zookeepapi=y
+blockingexception=NO
+cssID=ServerShutdownHandler
+type=AV

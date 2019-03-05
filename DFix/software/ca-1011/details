@@ -1,0 +1,51 @@
+--------  PATCH DETAILS  --------
+
+In the BootStrapper.java
+
+---              tokenString = ss.getBootstrapToken().toString();
++++  tokenString = DFix_Wait();
+
+In the StorageService.java
+
++++    public Semaphore se_dfix = new Semaphore(0);
+
+---          calculatePendingRanges(1);
++++          calculatePendingRanges(1); DFix_Signal();
+
+
+---              token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
++++  token = DFix_Socket();
+
+
+--------  IMPL  DETAILS  --------
+
+In the BootStrapper.java
+
+DFix_Wait():
+try { 
+if (StorageService.se_dfix.tryAcquire(1,5,java.util.concurrent.TimeUnit.SECONDS) ) 
+            tokenString = ss.getBootstrapToken().toString();
+else tokenString ="00000000000000000000000";
+} catch (InterruptedException e_dfix) {
+}
+ return tokenString;
+
+
+In the StorageService.java
+
+DFix_Signal():
+se_dfix.release(1);
+
+
+DFix_Socket():
+ int i = 0;
+   while (true) {
+ if (i>100) break; 
+ i++;
+            token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
+if (!token.toString().equals("0"))
+break;}
+return token;
+
+
+--------  CLONE DETAILS  --------

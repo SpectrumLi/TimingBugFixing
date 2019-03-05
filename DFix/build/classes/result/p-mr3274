@@ -1,0 +1,24 @@
+6 css loaded
+1 css loaded
+Cloning org/apache/hadoop/yarn/state/StateMachineFactory$InternalStateMachine doTransition 443 -> StateMachineFactory$InternalStateMachine
+Fetch StateMachineFactory$InternalStateMachine from the CUTABLE
+Clone functionorg/apache/hadoop/yarn/state/StateMachineFactory$InternalStateMachine doTransition 443
+Cloning org/apache/hadoop/yarn/state/StateMachineFactory doTransition 298 -> StateMachineFactory
+Fetch StateMachineFactory from the CUTABLE
+Clone functionorg/apache/hadoop/yarn/state/StateMachineFactory doTransition 298
+Cloning org/apache/hadoop/yarn/state/StateMachineFactory$SingleInternalArc doTransition 357 -> StateMachineFactory$SingleInternalArc
+Fetch StateMachineFactory$SingleInternalArc from the CUTABLE
+Clone functionorg/apache/hadoop/yarn/state/StateMachineFactory$SingleInternalArc doTransition 357
+Cloning org/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl$CleanupContainerTransition transition 1332 -> TaskAttemptImpl$CleanupContainerTransition
+Fetch TaskAttemptImpl$CleanupContainerTransition from the CUTABLE
+Clone functionorg/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl$CleanupContainerTransition transition 1332
+Cloning org/apache/hadoop/mapred/TaskAttemptListenerImpl unregister 452 -> TaskAttemptListenerImpl
+Fetch TaskAttemptListenerImpl from the CUTABLE
+Clone functionorg/apache/hadoop/mapred/TaskAttemptListenerImpl unregister 452
+Add signal to org/apache/hadoop/mapred/TaskAttemptListenerImpl getTask 419
+Fetch TaskAttemptListenerImpl from the CUTABLE
+~~~ add semaphore to TaskAttemptListenerImpl
+    org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);
+->     org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);String dfixkey = Integer.toString( System.identityHashCode(jvmIDToAttemptMap)) +Integer.toString( System.identityHashCode(wJvmID)) ;hm_dfix.put(dfixkey, new Semaphore(9999));
+
+1 occurence use replace instead of replacefirst

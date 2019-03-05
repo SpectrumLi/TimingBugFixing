@@ -1,0 +1,78 @@
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:504
+NORMAL processAck:94 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader, self, <Application,Lorg/apache/zookeeper/server/quorum/QuorumPeer> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:504
+NORMAL processAck:96 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPeer, getQuorumVerifier()Lorg/apache/zookeeper/server/quorum/flexible/QuorumVerifier; > 94 @371 exception:95 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:504
+NORMAL processAck:97 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader$Proposal, ackSet, <Application,Ljava/util/HashSet> > 63 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:504
+NORMAL processAck:99 = invokeinterface < Application, Lorg/apache/zookeeper/server/quorum/flexible/QuorumVerifier, containsQuorum(Ljava/util/HashSet;)Z > 96,97 @379 exception:98 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:504
+NORMAL processAck:conditional branch(eq) 99,10 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:493
+NORMAL processAck:conditional branch(ne) 63,64 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:492
+NORMAL processAck:63 = checkcast <Application,Lorg/apache/zookeeper/server/quorum/Leader$Proposal>62 <Application,Lorg/apache/zookeeper/server/quorum/Leader$Proposal> Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:492
+NORMAL processAck:62 = invokeinterface < Application, Ljava/util/concurrent/ConcurrentMap, get(Ljava/lang/Object;)Ljava/lang/Object; > 58,60 @241 exception:61 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:492
+NORMAL processAck:58 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader, outstandingProposals, <Application,Ljava/util/concurrent/ConcurrentMap> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:492
+NORMAL processAck:60 = invokestatic < Application, Ljava/lang/Long, valueOf(J)Ljava/lang/Long; > 3 @238 exception:59 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:483
+NORMAL processAck:57 = compare 56,3 opcode=cmp Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:483
+NORMAL processAck:conditional branch(lt) 57,10 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:483
+NORMAL processAck:56 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader, lastCommitted, <Primordial,J> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:55 = invokeinterface < Application, Ljava/util/concurrent/ConcurrentMap, size()I > 53 @140 exception:54 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:conditional branch(ne) 55,10 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V >:477
+NORMAL processAck:53 = getfield < Application, Lorg/apache/zookeeper/server/quorum/Leader, outstandingProposals, <Application,Ljava/util/concurrent/ConcurrentMap> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:411
+NORMAL run:invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/Leader, processAck(JJLjava/net/SocketAddress;)V > 336,337,339,342 @1329 exception:343 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:411
+NORMAL run:339 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, getZxid()J > 329 @1319 exception:338 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:405
+NORMAL run:329 = new <Application,Lorg/apache/zookeeper/server/quorum/QuorumPacket>@1191 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:405
+NORMAL run:invokespecial < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, <init>()V > 329 @1195 exception:330 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:292
+NORMAL run:conditional branch(eq) 119,120 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:292
+NORMAL run:119 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, getType()I > 114 @521 exception:118 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:290
+NORMAL run:114 = new <Application,Lorg/apache/zookeeper/server/quorum/QuorumPacket>@499 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:290
+NORMAL run:invokespecial < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, <init>()V > 114 @503 exception:115 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:278
+NORMAL run:96 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, getVersion()I > 1 @401 exception:95 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:278
+NORMAL run:conditional branch(ge) 96,97 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:274
+NORMAL run:85 = getstatic < Application, Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType, PARTICIPANT, <Application,Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType> > Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:274
+NORMAL run:84 = getfield < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, learnerType, <Application,Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType> > 1 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:274
+NORMAL run:conditional branch(ne) 84,85 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:267
+NORMAL run:putfield 1 = 79 < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, learnerType, <Application,Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType> > Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:267
+NORMAL run:79 = getstatic < Application, Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType, OBSERVER, <Application,Lorg/apache/zookeeper/server/quorum/QuorumPeer$LearnerType> > Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:266
+NORMAL run:conditional branch(ne) 78,28 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:266
+NORMAL run:78 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, getType()I > 18 @344 exception:77 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:243
+NORMAL run:24 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, getType()I > 18 @69 exception:23 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:243
+NORMAL run:27 = invokevirtual < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, getType()I > 18 @78 exception:26 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:243
+NORMAL run:conditional branch(eq) 24,25 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:243
+NORMAL run:conditional branch(eq) 27,28 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:241
+NORMAL run:invokespecial < Application, Lorg/apache/zookeeper/server/quorum/QuorumPacket, <init>()V > 18 @54 exception:19 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere
+< Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V >:241
+NORMAL run:18 = new <Application,Lorg/apache/zookeeper/server/quorum/QuorumPacket>@50 Node: < Application, Lorg/apache/zookeeper/server/quorum/LearnerHandler, run()V > Context: Everywhere

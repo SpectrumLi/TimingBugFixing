@@ -1,0 +1,24 @@
+--------  PATCH DETAILS  --------
+
+In the AssignmentManager.java
+
+---            ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
++++    DFix_Rpc();
+
+--------  IMPL  DETAILS  --------
+
+In the AssignmentManager.java
+
+DFix_Rpc():
+int i = 0;
+while (true) {
+try{
+  if (i>100) break;
+  i++;
+          ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());break;
+} catch(KeeperException.NodeExistsException e_e){
+}
+}
+
+
+--------  CLONE DETAILS  --------

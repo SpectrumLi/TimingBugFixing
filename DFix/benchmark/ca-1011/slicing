@@ -1,0 +1,6 @@
+< Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V >:214
+NORMAL doVerb:6 = invokevirtual < Application, Lorg/apache/cassandra/service/StorageService, getBootstrapToken()Lorg/apache/cassandra/dht/Token; > 4 @5 exception:5 Node: < Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V > Context: Everywhere
+< Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V >:214
+NORMAL doVerb:8 = invokevirtual < Application, Lorg/apache/cassandra/dht/Token, toString()Ljava/lang/String; > 6 @8 exception:7 Node: < Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V > Context: Everywhere
+< Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V >:213
+NORMAL doVerb:4 = getstatic < Application, Lorg/apache/cassandra/service/StorageService, instance, <Application,Lorg/apache/cassandra/service/StorageService> > Node: < Application, Lorg/apache/cassandra/dht/BootStrapper$BootstrapTokenVerbHandler, doVerb(Lorg/apache/cassandra/net/Message;)V > Context: Everywhere

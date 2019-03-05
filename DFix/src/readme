@@ -1,0 +1,53 @@
+
+config.java provides the basic input information:
+	1.messagetype.
+	2.sourcecode directory.
+	3.rely on the address or value <seems no use now>.
+	4.waitvariable.
+	5.sinalvariable.
+        6.input = $INPUT/config.
+
+ssat.java self-designed static analysis tool for slicing:
+	1.include SSALocator.java and Stateer.java.
+	2.input = $INPUT/config; $INPUT/css; $INPUT/jarscope.
+	3.customized slicer. WALA for inside function computation. Inter-procedural only include the parameter passing.
+	4.output = $INPUT/slicing.
+	5.output format = location +"\n" +SSA+"\n".
+
+SSALocator.java compute a function internel slice for varibles:
+	1.input = $INPUT/css;
+	2.it contains the callstack information for one operation.
+	3.it computes the slice from the bottom to top layer in the callstack.Only considering parameters passing.
+
+Stateer.java some basic function for WALA instructions:
+	1.statement -> SSAInst.
+	2.SSAAssignNumber. // Number = varible name
+	3.SSAReferenceNumber.
+	4.SSAAbsParameter. //based on deeper layer analysis to decide which parameter is involved in this InvokeInstruction.
+	5.SSAFilter.
+
+prover.java proves the part of slice from the bottom never change it result if the program reaches the begin of this part.
+	1.input = $INPUT/slicing // from ssat.java.
+	2.include ProveRecord.java
+	3.output = $INPUT/provedslicing
+	
+ProveRecord.java prove the slice item.
+	1.UnprovableAddressSSA: getstatic, =invoke, getfield
+	2.UnprovableValueSSA: putfield x(x>1);
+
+sedetector.java : side effect detector + patch Guide
+	1.check the side effect instuction along the callstack.
+	2.find a Rsite.
+	3.find a Csite.
+	3.gen and prove a miracle check.
+	4.include SideEffect.java and PatchConstructor.java
+
+SideEffect.java analyzes the side effect instruction inside one function and its callees.
+	1.input = $INPUT/seffect
+	2.For basic instruction, sei = putstatic or putfiled(not in init)
+	3.library call. like map.put.
+	4.function calls rely on the function body analysis.
+
+PatchConsturctor.java generates the patching guide.
+	1.input = $INPUT/config;$INPUT/slicing;$INPUT/provedslicing;
+	2.	

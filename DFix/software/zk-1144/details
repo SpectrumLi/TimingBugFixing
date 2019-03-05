@@ -1,0 +1,51 @@
+--------  PATCH DETAILS  --------
+
+In the LearnerHandler.java
+
+---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
++++  DFix_Repeat();
+
+In the Leader.java
+
++++    public static HashMap<String, Semaphore > hm_dfix = new HashMap<String,Semaphore>();
+
+---              newLeaderProposal.ackSet.add(self.getId());
++++  DFix_Signal(newLeaderProposal.ackSet);
+
+
+---          if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
++++  DFix_Wait(p.ackSet);        if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
+
+--------  IMPL  DETAILS  --------
+
+In the LearnerHandler.java
+
+DFix_Repeat():
+  int i = 0;
+  while(true){ try{
+  if (i>100) break; 
+ i++;
+            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());break;
+}catch( Exception e){}}
+
+
+In the Leader.java
+
+DFix_Signal():
+String dfixkey = Integer.toString( System.identityHashCode(newLeaderProposal.ackSet));hm_dfix.put(dfixkey, new Semaphore(9999));
+
+
+DFix_Wait(p.ackSet):
+ String key =Integer.toString( System.identityHashCode(p.ackSet)) ;if (hm_dfix.get(key) == null) throw new Exception("DFIX EXCEPTION ");
+
+--------  CLONE DETAILS  --------
+In the LearnerHandler.java
+
+---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
++++              leader.processAck_dfix(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+
+In the QuorumPeer.java
+
+---                          leader.lead();
++++                          leader.lead_dfix();
+
