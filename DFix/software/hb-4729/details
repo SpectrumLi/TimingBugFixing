@@ -3,13 +3,13 @@
 In the AssignmentManager.java
 
 ---            ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
-+++    DFix_RollDestiny();
++++            DFix_RollDestination();
 
 --------  IMPL  DETAILS  --------
 
 In the AssignmentManager.java
 
-DFix_RollDestiny():
+DFix_RollDestination():
 int i = 0;
 while (true) {
 try{

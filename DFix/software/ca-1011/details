@@ -3,7 +3,7 @@
 In the BootStrapper.java
 
 ---              tokenString = ss.getBootstrapToken().toString();
-+++  tokenString = DFix_CheckRollback();
++++             tokenString = DFix_CheckRollback();
 
 In the StorageService.java
 
@@ -14,7 +14,7 @@ In the StorageService.java
 
 
 ---              token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
-+++  token = DFix_RollDestiny();
++++            token = DFix_RollDestination();
 
 
 --------  IMPL  DETAILS  --------
@@ -37,7 +37,7 @@ DFix_Set():
 se_dfix.release(1);
 
 
-DFix_RollDestiny():
+DFix_RollDestination():
  int i = 0;
    while (true) {
  if (i>100) break; 

@@ -7,7 +7,7 @@ In the StateMachineFactory.java
 In the ClientServiceDelegate.java
 
 ---          return methodOb.invoke(dfix_proxy, args);
-+++  return DFix_RollDestiny();
++++         return DFix_RollDestination();
 
 In the TaskAttemptImpl.java
 
@@ -18,7 +18,7 @@ In the TaskAttemptImpl.java
 
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++  DFix_EventWait(event);
++++          DFix_CheckRollback(event);
 
 
 In the MRClientService.java
@@ -30,7 +30,7 @@ In the MRClientService.java
 
 In the ClientServiceDelegate.java
 
-DFix_RollDestiny():
+DFix_RollDestination():
 int i = 0;
 while (true) {
 try{
@@ -49,7 +49,7 @@ DFix_Set():
  if (event.getType().toString().equals("TA_ASSIGNED" ))se_dfix.release(9999);
  
 
-DFix_EventWait(event):
+DFix_CheckRollback(event):
 if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
 if (se_dfix.availablePermits() >1) {
 if (StateMachineFactory.dfixeventflag.get() > 1000) {
@@ -74,8 +74,8 @@ while (true) {
 In the TaskAttemptImpl.java
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++  if (event.getType().equals("TA_ASSIGNED"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
++++         if (event.getType().equals("TA_ASSIGNED"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++  if (event.getType().equals("TA_DIAGNOSTICS_UPDATE"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
++++         if (event.getType().equals("TA_DIAGNOSTICS_UPDATE"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
 

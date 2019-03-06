@@ -11,7 +11,7 @@ In the TaskAttemptListenerImpl.java
 
 
 ---      jvmIDToAttemptMap.remove(jvmID);
-+++  if (!DFix_CheckDrop()) return ;    jvmIDToAttemptMap.remove(jvmID);
++++     if (!DFix_CheckDrop()) return ;    jvmIDToAttemptMap.remove(jvmID);
 
 In the MRClientService.java
 
@@ -21,7 +21,7 @@ In the MRClientService.java
 In the MRClientProtocolPBServiceImpl.java
 
 ---        response = real.killTaskAttempt(request);
-+++        response  = DFix_RollDestiny();
++++        response  = DFix_RollDestination();
 
 --------  IMPL  DETAILS  --------
 
@@ -48,7 +48,7 @@ while (true) {
 
 In the MRClientProtocolPBServiceImpl.java
 
-DFix_RollDestiny():
+DFix_RollDestination():
 int i = 0;
 while (true) {
 try{
@@ -77,7 +77,7 @@ In the StateMachineFactory.java
 In the TaskAttemptImpl.java
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++  if (event.getType().equals("TA_KILL"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
++++         if (event.getType().equals("TA_KILL"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
 
 ---        taskAttempt.taskAttemptListener.unregister(
 +++        taskAttempt.taskAttemptListener.unregister_dfix(

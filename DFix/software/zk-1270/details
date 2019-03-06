@@ -3,7 +3,7 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++  DFix_CheckRollback();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
++++              DFix_CheckRollback();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
 
 In the Leader.java
 

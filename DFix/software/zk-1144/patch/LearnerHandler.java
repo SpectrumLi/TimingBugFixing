@@ -379,7 +379,7 @@ public class LearnerHandler extends Thread {
                 LOG.error("Next packet was supposed to be an ACK");
                 return;
             }
-DFix_RollDestiny();
+DFix_RollDestination();
             /*
              * Wait until leader starts up
              */

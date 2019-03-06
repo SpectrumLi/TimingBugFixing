@@ -3,24 +3,24 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++  DFix_RollDestiny();
++++              DFix_RollDestination();
 
 In the Leader.java
 
 +++    public static HashMap<String, Semaphore > hm_dfix = new HashMap<String,Semaphore>();
 
 ---              newLeaderProposal.ackSet.add(self.getId());
-+++  DFix_Set(newLeaderProposal.ackSet);
++++              DFix_Set(newLeaderProposal.ackSet);
 
 
 ---          if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
-+++  DFix_CheckRollback(p.ackSet);        if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
++++          DFix_CheckRollback(p.ackSet);        if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
 
 --------  IMPL  DETAILS  --------
 
 In the LearnerHandler.java
 
-DFix_RollDestiny():
+DFix_RollDestination():
   int i = 0;
   while(true){ try{
   if (i>100) break; 

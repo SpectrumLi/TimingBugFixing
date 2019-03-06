@@ -303,7 +303,7 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
             }
             setMode("Joining: getting bootstrap token", true);
             Token token = null;
-token = DFix_RollDestiny();
+token = DFix_RollDestination();
 
             startBootstrap(token);
             // don't finish startup (enabling thrift) until after bootstrap is done
