@@ -315,7 +315,7 @@ public class Leader {
             if ((newLeaderProposal.packet.getZxid() & 0xffffffffL) != 0) {
                 LOG.info("NEWLEADER proposal has Zxid of " + Long.toHexString(newLeaderProposal.packet.getZxid()));
             }
-            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Set();
+            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Set(outstandingProposals);
 
             newLeaderProposal.ackSet.add(self.getId());
             waitForEpochAck(self.getId(), leaderStateSummary);
@@ -431,7 +431,7 @@ public class Leader {
      *                the zxid of the proposal sent out
      * @param followerAddr
      */
-    public synchronized void processAck(long sid, long zxid, SocketAddress followerAddr) {
+    public synchronized void processAck_dfix(long sid, long zxid, SocketAddress followerAddr) throws Exception {
         if (LOG.isTraceEnabled()) {
             LOG.trace("Ack zxid: 0x" + Long.toHexString(zxid));
             for (Proposal p : outstandingProposals.values()) {
@@ -440,7 +440,7 @@ public class Leader {
             }
             LOG.trace("outstanding proposals all");
         }
-        if (outstandingProposals.size() == 0) {
+if (DFix.CheckCallStack()) {if (!DFix.Wait(outstandingProposals)) throw new Exception ("DFIX EXCEPTION "); }        if (outstandingProposals.size() == 0) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("outstanding is 0");
             }
@@ -858,5 +858,78 @@ public class Leader {
         }
     }
 
-    public Semaphore se_dfix = new Semaphore(0);
+    /**
+     * Keep a count of acks that are received by the leader for a particular
+     * proposal
+     *
+     * @param zxid
+     *                the zxid of the proposal sent out
+     * @param followerAddr
+     */
+    public synchronized void processAck(long sid, long zxid, SocketAddress followerAddr) {
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("Ack zxid: 0x" + Long.toHexString(zxid));
+            for (Proposal p : outstandingProposals.values()) {
+                long packetZxid = p.packet.getZxid();
+                LOG.trace("outstanding proposal: 0x" + Long.toHexString(packetZxid));
+            }
+            LOG.trace("outstanding proposals all");
+        }
+        if (outstandingProposals.size() == 0) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("outstanding is 0");
+            }
+            return;
+        }
+        if (lastCommitted >= zxid) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("proposal has already been committed, pzxid:" + lastCommitted + " zxid: 0x" + Long.toHexString(zxid));
+            }
+            // The proposal has already been committed
+            return;
+        }
+        Proposal p = outstandingProposals.get(zxid);
+        if (p == null) {
+            LOG.warn("Trying to commit future proposal: zxid 0x" + Long.toHexString(zxid) + " from " + followerAddr);
+            return;
+        }
+        p.ackSet.add(sid);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Count for zxid: 0x" + Long.toHexString(zxid) + " is " + p.ackSet.size());
+        }
+        if (self.getQuorumVerifier().containsQuorum(p.ackSet)) {
+            if (zxid != lastCommitted + 1) {
+                LOG.warn("Commiting zxid 0x" + Long.toHexString(zxid) + " from " + followerAddr + " not first!");
+                LOG.warn("First is " + (lastCommitted + 1));
+            }
+            outstandingProposals.remove(zxid);
+            if (p.request != null) {
+                toBeApplied.add(p);
+            }
+            // We don't commit the new leader proposal
+            if ((zxid & 0xffffffffL) != 0) {
+                if (p.request == null) {
+                    LOG.warn("Going to commmit null: " + p);
+                }
+                commit(zxid);
+                inform(p);
+                zk.commitProcessor.commit(p.request);
+                if (pendingSyncs.containsKey(zxid)) {
+                    for (LearnerSyncRequest r : pendingSyncs.remove(zxid)) {
+                        sendSync(r);
+                    }
+                }
+                return;
+            } else {
+                lastCommitted = zxid;
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("Have quorum of supporters; starting up and setting last processed zxid: " + zk.getZxid());
+                }
+                zk.startup();
+                zk.getZKDatabase().setlastProcessedZxid(zk.getZxid());
+            }
+        }
+    }
+
+    public static HashMap<String, Semaphore> hm_dfix = new HashMap<String, Semaphore>();
 }

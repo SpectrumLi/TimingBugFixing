@@ -1,30 +1,23 @@
 --------  PATCH DETAILS  --------
 
-In the StateMachineFactory.java
-
-+++    public static AtomicInteger dfixeventflag = new AtomicInteger();
-
 In the ClientServiceDelegate.java
 
 ---          return methodOb.invoke(dfix_proxy, args);
-+++         return DFix_RollDestination();
++++         if (DFix.RollCallStack()) {return DFix_RollDestination();}else         return methodOb.invoke(dfix_proxy, args);
 
 In the TaskAttemptImpl.java
 
-+++    public Semaphore se_dfix = new Semaphore(0);
-
 ---          stateMachine.doTransition(event.getType(), event);
-+++          stateMachine.doTransition(event.getType(), event); DFix_Set();
++++          stateMachine.doTransition(event.getType(), event); DFix.Set(this);
 
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++          DFix_CheckRollback(event);
-
++++         if (DFix_CheckDrop(this,event)) return;        stateMachine.doTransition(event.getType(), event);
 
 In the MRClientService.java
 
 ---        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
-+++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix_EventWait();
++++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix.EventWait(this);
 
 --------  IMPL  DETAILS  --------
 
@@ -41,41 +34,5 @@ try{
 if (!e_e.getMessage().contains("dfix")) throw e;
 }
 }
-
-
-In the TaskAttemptImpl.java
-
-DFix_Set():
- if (event.getType().toString().equals("TA_ASSIGNED" ))se_dfix.release(9999);
- 
-
-DFix_CheckRollback(event):
-if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
-if (se_dfix.availablePermits() >1) {
-if (StateMachineFactory.dfixeventflag.get() > 1000) {
-StateMachineFactory.dfixeventflag.getAndDecrement(); return ;}
-StateMachineFactory.dfixeventflag.getAndAdd(1000);
-}else{
-StateMachineFactory.dfixeventflag.getAndDecrement(); return ;}
-}
-        stateMachine.doTransition(event.getType(), event);
-
-In the MRClientService.java
-
-DFix_EventWait(): 
- int t_dfix=0;StateMachineFactory.dfixeventflag.getAndAdd(1);
-while (true) { 
- try{ Thread.sleep(200); } catch (Exception e){}
- if (StateMachineFactory.dfixeventflag.get() >= 1000 ) break;
- t_dfix++; if (t_dfix > 20) throw new YarnRemoteExceptionPBImpl("dfix");
-}
-
---------  CLONE DETAILS  --------
-In the TaskAttemptImpl.java
-
----          stateMachine.doTransition(event.getType(), event);
-+++         if (event.getType().equals("TA_ASSIGNED"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
-
----          stateMachine.doTransition(event.getType(), event);
-+++         if (event.getType().equals("TA_DIAGNOSTICS_UPDATE"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
+if (i>100)         return methodOb.invoke(dfix_proxy, args);
 

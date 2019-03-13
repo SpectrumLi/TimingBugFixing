@@ -249,7 +249,7 @@ public class ZKAssign {
         Stat stat = new Stat();
         zkw.sync(node);
         int version = -100;
-        version  = DFix_RollDestination();
+    if (DFix.RollCallStack()) {    version  = DFix_RollDestination();}else     version = ZKUtil.checkExists(zkw, node);
         if (version == -1) {
             // create the znode again which will lead to double assignment.
             if (hijack && !allowCreation) {

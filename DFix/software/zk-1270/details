@@ -3,32 +3,29 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++              DFix_CheckRollback();            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
++++             if (DFix_RollCallStack()) DFix_RollDestination(); else             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+
 
 In the Leader.java
 
-+++    public Semaphore se_dfix = new Semaphore(0);
-
 ---              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
-+++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix_Set();
++++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Set(outstandingProposals);
 
+
+---          if (outstandingProposals.size() == 0) {
++++         if (DFix.CheckCallStack()) {if (!DFix.Wait(outstandingProposals)) throw new Exception ("DFIX EXCEPTION "); }        if (outstandingProposals.size() == 0) {
 
 --------  IMPL  DETAILS  --------
 
 In the LearnerHandler.java
 
-DFix_CheckRollback():
-leader.se_dfix.tryAcquire(1,7,java.util.concurrent.TimeUnit.SECONDS);
+DFix_RollDestination():
+  int i = 0;
+  while(true){ try{
+  if (i>100) break; 
+ i++;
+            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());break;
+}catch( Exception e){}}
+if (i > 100)             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
 
-In the Leader.java
-
-DFix_Set():
-se_dfix.release(9999);
-
-
---------  CLONE DETAILS  --------
-In the QuorumPeer.java
-
----                          leader.lead();
-+++                          leader.lead_dfix();
 

@@ -1538,7 +1538,7 @@ public class AssignmentManager extends ZooKeeperListener {
                 LOG.info("Create Node Closing is to running");
                 // Create the znode in CLOSING state
                 try {
-            DFix_RollDestination();
+          if (DFix.RollCallStack()) {  DFix_RollDestination();}else           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
                 } catch (KeeperException e) {
                     master.abort("Unexpected ZK exception creating node CLOSING", e);
                     return;

@@ -320,7 +320,7 @@ public class Leader {
             // We have to get at least a majority of servers in sync with
             // us. We do this by waiting for the NEWLEADER packet to get
             // acknowledged
-DFix_Set(newLeaderProposal.ackSet);
+            newLeaderProposal.ackSet.add(self.getId()); DFix.Set(newLeaderProposal.ackSet);
 
             while (!self.getQuorumVerifier().containsQuorum(newLeaderProposal.ackSet)) {
                 //while (newLeaderProposal.ackCount <= self.quorumPeers.size() / 2) {

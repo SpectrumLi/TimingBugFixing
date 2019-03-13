@@ -2,49 +2,24 @@
 
 In the TaskAttemptListenerImpl.java
 
-+++    public static AtomicInteger dfixeventflag = new AtomicInteger();
-
-+++    public static HashMap<String, Semaphore > hm_dfix = new HashMap<String,Semaphore>();
-
 ---      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);
-+++      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix_Set(jvmIDToAttemptMap,wJvmID);
++++      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix.Set(jvmIDToAttemptMap,wJvmID);
 
 
 ---      jvmIDToAttemptMap.remove(jvmID);
-+++     if (!DFix_CheckDrop()) return ;    jvmIDToAttemptMap.remove(jvmID);
++++     if (!DFix.CheckDrop(jvmIDToAttemptMap,wJvmID)) return ;    jvmIDToAttemptMap.remove(jvmID);
 
 In the MRClientService.java
 
 ---        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
-+++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix_EventWait();
++++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix.EventWait(this);
 
 In the MRClientProtocolPBServiceImpl.java
 
 ---        response = real.killTaskAttempt(request);
-+++        response  = DFix_RollDestination();
++++       if (DFix.RollCallStack()) {      response  = DFix_RollDestination();}else       response = real.killTaskAttempt(request);
 
 --------  IMPL  DETAILS  --------
-
-In the TaskAttemptListenerImpl.java
-
-DFix_Set(jvmIDToAttemptMap,wJvmID):
-String dfixkey = Integer.toString( System.identityHashCode(jvmIDToAttemptMap)) +Integer.toString( System.identityHashCode(wJvmID)) ;hm_dfix.put(dfixkey, new Semaphore(9999));
-
-
-DFix_CheckDrop():
- String key =Integer.toString( System.identityHashCode(jvmIDToAttemptMap)) +Integer.toString( System.identityHashCode(jvmID)) ;if (hm_dfix.get(key)==null) {dfixeventflag.getAndDecrement(); return false ;}else{dfixeventflag.getAndAdd(1000);}    jvmIDToAttemptMap.remove(jvmID);
- return ture;
-
-
-In the MRClientService.java
-
-DFix_EventWait(): 
- int t_dfix=0;TaskAttemptListenerImpl.dfixeventflag.getAndAdd(1);
-while (true) { 
- try{ Thread.sleep(200); } catch (Exception e){}
- if (TaskAttemptListenerImpl.dfixeventflag.get() >= 1000 ) break;
- t_dfix++; if (t_dfix > 20) throw new YarnRemoteExceptionPBImpl("dfix");
-}
 
 In the MRClientProtocolPBServiceImpl.java
 
@@ -59,26 +34,6 @@ try{
 if (!e_e.getMessage().contains("dfix")) throw e;
 }
 }
-return       response 
+if (i>100)       response = real.killTaskAttempt(request);return       response 
 
-
---------  CLONE DETAILS  --------
-In the StateMachineFactory.java
-
----        currentState = StateMachineFactory.this.doTransition(operand, currentState, eventType, event);
-+++        currentState = StateMachineFactory.this.doTransition_dfix(operand, currentState, eventType, event);
-
----          return transition.doTransition(operand, oldState, event, eventType);
-+++          return transition.doTransition_dfix(operand, oldState, event, eventType);
-
----          hook.transition(operand, event);
-+++          hook.transition_dfix(operand, event);
-
-In the TaskAttemptImpl.java
-
----          stateMachine.doTransition(event.getType(), event);
-+++         if (event.getType().equals("TA_KILL"))         stateMachine.doTransition_dfix(event.getType(), event); else         stateMachine.doTransition(event.getType(), event);
-
----        taskAttempt.taskAttemptListener.unregister(
-+++        taskAttempt.taskAttemptListener.unregister_dfix(
 

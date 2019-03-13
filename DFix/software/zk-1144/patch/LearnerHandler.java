@@ -379,7 +379,8 @@ public class LearnerHandler extends Thread {
                 LOG.error("Next packet was supposed to be an ACK");
                 return;
             }
-DFix_RollDestination();
+if (DFix_RollCallStack()) DFix_RollDestination(); else             leader.processAck_dfix(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+
             /*
              * Wait until leader starts up
              */
@@ -410,7 +411,7 @@ DFix_RollDestination();
                                 LOG.debug("Received ACK from Observer  " + this.sid);
                             }
                         }
-                        leader.processAck_dfix(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+                        leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
                         break;
                     case Leader.PING:
                         // Process the touches

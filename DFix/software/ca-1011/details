@@ -3,18 +3,16 @@
 In the BootStrapper.java
 
 ---              tokenString = ss.getBootstrapToken().toString();
-+++             tokenString = DFix_CheckRollback();
++++             if (DFix.CheckCallStack()) tokenString = DFix_CheckRollback(); else             tokenString = ss.getBootstrapToken().toString();
 
 In the StorageService.java
 
-+++    public Semaphore se_dfix = new Semaphore(0);
-
 ---          calculatePendingRanges(1);
-+++          calculatePendingRanges(1); DFix_Set();
++++          calculatePendingRanges(1); DFix.Set(this);
 
 
 ---              token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
-+++            token = DFix_RollDestination();
++++             if (DFix.RollCallStack()){     token = DFix_RollDestination();}else             token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
 
 
 --------  IMPL  DETAILS  --------
@@ -23,7 +21,7 @@ In the BootStrapper.java
 
 DFix_CheckRollback():
 try { 
-if (StorageService.se_dfix.tryAcquire(1,5,java.util.concurrent.TimeUnit.SECONDS) ) 
+if ( DFix.Wait(this) ) 
             tokenString = ss.getBootstrapToken().toString();
 else tokenString ="00000000000000000000000";
 } catch (InterruptedException e_dfix) {
@@ -32,10 +30,6 @@ else tokenString ="00000000000000000000000";
 
 
 In the StorageService.java
-
-DFix_Set():
-se_dfix.release(1);
-
 
 DFix_RollDestination():
  int i = 0;
@@ -48,4 +42,3 @@ break;}
 return token;
 
 
---------  CLONE DETAILS  --------

@@ -3,7 +3,7 @@
 In the AssignmentManager.java
 
 ---            ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
-+++            DFix_RollDestination();
++++           if (DFix.RollCallStack()) {  DFix_RollDestination();}else           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
 
 --------  IMPL  DETAILS  --------
 
@@ -19,6 +19,5 @@ try{
 } catch(KeeperException.NodeExistsException e_e){
 }
 }
+if (i>100)           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
 
-
---------  CLONE DETAILS  --------

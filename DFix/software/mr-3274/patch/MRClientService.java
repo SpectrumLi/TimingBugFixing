@@ -293,7 +293,7 @@ public class MRClientService extends AbstractService implements ClientService {
             LOG.info(message);
             verifyAndGetAttempt(taskAttemptId, true);
             appContext.getEventHandler().handle(new TaskAttemptDiagnosticsUpdateEvent(taskAttemptId, message));
-            appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix_EventWait();
+            appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix.EventWait(this);
             KillTaskAttemptResponse response = recordFactory.newRecordInstance(KillTaskAttemptResponse.class);
             return response;
         }

@@ -265,7 +265,7 @@ public class ClientServiceDelegate {
         while (true) {
             try {
                 MRClientProtocol dfix_proxy = getProxy();
-        return DFix_RollDestination();
+        if (DFix.RollCallStack()) {return DFix_RollDestination();}else         return methodOb.invoke(dfix_proxy, args);
             } catch (YarnRemoteException yre) {
                 LOG.warn("Exception thrown by remote end.", yre);
                 throw yre;
