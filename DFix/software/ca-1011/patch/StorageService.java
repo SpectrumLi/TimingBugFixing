@@ -303,7 +303,7 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
             }
             setMode("Joining: getting bootstrap token", true);
             Token token = null;
-if (DFix.RollCallStack()){     token = DFix_RollDestination();}else             token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
+while(DFix.ShouldLoop(this)){            token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo()); if (DFix.IsNotInvalid(token)) break; }
 
             startBootstrap(token);
             // don't finish startup (enabling thrift) until after bootstrap is done
@@ -499,7 +499,7 @@ if (DFix.RollCallStack()){     token = DFix_RollDestination();}else             
                 tokenMetadata_.removeBootstrapToken(tokenThatLeft);
             }
         }
-        calculatePendingRanges(1); DFix.Set(this);
+        calculatePendingRanges(1); DFix.Signal(this);
 
         if (!isClientMode)
             SystemTable.updateToken(endPoint, token);

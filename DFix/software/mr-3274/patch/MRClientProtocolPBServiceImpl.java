@@ -203,7 +203,7 @@ public class MRClientProtocolPBServiceImpl implements BlockingInterface {
         KillTaskAttemptRequest request = new KillTaskAttemptRequestPBImpl(proto);
         try {
             KillTaskAttemptResponse response = null;
-      if (DFix.RollCallStack()) {      response  = DFix_RollDestination();}else       response = real.killTaskAttempt(request);
+      while(DFix.ShouldLoop(this) { try{       response = real.killTaskAttempt(request); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
             return ((KillTaskAttemptResponsePBImpl) response).getProto();
         } catch (YarnRemoteException e) {
             throw new ServiceException(e);

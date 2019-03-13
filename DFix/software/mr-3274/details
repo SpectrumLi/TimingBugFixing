@@ -3,7 +3,7 @@
 In the TaskAttemptListenerImpl.java
 
 ---      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);
-+++      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix.Set(jvmIDToAttemptMap,wJvmID);
++++      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);DFix.Signal(jvmIDToAttemptMap,wJvmID);
 
 
 ---      jvmIDToAttemptMap.remove(jvmID);
@@ -17,23 +17,7 @@ In the MRClientService.java
 In the MRClientProtocolPBServiceImpl.java
 
 ---        response = real.killTaskAttempt(request);
-+++       if (DFix.RollCallStack()) {      response  = DFix_RollDestination();}else       response = real.killTaskAttempt(request);
++++        while(DFix.ShouldLoop(this) { try{       response = real.killTaskAttempt(request); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
 
 --------  IMPL  DETAILS  --------
-
-In the MRClientProtocolPBServiceImpl.java
-
-DFix_RollDestination():
-int i = 0;
-while (true) {
-try{
-  if (i>100) break;
-  i++;
-      response = real.killTaskAttempt(request);break;
-} catch(YarnRemoteExceptionPBImpl e_e){
-if (!e_e.getMessage().contains("dfix")) throw e;
-}
-}
-if (i>100)       response = real.killTaskAttempt(request);return       response 
-
 

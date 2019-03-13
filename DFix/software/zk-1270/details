@@ -3,29 +3,16 @@
 In the LearnerHandler.java
 
 ---              leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-+++             if (DFix_RollCallStack()) DFix_RollDestination(); else             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-
++++              while(DFix.ShouldLoop(this)){ try{             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress()); break;}catch(DFixException e_e){}} 
 
 In the Leader.java
 
 ---              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
-+++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Set(outstandingProposals);
++++              outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Signal(outstandingProposals);
 
 
 ---          if (outstandingProposals.size() == 0) {
-+++         if (DFix.CheckCallStack()) {if (!DFix.Wait(outstandingProposals)) throw new Exception ("DFIX EXCEPTION "); }        if (outstandingProposals.size() == 0) {
++++         if (!DFix.Wait(outstandingProposals)) throw new DFixException ();        if (outstandingProposals.size() == 0) {
 
 --------  IMPL  DETAILS  --------
-
-In the LearnerHandler.java
-
-DFix_RollDestination():
-  int i = 0;
-  while(true){ try{
-  if (i>100) break; 
- i++;
-            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());break;
-}catch( Exception e){}}
-if (i > 100)             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
-
 

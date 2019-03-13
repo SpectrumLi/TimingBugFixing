@@ -3,21 +3,7 @@
 In the AssignmentManager.java
 
 ---            ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
-+++           if (DFix.RollCallStack()) {  DFix_RollDestination();}else           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
++++            while(DFix.ShouldLoop(this) { try{           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName()); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
 
 --------  IMPL  DETAILS  --------
-
-In the AssignmentManager.java
-
-DFix_RollDestination():
-int i = 0;
-while (true) {
-try{
-  if (i>100) break;
-  i++;
-          ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());break;
-} catch(KeeperException.NodeExistsException e_e){
-}
-}
-if (i>100)           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
 

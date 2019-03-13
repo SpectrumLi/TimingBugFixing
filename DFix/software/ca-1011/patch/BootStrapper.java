@@ -185,7 +185,7 @@ public class BootStrapper {
         public void doVerb(Message message) {
             StorageService ss = StorageService.instance;
             String tokenString = null;
-if (DFix.CheckCallStack()) tokenString = DFix_CheckRollback(); else             tokenString = ss.getBootstrapToken().toString();
+tokenString = DFix.Wait(this)?ss.getBootstrapToken().toString():DFix.INVALID_VALUE;
             Message response;
             try {
                 response = message.getReply(FBUtilities.getLocalAddress(), tokenString.getBytes("UTF-8"));

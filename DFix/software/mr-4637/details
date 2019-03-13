@@ -3,12 +3,12 @@
 In the ClientServiceDelegate.java
 
 ---          return methodOb.invoke(dfix_proxy, args);
-+++         if (DFix.RollCallStack()) {return DFix_RollDestination();}else         return methodOb.invoke(dfix_proxy, args);
++++          while(DFix.ShouldLoop(this) { try{         return methodOb.invoke(dfix_proxy, args); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
 
 In the TaskAttemptImpl.java
 
 ---          stateMachine.doTransition(event.getType(), event);
-+++          stateMachine.doTransition(event.getType(), event); DFix.Set(this);
++++          stateMachine.doTransition(event.getType(), event); DFix.Signal(this);
 
 
 ---          stateMachine.doTransition(event.getType(), event);
@@ -20,19 +20,4 @@ In the MRClientService.java
 +++        appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL)); DFix.EventWait(this);
 
 --------  IMPL  DETAILS  --------
-
-In the ClientServiceDelegate.java
-
-DFix_RollDestination():
-int i = 0;
-while (true) {
-try{
-  if (i>100) break;
-  i++;
-        return methodOb.invoke(dfix_proxy, args);
-} catch(YarnRemoteExceptionPBImpl e_e){
-if (!e_e.getMessage().contains("dfix")) throw e;
-}
-}
-if (i>100)         return methodOb.invoke(dfix_proxy, args);
 

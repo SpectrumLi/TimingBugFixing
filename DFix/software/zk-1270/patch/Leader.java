@@ -315,7 +315,7 @@ public class Leader {
             if ((newLeaderProposal.packet.getZxid() & 0xffffffffL) != 0) {
                 LOG.info("NEWLEADER proposal has Zxid of " + Long.toHexString(newLeaderProposal.packet.getZxid()));
             }
-            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Set(outstandingProposals);
+            outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal); DFix.Signal(outstandingProposals);
 
             newLeaderProposal.ackSet.add(self.getId());
             waitForEpochAck(self.getId(), leaderStateSummary);
@@ -440,7 +440,7 @@ public class Leader {
             }
             LOG.trace("outstanding proposals all");
         }
-if (DFix.CheckCallStack()) {if (!DFix.Wait(outstandingProposals)) throw new Exception ("DFIX EXCEPTION "); }        if (outstandingProposals.size() == 0) {
+if (!DFix.Wait(outstandingProposals)) throw new DFixException ();        if (outstandingProposals.size() == 0) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("outstanding is 0");
             }
