@@ -1,0 +1,16 @@
+--- src/Learner.java	2019-03-12 23:22:26.303800856 -0500
++++ patch/Learner.java	2019-03-12 23:24:36.527677982 -0500
+@@ -482,9 +482,12 @@
+                            e.printStackTrace();
+                        }
+                    }
+-                   
++                    DFix.StartMark(); 
++		    DFix.RecordSnapShot(); // snapshot is a determistic location for zookeeper
+                     zk.takeSnapshot();
++		    DFix.RecordCEpoch();// current epoch location is also determistic 
+                     self.setCurrentEpoch(newEpoch);
++		    DFix.EndMark();
+                     writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
+                     break;
+                 }

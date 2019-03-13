@@ -1,0 +1,13 @@
+--- src/ReplicationSourceManager.java	2019-03-12 23:00:27.060517225 -0500
++++ patch/ReplicationSourceManager.java	2019-03-12 23:02:25.020030753 -0500
+@@ -305,7 +305,10 @@
+     LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
+     SortedMap<String, SortedSet<String>> newQueues =
+         this.zkHelper.copyQueuesFromRS(rsZnode);
++    DFix.ZKPreComputedTask(this.zookeeper, rsZnode, "delete");
++    DFix.StartMark();
+     this.zkHelper.deleteRsQueues(rsZnode);
++    DFix.EndMark();
+     if (newQueues == null || newQueues.size() == 0) {
+       return;
+     }

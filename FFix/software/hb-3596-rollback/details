@@ -1,0 +1,43 @@
+--- src/ReplicationSourceManager.java	2019-03-12 22:30:10.102380308 -0500
++++ patch/ReplicationSourceManager.java	2019-03-12 22:49:14.184462404 -0500
+@@ -299,12 +299,15 @@
+       LOG.info("Not transferring queue since we are shutting down");
+       return;
+     }
++    DFix.StartMark();
++    DFix.RecordZK(this.zookeeper, rsZnode);
+     if (!this.zkHelper.lockOtherRS(rsZnode)) {
+       return;
+     }
+     LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
+     SortedMap<String, SortedSet<String>> newQueues =
+         this.zkHelper.copyQueuesFromRS(rsZnode);
++    DFix.EndMark();
+     this.zkHelper.deleteRsQueues(rsZnode);
+     if (newQueues == null || newQueues.size() == 0) {
+       return;
+--- src/ReplicationZookeeper.java	2019-03-12 22:41:31.642668189 -0500
++++ patch/ReplicationZookeeper.java	2019-03-12 22:43:26.786095117 -0500
+@@ -550,6 +550,7 @@
+         // number-startcode-number-otherstartcode-number-anotherstartcode-etc
+         String newCluster = cluster+"-"+znode;
+         String newClusterZnode = ZKUtil.joinZNode(rsServerNameZnode, newCluster);
++	DFix.RecordZK(this.zookeeper, newClusterZnode);
+         ZKUtil.createNodeIfNotExistsAndWatch(this.zookeeper, newClusterZnode,
+           HConstants.EMPTY_BYTE_ARRAY);
+         String clusterPath = ZKUtil.joinZNode(nodePath, cluster);
+@@ -565,6 +566,7 @@
+           byte [] position = ZKUtil.getData(this.zookeeper, z);
+           LOG.debug("Creating " + hlog + " with data " + Bytes.toString(position));
+           String child = ZKUtil.joinZNode(newClusterZnode, hlog);
++	  DFix.RecordZK(this.zookeeper, child);
+           ZKUtil.createAndWatch(this.zookeeper, child, position);
+           logQueue.add(hlog);
+         }
+@@ -701,4 +703,4 @@
+       }
+     }
+   }
+-}
+\ No newline at end of file
++}
