@@ -1,0 +1,29 @@
+--- src/AssignmentManager.java	2019-03-17 23:01:59.883228300 -0500
++++ patch/AssignmentManager.java	2019-03-17 23:10:17.842013263 -0500
+@@ -561,6 +561,7 @@
+       //break;
+       //}
+       this.regionStates.waitForUpdate(100);
++      if (DFix.ShouldLoop()) DFix.FastForward();
+       LOG.info("********************waitForMeta in infinite while loop **********************");
+     } 
+     //  if (s_flag == 0 ) break;
+--- src/OpenRegionHandler.java	2019-03-17 23:01:36.978546056 -0500
++++ patch/OpenRegionHandler.java	2019-03-17 23:18:53.965286224 -0500
+@@ -220,7 +220,7 @@
+           }
+       } catch (Exception e) { LOG.info("Exception while reading crash flag ", e); }
+ */
+-
++      DFix.LogMessage(region);
+       if (!isRegionStillOpening() || !transitionToOpened(region)) {
+         // If we fail to transition to opened, it's because of one of two cases:
+         //    (a) we lost our ZK lease
+@@ -229,6 +229,7 @@
+         // In all cases, we try to transition to failed_open to be safe.
+         return;
+       }
++      DFix.FinishMessage(region);
+       LOG.info("HHHHH RS Transfer Meta successfully");
+       
+       // We have a znode in the opened state now. We can't really delete it as the master job.

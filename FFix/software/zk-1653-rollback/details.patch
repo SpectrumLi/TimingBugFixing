@@ -14,3 +14,13 @@
                      writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
                      break;
                  }
+--- src/QuorumPeer.java	2019-03-16 18:18:50.490776234 -0500
++++ patch/QuorumPeer.java	2019-03-16 18:28:13.627802992 -0500
+@@ -651,6 +651,7 @@
+             	        currentEpoch);
+             	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);
+             }
++	    DFix.RollBack();
+             if (epochOfZxid > currentEpoch) {
+                 throw new IOException("The current epoch, " + ZxidUtils.zxidToString(currentEpoch) + ", is older than the last zxid, " + lastProcessedZxid);
+             }

@@ -1,9 +1,10 @@
 --- src/ReplicationSourceManager.java	2019-03-12 22:30:10.102380308 -0500
-+++ patch/ReplicationSourceManager.java	2019-03-12 22:49:14.184462404 -0500
-@@ -299,12 +299,15 @@
++++ patch/ReplicationSourceManager.java	2019-03-16 18:54:45.751742684 -0500
+@@ -299,12 +299,16 @@
        LOG.info("Not transferring queue since we are shutting down");
        return;
      }
++    DFix.RollBack();
 +    DFix.StartMark();
 +    DFix.RecordZK(this.zookeeper, rsZnode);
      if (!this.zkHelper.lockOtherRS(rsZnode)) {

@@ -1,0 +1,14 @@
+--- src/AntiEntropyService.java	2019-03-17 21:35:39.141317441 -0500
++++ patch/AntiEntropyService.java	2019-03-17 21:58:20.234263864 -0500
+@@ -908,7 +908,10 @@
+                     for (InetAddress endpoint : endpoints)
+                         MessagingService.instance().sendRR(new SnapshotCommand(tablename, cfname, sessionName, false), endpoint, callback);
+                     logger.info("GGGGGGG enter waitsite Anti-911");
+-                    snapshotLatch.await();
++		    while(DFix.ShouldLoop(snapshotLatch)){
++                    snapshotLatch.await(DFix.TIME_PEROID);
++		    if (DFix.ShouldLoop(snapshotLatch)) DFix.FastForward(snapshotLatch); // here fastforward means snapshotLatch.countDown();
++		    }
+                     logger.info("GGGGGGG exit waitsite Anti-911");
+                     snapshotLatch = null;
+                 }
