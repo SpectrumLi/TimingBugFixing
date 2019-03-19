@@ -1,0 +1,17 @@
+1.Bug Reproduce.
+	if RS crashes when taking over the HLog, no other node can finish the remaining part. This includes other two extra benchmarks HB-extra1 and HB-extra2.
+
+2.Original Bug Report.
+	https://issues.apache.org/jira/browse/HBase-3596
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12473717/HBASE-3596.patch
+
+4.Input for DFix.
+	The bug description : FFix/input/hb-3596/config
+	
+5.DFix Patch.
+	FFix/software/hb-3596-rollback/details.patch
+
+6.Discussion.
+	The manual patch add a random sleep before the HLog taking over, which does not fix the bug at all. DFix cleans the taken HLog so that other node can start it from scratch.

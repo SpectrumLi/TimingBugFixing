@@ -1,0 +1,20 @@
+1.Bug Reproduce.
+	kill a task attempt when it is in Inited state.
+
+2.Original Bug Report.
+	The kill event cannot be handled by statemachine when it is in Inited State.
+	https://issues.apache.org/jira/browse/Mapreduce-4637
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12543899/MAPREDUCE-4637-trunk.patch
+
+4.Input for DFix.
+	The bug description : DFix/benchmark/mr-4637/config.
+	The casuality chains : DFix/benchmark/mr-4637/css and DFix/benchmark/mr-4637/signalcss.
+	
+5.DFix Patch.
+	DFix/software/ca-4637/details
+
+6.Discussion.
+	The developers patch the bug by defining the transfer rule for kill event at Inited state.
+	DFix fixes the bug by delaying the kill command untill the attempt reaches Running state.

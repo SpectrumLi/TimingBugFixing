@@ -1,0 +1,20 @@
+1.Bug Reproduce.
+	Insert a five second sleep before line 331 in Leader.java.
+	Start Zookeeper with one master and two followers.
+
+2.Original Bug Report.
+	The slow master cause follower cannot join the cluster.
+	https://issues.apache.org/jira/browse/ZooKeeper-1270
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12502557/ZOOKEEPER-1270.patch
+
+4.Input for DFix.
+	The bug description : DFix/benchmark/zk-1270/config.
+	The casuality chains : DFix/benchmark/zk-1270/css and DFix/benchmark/zk-1270/signalcss.
+	
+5.DFix Patch.
+	DFix/software/zk-1270/details
+
+6.Discussion.
+	Developers introduces a new synchronized variable to ensure the order between Leader and the process of message from follower, which is exact the same as DFix patch.
