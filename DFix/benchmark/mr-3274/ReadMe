@@ -1,0 +1,27 @@
+1.Bug Reproduce.
+	kill an task attempt before its container is launched.
+
+2.Original Bug Report.
+	The kill command would remove the task. The corresponding container hangs because it cannot get any task.
+	https://issues.apache.org/jira/browse/Mapreduce-3274
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12501485/MR-3274.txt
+
+4.Input for DFix.
+	./input directory.
+	./input/config : the bug report.
+	./input/css : the causality stack of wait operation.
+	./input/signalcss : the causality stack of signal operation.
+	./input/jarscope : application jar file locations.
+
+5.Temporary files.
+	./temp directory. The intermediate files for patch generation.
+	
+6.DFix Patch.
+	./patch directory.
+	see the details.patch file.
+
+7.Discussion.
+	Developers fix this bug by changing the data sturcture so that the kill command and getTask from container never race with each other. When the bad timing occurs, the kill command will return "task does not exist".
+	DFix patches this bug by delay the kill command until the container gets its task.

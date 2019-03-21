@@ -1,0 +1,28 @@
+1.Bug Reproduce.
+	start 3 cassandra processes at the same time.
+
+2.Original Bug Report.
+	This is an atomicity violation. 2 replica servers would join the cluster with the same key.
+	https://issues.apache.org/jira/browse/CASSANDRA-1011
+
+3.Manual Patch.
+	No patch.
+
+4.Input for DFix.
+	./input directory.
+	./input/config : the bug report.
+	./input/css : the causality stack of wait operation.
+	./input/signalcss : the causality stack of signal operation.
+	./input/jarscope : application jar file locations.
+	
+
+5.Temporary files.
+	./temp directory. The intermediate files for patch generation.
+	
+6.DFix Patch.
+	./patch directory.
+	see the details.patch file.
+
+7.Discussion.
+	The developers decide to change the key-generation algorithm so that two replica nodes never get the same token.
+	DFix fixes the bug by delaying the later replica node to join until the previous node finishes the join.

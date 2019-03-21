@@ -1,5 +1,0 @@
-org/apache/hadoop/mapreduce/v2/app/client/MRClientService$MRClientProtocolHandler killTaskAttempt
-org/apache/hadoop/mapreduce/v2/app/MRAppMaster$TaskAttemptEventDispatcher handle
-org/apache/hadoop/mapreduce/v2/app/job/impl/TaskAttemptImpl handle
-org/apache/hadoop/yarn/state/StateMachineFactory$InternalStateMachine doTransition
-org/apache/hadoop/yarn/state/StateMachineFactory doTransition

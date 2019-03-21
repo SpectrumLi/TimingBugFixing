@@ -1,0 +1,27 @@
+1.Bug Reproduce.
+	Split and alter the same table at the same time.
+
+2.Original Bug Report.
+ 	Creating the same ZKNode twice causes NodeNoneExistException.	
+	https://issues.apache.org/jira/browse/HBase-4729
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12503776/4729.txt.
+
+4.Input for DFix.
+	./input directory.
+	./input/config : the bug report.
+	./input/css : the causality stack of wait operation.
+	./input/signalcss : the causality stack of signal operation.
+	./input/jarscope : application jar file locations.
+
+5.Temporary files.
+	./temp directory. The intermediate files for patch generation.
+	
+6.DFix Patch.
+	./patch directory.	
+	see the details.patch file.
+
+7.Discussion.
+	The developers decide to ignore the Exception because the ZKNode is already created. 
+	DFix fixes the bug by delaying the later replica node to join until the previous node finishes the join.
