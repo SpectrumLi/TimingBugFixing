@@ -1,5 +1,0 @@
-this.transitionZookeeperOfflineToOpening( encodedName,this.versionOfOfflineNode);
-this.server.getZooKeeper().transitionNode( this.regionInfo,this.server.getServerName(),org.apache.hadoop.hbase.executor.EventType.M_ZK_REGION_OFFLINE,org.apache.hadoop.hbase.executor.EventType.RS_ZK_REGION_OPENING,versionOfOfflineNode);
-
-this.transitionToOpened( region);
-this.server.getZooKeeper().transitionNodeOpened( hri,this.server.getServerName(),this.version);

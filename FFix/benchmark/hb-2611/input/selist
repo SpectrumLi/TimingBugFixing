@@ -1,2 +1,0 @@
-this.zkHelper.deleteRsQueues( rsZnode);
-this.zookeeper.deleteNodeRecursively( org.apache.hadoop.hbase.zookeeper.ZKUtil.joinZNode(this.rsZNode, znode));
