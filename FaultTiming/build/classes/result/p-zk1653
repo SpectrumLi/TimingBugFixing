@@ -1,0 +1,25 @@
+original code = 
+ this.zk.takeSnapshot(); this.txnLogFactory.save( this.zkDb.getDataTree(),this.zkDb.getSessionWithTimeOuts());
+
+record code = 
+String tempfn=this.txnLogFactory.save_path( this.zkDb.getDataTree(),this.zkDb.getSessionWithTimeOuts());
+dfix_write(tempfn,0 );
+
+fastforward code = 
+this.zk.takeSnapshot();
+paras = !
+original code = 
+ this.self.setCurrentEpoch( newEpoch); this.writeLongToFile( e);
+
+record code = 
+String tempfn=this.writeLongToFile_path( e);
+dfix_write(tempfn,0);
+
+replace paras : e -> newEpoch
+String tempfn=this.self.writeLongToFile_path_content( newEpoch);
+
+fastforward code = 
+String tempfn=this.self.writeLongToFile_path_content( newEpoch);
+dfix_write(tempfn,0);
+
+paras = newEpoch e !

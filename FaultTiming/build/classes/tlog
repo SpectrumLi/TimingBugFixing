@@ -1,0 +1,1050 @@
+Jarfile loaded !! 1
+ClassHirerarchy is ready!
+EmptyCallGraph is ready!
+3 SSAs found for org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager transferQueues 302
+2 SSAs found for org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager transferQueues 308
+Node: < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, transferQueues(Ljava/lang/String;)V > Context: Everywhere
+--------------------=====---------------------
+IR = < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, transferQueues(Ljava/lang/String;)V >
+CFG:
+BB0[-1..-2]
+    -> BB1
+BB1[0..2]
+    -> BB2
+    -> BB89
+BB2[3..3]
+    -> BB3
+    -> BB89
+BB3[4..4]
+    -> BB4
+    -> BB89
+BB4[5..7]
+    -> BB5
+BB5[8..10]
+    -> BB6
+    -> BB89
+BB6[11..11]
+    -> BB23
+    -> BB7
+BB7[12..13]
+    -> BB8
+    -> BB89
+BB8[14..15]
+    -> BB9
+    -> BB89
+BB9[16..18]
+    -> BB10
+    -> BB89
+BB10[19..19]
+    -> BB11
+    -> BB89
+BB11[20..20]
+    -> BB12
+    -> BB89
+BB12[21..22]
+    -> BB13
+    -> BB89
+BB13[23..25]
+    -> BB14
+    -> BB89
+BB14[26..26]
+    -> BB15
+    -> BB89
+BB15[27..27]
+    -> BB16
+    -> BB89
+BB16[28..29]
+    -> BB17
+    -> BB89
+BB17[30..32]
+    -> BB18
+    -> BB89
+BB18[33..33]
+    -> BB19
+    -> BB89
+BB19[34..34]
+    -> BB20
+    -> BB89
+BB20[35..35]
+    -> BB21
+    -> BB89
+BB21[36..36]
+    -> BB22
+    -> BB89
+BB22[37..41]
+    -> BB5
+BB23[42..43]
+    -> BB24
+    -> BB89
+BB24[44..44]
+    -> BB25
+    -> BB89
+BB25[45..46]
+    -> BB28
+    -> BB26
+BB26[47..49]
+    -> BB27
+    -> BB89
+BB27[50..50]
+    -> BB89
+BB28[51..52]
+    -> BB29
+    -> BB89
+BB29[53..54]
+    -> BB30
+    -> BB89
+BB30[55..56]
+    -> BB32
+    -> BB31
+BB31[57..57]
+    -> BB89
+BB32[58..59]
+    -> BB33
+    -> BB89
+BB33[60..61]
+    -> BB34
+    -> BB89
+BB34[62..63]
+    -> BB35
+    -> BB89
+BB35[64..65]
+    -> BB36
+    -> BB89
+BB36[66..67]
+    -> BB37
+    -> BB89
+BB37[68..68]
+    -> BB38
+    -> BB89
+BB38[69..69]
+    -> BB39
+    -> BB89
+BB39[70..71]
+    -> BB40
+    -> BB89
+BB40[72..73]
+    -> BB41
+    -> BB89
+BB41[74..76]
+    -> BB42
+    -> BB89
+BB42[77..78]
+    -> BB43
+    -> BB89
+BB43[79..81]
+    -> BB46
+    -> BB44
+BB44[82..83]
+    -> BB45
+    -> BB89
+BB45[84..85]
+    -> BB47
+    -> BB46
+BB46[86..86]
+    -> BB89
+BB47[87..88]
+    -> BB48
+    -> BB89
+BB48[89..89]
+    -> BB49
+    -> BB89
+BB49[90..90]
+    -> BB50
+BB50[91..92]
+    -> BB51
+    -> BB89
+BB51[93..94]
+    -> BB88
+    -> BB52
+BB52[95..96]
+    -> BB53
+    -> BB89
+BB53[97..97]
+    -> BB54
+    -> BB89
+BB54[98..100]
+    -> BB55
+    -> BB89
+BB55[101..101]
+    -> BB56
+    -> BB89
+BB56[102..105]
+    -> BB57
+    -> BB89
+BB57[106..107]
+    -> BB58
+    -> BB89
+BB58[108..110]
+    -> BB59
+    -> BB89
+BB59[111..112]
+    -> BB60
+    -> BB89
+BB60[113..114]
+    -> BB61
+    -> BB86
+    -> BB89
+BB61[115..117]
+    -> BB62
+    -> BB89
+BB62[118..118]
+    -> BB63
+    -> BB89
+BB63[119..120]
+    -> BB64
+    -> BB89
+BB64[121..121]
+    -> BB65
+    -> BB89
+BB65[122..123]
+    -> BB68
+    -> BB66
+BB66[124..126]
+    -> BB67
+    -> BB89
+BB67[127..127]
+    -> BB88
+BB68[128..129]
+    -> BB69
+    -> BB89
+BB69[130..131]
+    -> BB70
+    -> BB89
+BB70[132..134]
+    -> BB71
+    -> BB89
+BB71[135..135]
+    -> BB72
+    -> BB89
+BB72[136..136]
+    -> BB73
+    -> BB89
+BB73[137..137]
+    -> BB74
+BB74[138..139]
+    -> BB75
+    -> BB89
+BB75[140..141]
+    -> BB83
+    -> BB76
+BB76[142..143]
+    -> BB77
+    -> BB89
+BB77[144..144]
+    -> BB78
+    -> BB89
+BB78[145..147]
+    -> BB79
+    -> BB89
+BB79[148..150]
+    -> BB80
+    -> BB89
+BB80[151..152]
+    -> BB81
+    -> BB89
+BB81[153..153]
+    -> BB82
+    -> BB89
+BB82[154..154]
+    -> BB74
+BB83[155..157]
+    -> BB84
+    -> BB89
+BB84[158..159]
+    -> BB85
+    -> BB89
+BB85[160..160]
+    -> BB87
+BB86[161..165]
+    -> BB87
+    -> BB89
+BB87[166..166]
+    -> BB50
+BB88[167..167]
+    -> BB89
+BB89[-1..-2]
+Instructions:
+BB0
+BB1
+0   v4 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 294)
+2   invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > v4,v5:#HP... start. @5 exception:v6(line 294)
+BB2
+3   v8 = invokestatic < Application, Ljava/lang/Thread, currentThread()Ljava/lang/Thread; > @10 exception:v7(line 295)
+BB3
+4   v10 = invokevirtual < Application, Ljava/lang/Thread, getStackTrace()[Ljava/lang/StackTraceElement; > v8 @13 exception:v9(line 295)
+BB4
+BB5
+           v41 = phi  v40,v11:#0
+10   v12 = arraylength v10                   (line 296) {10=[ST]}
+BB6
+11   conditional branch(ge) v41,v12          (line 296) {41=[i]}
+BB7
+12   v13 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 296)
+13   v14 = new <Application,Ljava/lang/StringBuilder>@28(line 296)
+BB8
+15   invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > v14 @32 exception:v15(line 296)
+BB9
+18   v16 = arrayload v10[v41]                (line 296) {10=[ST], 41=[i]}
+BB10
+19   v18 = invokevirtual < Application, Ljava/lang/StackTraceElement, getClassName()Ljava/lang/String; > v16 @38 exception:v17(line 296)
+BB11
+20   v20 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v14,v18 @41 exception:v19(line 296)
+BB12
+22   v23 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v20,v21:#  @46 exception:v22(line 296)
+BB13
+25   v24 = arrayload v10[v41]                (line 296) {10=[ST], 41=[i]}
+BB14
+26   v26 = invokevirtual < Application, Ljava/lang/StackTraceElement, getMethodName()Ljava/lang/String; > v24 @52 exception:v25(line 296)
+BB15
+27   v28 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v23,v26 @55 exception:v27(line 296)
+BB16
+29   v30 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v28,v21:#  @60 exception:v29(line 296)
+BB17
+32   v31 = arrayload v10[v41]                (line 296) {10=[ST], 41=[i]}
+BB18
+33   v33 = invokevirtual < Application, Ljava/lang/StackTraceElement, getLineNumber()I > v31 @66 exception:v32(line 296)
+BB19
+34   v35 = invokevirtual < Application, Ljava/lang/StringBuilder, append(I)Ljava/lang/StringBuilder; > v30,v33 @69 exception:v34(line 296)
+BB20
+35   v37 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > v35 @72 exception:v36(line 296)
+BB21
+36   invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > v13,v37 @75 exception:v38(line 296)
+BB22
+39   v40 = binaryop(add) v41 , v39:#1        (line 296) {41=[i]}
+41   goto                                    (line 296)
+BB23
+43   v42 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, stopper, <Application,Lorg/apache/hadoop/hbase/Stoppable> > v1(line 298) {1=[this]}
+BB24
+44   v44 = invokeinterface < Application, Lorg/apache/hadoop/hbase/Stoppable, isStopped()Z > v42 @90 exception:v43(line 298)
+BB25
+46   conditional branch(eq) v44,v11:#0       (line 298)
+BB26
+47   v125 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 299)
+49   invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > v125,v126:#Not transferring queue since we are shutting down @103 exception:v127(line 299)
+BB27
+50   return                                  (line 300)
+BB28
+52   v45 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > v1(line 302) {1=[this]}
+BB29
+54   v47 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > v45,v2 @114 exception:v46(line 302) {2=[rsZnode]}
+BB30
+56   conditional branch(ne) v47,v11:#0       (line 302)
+BB31
+57   return                                  (line 303)
+BB32
+58   v48 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 305)
+59   v49 = new <Application,Ljava/lang/StringBuilder>@124(line 305)
+BB33
+61   invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > v49 @128 exception:v50(line 305)
+BB34
+63   v53 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v49,v51:#Moving  @133 exception:v52(line 305)
+BB35
+65   v55 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v53,v2 @137 exception:v54(line 305) {2=[rsZnode]}
+BB36
+67   v58 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v55,v56:#'s hlogs to my queue @142 exception:v57(line 305)
+BB37
+68   v60 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > v58 @145 exception:v59(line 305)
+BB38
+69   invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > v48,v60 @148 exception:v61(line 305)
+BB39
+71   v62 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > v1(line 306) {1=[this]}
+BB40
+73   v64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > v62,v2 @158 exception:v63(line 306) {2=[rsZnode]}
+BB41
+76   v65 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > v1(line 308) {1=[this]}
+BB42
+78   invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > v65,v2 @167 exception:v66(line 308) {2=[rsZnode]}
+BB43
+81   conditional branch(eq) v64,v67:#null    (line 309) {64=[newQueues]}
+BB44
+83   v69 = invokeinterface < Application, Ljava/util/SortedMap, size()I > v64 @175 exception:v68(line 309) {64=[newQueues]}
+BB45
+85   conditional branch(ne) v69,v11:#0       (line 309)
+BB46
+86   return                                  (line 310)
+BB47
+88   v71 = invokeinterface < Application, Ljava/util/SortedMap, entrySet()Ljava/util/Set; > v64 @185 exception:v70(line 313) {64=[newQueues]}
+BB48
+89   v73 = invokeinterface < Application, Ljava/util/Set, iterator()Ljava/util/Iterator; > v71 @190 exception:v72(line 313)
+BB49
+BB50
+92   v75 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > v73 @199 exception:v74(line 313) {73=[i$]}
+BB51
+94   conditional branch(eq) v75,v11:#0       (line 313)
+BB52
+96   v77 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > v73 @209 exception:v76(line 313) {73=[i$]}
+BB53
+97   v78 = checkcast <Application,Ljava/util/Map$Entry>v77(line 313) {78=[null]}
+BB54
+100   v80 = invokeinterface < Application, Ljava/util/Map$Entry, getKey()Ljava/lang/Object; > v78 @221 exception:v79(line 314) {78=[entry]}
+BB55
+101   v81 = checkcast <Application,Ljava/lang/String>v80(line 314) {81=[null]}
+BB56
+105   v82 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, conf, <Application,Lorg/apache/hadoop/conf/Configuration> > v1(line 316) {1=[this]}
+BB57
+107   v83 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, fs, <Application,Lorg/apache/hadoop/fs/FileSystem> > v1(line 316) {1=[this]}
+BB58
+110   v84 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, stopper, <Application,Lorg/apache/hadoop/hbase/Stoppable> > v1(line 316) {1=[this]}
+BB59
+112   v85 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, replicating, <Application,Ljava/util/concurrent/atomic/AtomicBoolean> > v1(line 316) {1=[this]}
+BB60
+114   v87 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, getReplicationSource(Lorg/apache/hadoop/conf/Configuration;Lorg/apache/hadoop/fs/FileSystem;Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager;Lorg/apache/hadoop/hbase/Stoppable;Ljava/util/concurrent/atomic/AtomicBoolean;Ljava/lang/String;)Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface; > v1,v82,v83,v1,v84,v85,v81 @251 exception:v86(line 316) {1=[this], 81=[peerId]}
+BB61
+117   v88 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > v1(line 318) {1=[this]}
+BB62
+118   v90 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, getPeerClusters()Ljava/util/Map; > v88 @260 exception:v89(line 318)
+BB63
+120   v92 = invokeinterface < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface, getPeerClusterId()Ljava/lang/String; > v87 @265 exception:v91(line 318) {87=[src]}
+BB64
+121   v94 = invokeinterface < Application, Ljava/util/Map, containsKey(Ljava/lang/Object;)Z > v90,v92 @270 exception:v93(line 318)
+BB65
+123   conditional branch(ne) v94,v11:#0      (line 318)
+BB66
+126   invokeinterface < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface, terminate(Ljava/lang/String;)V > v87,v122:#Recovered queue doesn't belong to any current peer @282 exception:v123(line 319) {87=[src]}
+BB67
+127   goto                                   (line 320)
+BB68
+129   v95 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, oldsources, <Application,Ljava/util/List> > v1(line 322) {1=[this]}
+BB69
+131   v97 = invokeinterface < Application, Ljava/util/List, add(Ljava/lang/Object;)Z > v95,v87 @296 exception:v96(line 322) {87=[src]}
+BB70
+134   v99 = invokeinterface < Application, Ljava/util/Map$Entry, getValue()Ljava/lang/Object; > v78 @304 exception:v98(line 323) {78=[entry]}
+BB71
+135   v100 = checkcast <Application,Ljava/util/SortedSet>v99(line 323)
+BB72
+136   v102 = invokeinterface < Application, Ljava/util/SortedSet, iterator()Ljava/util/Iterator; > v100 @312 exception:v101(line 323) {102=[null]}
+BB73
+BB74
+139   v104 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > v102 @321 exception:v103(line 323) {102=[i$]}
+BB75
+141   conditional branch(eq) v104,v11:#0     (line 323)
+BB76
+143   v106 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > v102 @331 exception:v105(line 323) {102=[i$]}
+BB77
+144   v107 = checkcast <Application,Ljava/lang/String>v106(line 323) {107=[null]}
+BB78
+147   v108 = new <Application,Lorg/apache/hadoop/fs/Path>@343(line 324)
+BB79
+150   v109 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, oldLogDir, <Application,Lorg/apache/hadoop/fs/Path> > v1(line 324) {1=[this]}
+BB80
+152   invokespecial < Application, Lorg/apache/hadoop/fs/Path, <init>(Lorg/apache/hadoop/fs/Path;Ljava/lang/String;)V > v108,v109,v107 @353 exception:v110(line 324) {107=[hlog]}
+BB81
+153   invokeinterface < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface, enqueueLog(Lorg/apache/hadoop/fs/Path;)V > v87,v108 @356 exception:v111(line 324) {87=[src]}
+BB82
+154   goto                                   (line 325)
+BB83
+157   invokeinterface < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface, setSourceEnabled(Z)V > v87,v39:#1 @367 exception:v112(line 327) {87=[src]}
+BB84
+159   invokeinterface < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceInterface, startup()V > v87 @374 exception:v113(line 328) {87=[src]}
+BB85
+160   goto                                   (line 332)
+BB86<Handler>
+           v114 = getCaughtException 
+162   v115 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 331)
+165   invokeinterface < Application, Lorg/apache/commons/logging/Log, error(Ljava/lang/Object;Ljava/lang/Throwable;)V > v115,v116:#Failed creating a source,v114 @391 exception:v117(line 331) {114=[e]}
+BB87
+166   goto                                   (line 333)
+BB88
+167   return                                 (line 334)
+BB89
+
+SSACFG  has 90 blocks
+start ib BB[SSA:51..52]28 - org.apache.hadoop.hbase.replication.regionserver.ReplicationSourceManager.transferQueues(Ljava/lang/String;)V has 62reachable blocks
+end ib BB[SSA:77..78]42 - org.apache.hadoop.hbase.replication.regionserver.ReplicationSourceManager.transferQueues(Ljava/lang/String;)V has 40previous blocks
+BBlock----28 51->52
+45 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > 1
+BBlock----29 53->54
+47 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > 45,2 @114 exception:46
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Bytes, toBytes(Ljava/lang/String;)[B > Context: Everywhere has seeffect 0
+LALALALAL : 
+47 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > 45,2 @114 exception:46
+19 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 14,13,17 @51 exception:18
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > 517
+Node: < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > Context: Everywhere has seeffect 1
+BBlock----30 55->56
+conditional branch(ne) 47,11
+BBlock----32 58->59
+48 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, LOG, <Application,Lorg/apache/commons/logging/Log> >
+49 = new <Application,Ljava/lang/StringBuilder>@124
+BBlock----33 60->61
+invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 49 @128 exception:50
+BBlock----34 62->63
+53 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 49,51 @133 exception:52
+BBlock----35 64->65
+55 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 53,2 @137 exception:54
+BBlock----36 66->67
+58 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 55,56 @142 exception:57
+BBlock----37 68->68
+60 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 58 @145 exception:59
+BBlock----38 69->69
+invokeinterface < Application, Lorg/apache/commons/logging/Log, info(Ljava/lang/Object;)V > 48,60 @148 exception:61
+BBlock----39 70->71
+62 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > 1
+BBlock----40 72->73
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher, getZooKeeper()Lorg/apache/zookeeper/ZooKeeper; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/common/PathUtils, validatePath(Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$WatchRegistration, <init>(Lorg/apache/zookeeper/ZooKeeper;Lorg/apache/zookeeper/Watcher;Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$ChildWatchRegistration, <init>(Lorg/apache/zookeeper/ZooKeeper;Lorg/apache/zookeeper/Watcher;Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper, prependChroot(Ljava/lang/String;)Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/RequestHeader, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/RequestHeader, setType(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildrenRequest, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildrenRequest, setPath(Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildrenRequest, setWatch(Z)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildrenResponse, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/ReplyHeader, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/RequestHeader, getType()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, getXid()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/RequestHeader, setXid(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/RequestHeader, serialize(Lorg/apache/jute/OutputArchive;Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, access$100()Lorg/apache/log4j/Logger; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn$Packet, <init>(Lorg/apache/zookeeper/proto/RequestHeader;Lorg/apache/zookeeper/proto/ReplyHeader;Lorg/apache/jute/Record;Lorg/apache/jute/Record;Ljava/nio/ByteBuffer;Lorg/apache/zookeeper/ZooKeeper$WatchRegistration;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$States, isAlive()Z > Context: Everywhere has seeffect 0
+Node: < Primordial, Ljava/lang/Enum, ordinal()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$Code, intValue()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/ReplyHeader, setErr(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/ReplyHeader, getErr()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$WatchRegistration, shouldAddWatch(I)Z > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$WatchRegistration, register(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn$WatcherSetEventPair, access$400(Lorg/apache/zookeeper/ClientCnxn$WatcherSetEventPair;)Ljava/util/Set; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn$WatcherSetEventPair, access$500(Lorg/apache/zookeeper/ClientCnxn$WatcherSetEventPair;)Lorg/apache/zookeeper/WatchedEvent; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/ExistsResponse, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/SetDataResponse, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/SetACLResponse, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataResponse, getData()[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataResponse, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetACLResponse, getAcl()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetACLResponse, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildrenResponse, getChildren()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildren2Response, getChildren()Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetChildren2Response, getStat()Lorg/apache/zookeeper/data/Stat; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/CreateResponse, getPath()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn$EventThread, processEvent(Ljava/lang/Object;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn$EventThread, queuePacket(Lorg/apache/zookeeper/ClientCnxn$Packet;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, finishPacket(Lorg/apache/zookeeper/ClientCnxn$Packet;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, conLossPacket(Lorg/apache/zookeeper/ClientCnxn$Packet;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, queuePacket(Lorg/apache/zookeeper/proto/RequestHeader;Lorg/apache/zookeeper/proto/ReplyHeader;Lorg/apache/jute/Record;Lorg/apache/jute/Record;Lorg/apache/zookeeper/AsyncCallback;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;Lorg/apache/zookeeper/ZooKeeper$WatchRegistration;)Lorg/apache/zookeeper/ClientCnxn$Packet; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ClientCnxn, submitRequest(Lorg/apache/zookeeper/proto/RequestHeader;Lorg/apache/jute/Record;Lorg/apache/jute/Record;Lorg/apache/zookeeper/ZooKeeper$WatchRegistration;)Lorg/apache/zookeeper/proto/ReplyHeader; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$Code, get(I)Lorg/apache/zookeeper/KeeperException$Code; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException, <init>(Lorg/apache/zookeeper/KeeperException$Code;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$SystemErrorException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$RuntimeInconsistencyException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$DataInconsistencyException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$ConnectionLossException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$MarshallingErrorException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$UnimplementedException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$OperationTimeoutException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$BadArgumentsException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$APIErrorException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$NoNodeException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$NoAuthException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$BadVersionException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$NoChildrenForEphemeralsException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$NodeExistsException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$InvalidACLException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$AuthFailedException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$NotEmptyException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$SessionExpiredException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$InvalidCallbackException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException$SessionMovedException, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException, create(Lorg/apache/zookeeper/KeeperException$Code;)Lorg/apache/zookeeper/KeeperException; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/KeeperException, create(Lorg/apache/zookeeper/KeeperException$Code;Ljava/lang/String;)Lorg/apache/zookeeper/KeeperException; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper, getChildren(Ljava/lang/String;Lorg/apache/zookeeper/Watcher;)Ljava/util/List; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher, toString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher, prefix(Ljava/lang/String;)Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher, interruptedException(Ljava/lang/InterruptedException;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, listChildrenNoWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Ljava/util/List; > Context: Everywhere has seeffect 0
+LALALALAL : 
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+44 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createNodeIfNotExistsAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)Z > 41,40,42 @132 exception:43
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 553
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper$DataWatchRegistration, <init>(Lorg/apache/zookeeper/ZooKeeper;Lorg/apache/zookeeper/Watcher;Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataRequest, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataRequest, setPath(Ljava/lang/String;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataRequest, setWatch(Z)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/proto/GetDataResponse, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getAversion()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setAversion(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getCtime()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setCtime(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getCversion()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setCversion(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getCzxid()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setCzxid(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getMtime()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setMtime(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getMzxid()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setMzxid(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getPzxid()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setPzxid(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getVersion()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setVersion(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getEphemeralOwner()J > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setEphemeralOwner(J)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getDataLength()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setDataLength(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, getNumChildren()I > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/data/Stat, setNumChildren(I)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/server/DataTree, copyStat(Lorg/apache/zookeeper/data/Stat;Lorg/apache/zookeeper/data/Stat;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/zookeeper/ZooKeeper, getData(Ljava/lang/String;Lorg/apache/zookeeper/Watcher;Lorg/apache/zookeeper/data/Stat;)[B > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/executor/RegionTransitionData, <init>()V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Writables, getWritable([BIILorg/apache/hadoop/io/Writable;)Lorg/apache/hadoop/io/Writable; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/util/Writables, getWritable([BLorg/apache/hadoop/io/Writable;)Lorg/apache/hadoop/io/Writable; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/executor/RegionTransitionData, fromBytes([B)Lorg/apache/hadoop/hbase/executor/RegionTransitionData; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/executor/RegionTransitionData, toString()Ljava/lang/String; > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, logRetrievedMsg(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[BZ)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher, keeperException(Lorg/apache/zookeeper/KeeperException;)V > Context: Everywhere has seeffect 0
+Node: < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, getData(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)[B > Context: Everywhere has seeffect 0
+LALALALAL : 
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+90 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 88,87,67 @302 exception:89
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 568
+Node: < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > Context: Everywhere has seeffect 2
+BBlock----41 74->76
+65 = getfield < Application, Lorg/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager, zkHelper, <Application,Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper> > 1
+BBlock----42 77->78
+invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > 65,2 @167 exception:66
+LALALALAL : 
+invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > 65,2 @167 exception:66
+invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, deleteNodeRecursively(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)V > 4,7 @12 exception:8
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > 601
+Node: < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > Context: Everywhere has seeffect 1
+--------GLOBINS----------------
+
+47 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > 45,2 @114 exception:46
+19 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 14,13,17 @51 exception:18
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, lockOtherRS(Ljava/lang/String;)Z > 517
+ 
+
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+44 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createNodeIfNotExistsAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)Z > 41,40,42 @132 exception:43
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 553
+ 
+
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+90 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 88,87,67 @302 exception:89
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 568
+ 
+
+invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > 65,2 @167 exception:66
+invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, deleteNodeRecursively(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)V > 4,7 @12 exception:8
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, deleteRsQueues(Ljava/lang/String;)V > 601
+ 
+0 = [0]
+matching 
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+44 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createNodeIfNotExistsAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)Z > 41,40,42 @132 exception:43
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 553
+
+64 = invokevirtual < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 62,2 @158 exception:63
+90 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 88,87,67 @302 exception:89
+ < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; > 568
+src = 40
+find a concate 46 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 8,26 @139 exception:45
+find a concate 64 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 46,62 @228 exception:63
+find a concate 87 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 40,62 @289 exception:86
+add new prefix 87
+add new prefix 86
+1 = [1, 2]
+2 = [2]
+3 = [3]
+IR  = < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, copyQueuesFromRS(Ljava/lang/String;)Ljava/util/SortedMap; >
+CFG:
+BB0[-1..-2]
+    -> BB1
+BB1[0..0]
+    -> BB2
+    -> BB66
+BB2[1..2]
+    -> BB3
+    -> BB66
+BB3[3..5]
+    -> BB4
+    -> BB66
+BB4[6..7]
+    -> BB5
+    -> BB66
+BB5[8..10]
+    -> BB6
+    -> BB66
+BB6[11..12]
+    -> BB7
+    -> BB63
+    -> BB66
+BB7[13..16]
+    -> BB10
+    -> BB8
+BB8[17..18]
+    -> BB9
+    -> BB66
+BB9[19..20]
+    -> BB11
+    -> BB10
+BB10[21..22]
+    -> BB66
+BB11[23..25]
+    -> BB12
+    -> BB66
+BB12[26..28]
+    -> BB13
+    -> BB66
+BB13[29..29]
+    -> BB14
+BB14[30..31]
+    -> BB15
+    -> BB66
+BB15[32..33]
+    -> BB62
+    -> BB16
+BB16[34..35]
+    -> BB17
+    -> BB66
+BB17[36..36]
+    -> BB18
+    -> BB66
+BB18[37..38]
+    -> BB19
+    -> BB66
+BB19[39..40]
+    -> BB20
+    -> BB66
+BB20[41..42]
+    -> BB21
+    -> BB66
+BB21[43..44]
+    -> BB22
+    -> BB66
+BB22[45..46]
+    -> BB23
+    -> BB66
+BB23[47..47]
+    -> BB24
+    -> BB66
+BB24[48..50]
+    -> BB25
+    -> BB66
+BB25[51..52]
+    -> BB26
+    -> BB66
+BB26[53..55]
+    -> BB27
+    -> BB66
+BB27[56..58]
+    -> BB28
+    -> BB63
+    -> BB66
+BB28[59..62]
+    -> BB29
+    -> BB66
+BB29[63..65]
+    -> BB30
+    -> BB66
+BB30[66..67]
+    -> BB31
+    -> BB63
+    -> BB66
+BB31[68..71]
+    -> BB14
+    -> BB32
+BB32[72..73]
+    -> BB33
+    -> BB66
+BB33[74..75]
+    -> BB35
+    -> BB34
+BB34[76..76]
+    -> BB14
+BB35[77..77]
+    -> BB36
+    -> BB66
+BB36[78..79]
+    -> BB37
+    -> BB66
+BB37[80..84]
+    -> BB38
+    -> BB66
+BB38[85..87]
+    -> BB39
+    -> BB66
+BB39[88..88]
+    -> BB40
+BB40[89..90]
+    -> BB41
+    -> BB66
+BB41[91..92]
+    -> BB61
+    -> BB42
+BB42[93..94]
+    -> BB43
+    -> BB66
+BB43[95..95]
+    -> BB44
+    -> BB66
+BB44[96..99]
+    -> BB45
+    -> BB66
+BB45[100..102]
+    -> BB46
+    -> BB66
+BB46[103..104]
+    -> BB47
+    -> BB63
+    -> BB66
+BB47[105..107]
+    -> BB48
+    -> BB66
+BB48[108..109]
+    -> BB49
+    -> BB66
+BB49[110..111]
+    -> BB50
+    -> BB66
+BB50[112..113]
+    -> BB51
+    -> BB66
+BB51[114..115]
+    -> BB52
+    -> BB66
+BB52[116..117]
+    -> BB53
+    -> BB66
+BB53[118..118]
+    -> BB54
+    -> BB66
+BB54[119..119]
+    -> BB55
+    -> BB66
+BB55[120..120]
+    -> BB56
+    -> BB66
+BB56[121..123]
+    -> BB57
+    -> BB66
+BB57[124..126]
+    -> BB58
+    -> BB66
+BB58[127..129]
+    -> BB59
+    -> BB63
+    -> BB66
+BB59[130..133]
+    -> BB60
+    -> BB66
+BB60[134..135]
+    -> BB40
+BB61[136..136]
+    -> BB14
+BB62[137..137]
+    -> BB65
+BB63[138..140]
+    -> BB64
+    -> BB66
+BB64[141..143]
+    -> BB65
+    -> BB66
+BB65[144..145]
+    -> BB66
+BB66[-1..-2]
+Instructions:
+BB0
+BB1
+0   v4 = new <Application,Ljava/util/TreeMap>@0(line 535)
+BB2
+2   invokespecial < Application, Ljava/util/TreeMap, <init>()V > v4 @4 exception:v5(line 535)
+BB3
+5   v6 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, rsZNode, <Application,Ljava/lang/String> > v1(line 538) {1=[this]}
+BB4
+7   v8 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > v6,v2 @13 exception:v7(line 538) {2=[znode]}
+BB5
+10   v9 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > v1(line 539) {1=[this]}
+BB6
+12   v11 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, listChildrenNoWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Ljava/util/List; > v9,v8 @22 exception:v10(line 539) {8=[nodePath]}
+BB7
+16   conditional branch(eq) v11,v12:#null    (line 542) {11=[clusters]}
+BB8
+18   v14 = invokeinterface < Application, Ljava/util/List, size()I > v11 @34 exception:v13(line 542) {11=[clusters]}
+BB9
+20   conditional branch(gt) v14,v15:#1       (line 542)
+BB10
+22   return v4                               (line 543) {4=[queues]}
+BB11
+25   v18 = invokeinterface < Application, Ljava/util/List, remove(Ljava/lang/Object;)Z > v11,v16:#lock @49 exception:v17(line 546) {11=[clusters]}
+BB12
+28   v20 = invokeinterface < Application, Ljava/util/List, iterator()Ljava/util/Iterator; > v11 @57 exception:v19(line 547) {11=[clusters]}
+BB13
+BB14
+31   v22 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > v20 @66 exception:v21(line 547) {20=[i$]}
+BB15
+33   conditional branch(eq) v22,v23:#0       (line 547)
+BB16
+35   v25 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > v20 @76 exception:v24(line 547) {20=[i$]}
+BB17
+36   v26 = checkcast <Application,Ljava/lang/String>v25(line 547) {26=[null]}
+BB18
+38   v27 = new <Application,Ljava/lang/StringBuilder>@86(line 551)
+BB19
+40   invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > v27 @90 exception:v28(line 551)
+BB20
+42   v30 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v27,v26 @95 exception:v29(line 551) {26=[cluster]}
+BB21
+44   v33 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v30,v31:#- @100 exception:v32(line 551)
+BB22
+46   v35 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v33,v2 @104 exception:v34(line 551) {2=[znode]}
+BB23
+47   v37 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > v35 @107 exception:v36(line 551) {37=[null]}
+BB24
+50   v38 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, rsServerNameZnode, <Application,Ljava/lang/String> > v1(line 552) {1=[this]}
+BB25
+52   v40 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > v38,v37 @118 exception:v39(line 552) {40=[null], 37=[newCluster]}
+BB26
+55   v41 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > v1(line 553) {1=[this]}
+BB27
+57   v42 = getstatic < Application, Lorg/apache/hadoop/hbase/HConstants, EMPTY_BYTE_ARRAY, <Primordial,[B> >(line 553)
+58   v44 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createNodeIfNotExistsAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)Z > v41,v40,v42 @132 exception:v43(line 553) {40=[newClusterZnode]}
+BB28
+62   v46 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > v8,v26 @139 exception:v45(line 555) {46=[null], 8=[nodePath], 26=[cluster]}
+BB29
+65   v47 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > v1(line 556) {1=[this]}
+BB30
+67   v49 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, listChildrenNoWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Ljava/util/List; > v47,v46 @150 exception:v48(line 556) {49=[null], 46=[clusterPath]}
+BB31
+71   conditional branch(eq) v49,v12:#null    (line 558) {49=[hlogs]}
+BB32
+73   v51 = invokeinterface < Application, Ljava/util/List, size()I > v49 @162 exception:v50(line 558) {49=[hlogs]}
+BB33
+75   conditional branch(ne) v51,v23:#0       (line 558)
+BB34
+76   goto                                    (line 559)
+BB35
+77   v52 = new <Application,Ljava/util/TreeSet>@173(line 561)
+BB36
+79   invokespecial < Application, Ljava/util/TreeSet, <init>()V > v52 @177 exception:v53(line 561)
+BB37
+84   v55 = invokeinterface < Application, Ljava/util/SortedMap, put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; > v4,v37,v52 @187 exception:v54(line 562) {4=[queues], 37=[newCluster], 52=[logQueue]}
+BB38
+87   v57 = invokeinterface < Application, Ljava/util/List, iterator()Ljava/util/Iterator; > v49 @195 exception:v56(line 563) {49=[hlogs]}
+BB39
+BB40
+90   v59 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > v57 @204 exception:v58(line 563) {57=[i$]}
+BB41
+92   conditional branch(eq) v59,v23:#0       (line 563)
+BB42
+94   v61 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > v57 @214 exception:v60(line 563) {57=[i$]}
+BB43
+95   v62 = checkcast <Application,Ljava/lang/String>v61(line 563) {62=[null]}
+BB44
+99   v64 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > v46,v62 @228 exception:v63(line 564) {64=[null], 46=[clusterPath], 62=[hlog]}
+BB45
+102   v65 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > v1(line 565) {1=[this]}
+BB46
+104   v67 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, getData(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)[B > v65,v64 @239 exception:v66(line 565) {67=[null], 64=[z]}
+BB47
+106   v68 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, LOG, <Application,Lorg/apache/commons/logging/Log> >(line 566)
+107   v69 = new <Application,Ljava/lang/StringBuilder>@247(line 566)
+BB48
+109   invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > v69 @251 exception:v70(line 566)
+BB49
+111   v73 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v69,v71:#Creating  @256 exception:v72(line 566)
+BB50
+113   v75 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v73,v62 @261 exception:v74(line 566) {62=[hlog]}
+BB51
+115   v78 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v75,v76:# with data  @266 exception:v77(line 566)
+BB52
+117   v80 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/Bytes, toString([B)Ljava/lang/String; > v67 @271 exception:v79(line 566) {67=[position]}
+BB53
+118   v82 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > v78,v80 @274 exception:v81(line 566)
+BB54
+119   v84 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > v82 @277 exception:v83(line 566)
+BB55
+120   invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > v68,v84 @280 exception:v85(line 566)
+BB56
+123   v87 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > v40,v62 @289 exception:v86(line 567) {87=[null], 40=[newClusterZnode], 62=[hlog]}
+BB57
+126   v88 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > v1(line 568) {1=[this]}
+BB58
+129   v90 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > v88,v87,v67 @302 exception:v89(line 568) {87=[child], 67=[position]}
+BB59
+133   v92 = invokeinterface < Application, Ljava/util/SortedSet, add(Ljava/lang/Object;)Z > v52,v62 @310 exception:v91(line 569) {52=[logQueue], 62=[hlog]}
+BB60
+135   goto                                   (line 570)
+BB61
+136   goto                                   (line 571)
+BB62
+137   goto                                   (line 574)
+BB63<Handler>
+           v93 = getCaughtException 
+140   v94 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, abortable, <Application,Lorg/apache/hadoop/hbase/Abortable> > v1(line 573) {1=[this]}
+BB64
+143   invokeinterface < Application, Lorg/apache/hadoop/hbase/Abortable, abort(Ljava/lang/String;Ljava/lang/Throwable;)V > v94,v95:#Copy queues from rs,v93 @333 exception:v96(line 573) {93=[e]}
+BB65
+145   return v4                              (line 575) {4=[queues]}
+BB66
+
+4 = new <Application,Ljava/util/TreeMap>@0
+invokespecial < Application, Ljava/util/TreeMap, <init>()V > 4 @4 exception:5
+6 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, rsZNode, <Application,Ljava/lang/String> > 1
+8 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 6,2 @13 exception:7
+9 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > 1
+11 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, listChildrenNoWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Ljava/util/List; > 9,8 @22 exception:10
+conditional branch(eq) 11,12
+14 = invokeinterface < Application, Ljava/util/List, size()I > 11 @34 exception:13
+conditional branch(gt) 14,15
+return 4
+18 = invokeinterface < Application, Ljava/util/List, remove(Ljava/lang/Object;)Z > 11,16 @49 exception:17
+20 = invokeinterface < Application, Ljava/util/List, iterator()Ljava/util/Iterator; > 11 @57 exception:19
+22 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > 20 @66 exception:21
+conditional branch(eq) 22,23
+25 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > 20 @76 exception:24
+26 = checkcast <Application,Ljava/lang/String>25 <Application,Ljava/lang/String>
+27 = new <Application,Ljava/lang/StringBuilder>@86
+invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 27 @90 exception:28
+30 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 27,26 @95 exception:29
+33 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 30,31 @100 exception:32
+35 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 33,2 @104 exception:34
+37 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 35 @107 exception:36
+38 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, rsServerNameZnode, <Application,Ljava/lang/String> > 1
+40 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 38,37 @118 exception:39
+41 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > 1
+42 = getstatic < Application, Lorg/apache/hadoop/hbase/HConstants, EMPTY_BYTE_ARRAY, <Primordial,[B> >
+44 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createNodeIfNotExistsAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)Z > 41,40,42 @132 exception:43
+46 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 8,26 @139 exception:45
+47 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > 1
+49 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, listChildrenNoWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)Ljava/util/List; > 47,46 @150 exception:48
+conditional branch(eq) 49,12
+51 = invokeinterface < Application, Ljava/util/List, size()I > 49 @162 exception:50
+conditional branch(ne) 51,23
+goto
+52 = new <Application,Ljava/util/TreeSet>@173
+invokespecial < Application, Ljava/util/TreeSet, <init>()V > 52 @177 exception:53
+55 = invokeinterface < Application, Ljava/util/SortedMap, put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; > 4,37,52 @187 exception:54
+57 = invokeinterface < Application, Ljava/util/List, iterator()Ljava/util/Iterator; > 49 @195 exception:56
+59 = invokeinterface < Application, Ljava/util/Iterator, hasNext()Z > 57 @204 exception:58
+conditional branch(eq) 59,23
+61 = invokeinterface < Application, Ljava/util/Iterator, next()Ljava/lang/Object; > 57 @214 exception:60
+62 = checkcast <Application,Ljava/lang/String>61 <Application,Ljava/lang/String>
+64 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 46,62 @228 exception:63
+65 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > 1
+67 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, getData(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;)[B > 65,64 @239 exception:66
+68 = getstatic < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, LOG, <Application,Lorg/apache/commons/logging/Log> >
+69 = new <Application,Ljava/lang/StringBuilder>@247
+invokespecial < Application, Ljava/lang/StringBuilder, <init>()V > 69 @251 exception:70
+73 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 69,71 @256 exception:72
+75 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 73,62 @261 exception:74
+78 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 75,76 @266 exception:77
+80 = invokestatic < Application, Lorg/apache/hadoop/hbase/util/Bytes, toString([B)Ljava/lang/String; > 67 @271 exception:79
+82 = invokevirtual < Application, Ljava/lang/StringBuilder, append(Ljava/lang/String;)Ljava/lang/StringBuilder; > 78,80 @274 exception:81
+84 = invokevirtual < Application, Ljava/lang/StringBuilder, toString()Ljava/lang/String; > 82 @277 exception:83
+invokeinterface < Application, Lorg/apache/commons/logging/Log, debug(Ljava/lang/Object;)V > 68,84 @280 exception:85
+87 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, joinZNode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; > 40,62 @289 exception:86
+88 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, zookeeper, <Application,Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher> > 1
+90 = invokestatic < Application, Lorg/apache/hadoop/hbase/zookeeper/ZKUtil, createAndWatch(Lorg/apache/hadoop/hbase/zookeeper/ZooKeeperWatcher;Ljava/lang/String;[B)I > 88,87,67 @302 exception:89
+92 = invokeinterface < Application, Ljava/util/SortedSet, add(Ljava/lang/Object;)Z > 52,62 @310 exception:91
+goto
+goto
+goto
+94 = getfield < Application, Lorg/apache/hadoop/hbase/replication/ReplicationZookeeper, abortable, <Application,Lorg/apache/hadoop/hbase/Abortable> > 1
+invokeinterface < Application, Lorg/apache/hadoop/hbase/Abortable, abort(Ljava/lang/String;Ljava/lang/Throwable;)V > 94,95,93 @333 exception:96
+return 4
+93 = getCaughtException 

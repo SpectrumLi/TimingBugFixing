@@ -1,0 +1,27 @@
+original code = 
+ this.transitionZookeeperOfflineToOpening( encodedName,this.versionOfOfflineNode); this.server.getZooKeeper().transitionNode( this.regionInfo,this.server.getServerName(),org.apache.hadoop.hbase.executor.EventType.M_ZK_REGION_OFFLINE,org.apache.hadoop.hbase.executor.EventType.RS_ZK_REGION_OPENING,versionOfOfflineNode);
+
+record code = 
+String tempfn=this.server.getZooKeeper().transitionNode_path( this.regionInfo,this.server.getServerName(),org.apache.hadoop.hbase.executor.EventType.M_ZK_REGION_OFFLINE,org.apache.hadoop.hbase.executor.EventType.RS_ZK_REGION_OPENING,versionOfOfflineNode);
+dfix_write(tempfn,1);
+
+fastforward code = 
+String tempfn=this.server.getZooKeeper().transitionNode_path_content( this.regionInfo,this.server.getServerName(),org.apache.hadoop.hbase.executor.EventType.M_ZK_REGION_OFFLINE,org.apache.hadoop.hbase.executor.EventType.RS_ZK_REGION_OPENING,versionOfOfflineNode);
+dfix_write(tempfn,1);
+
+paras = encodedName org.apache.hadoop.hbase.executor.EventType.M_ZK_REGION_OFFLINE org.apache.hadoop.hbase.executor.EventType.RS_ZK_REGION_OPENING versionOfOfflineNode !
+original code = 
+ this.transitionToOpened( region); this.server.getZooKeeper().transitionNodeOpened( hri,this.server.getServerName(),this.version);
+
+record code = 
+String tempfn=this.server.getZooKeeper().transitionNodeOpened_path( hri,this.server.getServerName(),this.version);
+dfix_write(tempfn,1);
+
+replace paras : hri -> region
+String tempfn=this.server.getZooKeeper().transitionNodeOpened_path_content( region,this.server.getServerName(),this.version);
+
+fastforward code = 
+String tempfn=this.server.getZooKeeper().transitionNodeOpened_path_content( region,this.server.getServerName(),this.version);
+dfix_write(tempfn,1);
+
+paras = region hri !
