@@ -1,0 +1,20 @@
+1.Bug Reproduce.
+	crashing between the snapshot taking and write epoch file causes restart fails.
+
+2.Original Bug Report.
+	https://issues.apache.org/jira/browse/ZooKeeper-1653
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12575121/ZOOKEEPER-1653.patch
+
+4.Input for DFix.
+	./input directory
+	./input/config : bug report.
+	./input/jarpath : app jar files location.
+	./input/srcpath	: app source code location.
+	
+5.DFix Patch.
+	./patch directory. see the detail.patch file.
+
+6.Discussion.
+	The manual patching strategy is same with the DFix fastforward patch.

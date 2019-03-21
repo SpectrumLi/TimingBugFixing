@@ -1,0 +1,20 @@
+1.Bug Reproduce.
+	if RS crashes when deleting the HLog directory, it will block restart.
+
+2.Original Bug Report.
+	https://issues.apache.org/jira/browse/HB-2611
+
+3.Manual Patch.	
+	No Patch
+
+4.Input for DFix.
+	./input directory
+	./input/config : bug report.
+	./input/jarpath : app jar files location.
+	./input/srcpath	: app source code location.
+	
+5.DFix Patch.
+	./patch directory. see the detail.patch file.
+
+6.Discussion.
+	Manual patch utilize a new version of zookeeper to delete a HLog atomically. It works similar as DFix fastforward.

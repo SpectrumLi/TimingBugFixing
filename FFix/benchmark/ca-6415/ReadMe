@@ -1,0 +1,21 @@
+1.Bug Reproduce.
+	The snapshot response is lost in the network
+
+2.Original Bug Report.
+	One node sends snapshot request to all and wait for their responses.
+	https://issues.apache.org/jira/browse/CASSANDRA-6415
+
+3.Manual Patch.
+	https://issues.apache.org/jira/secure/attachment/12616573/6415-1.2.txt
+
+4.Input for DFix.
+	./input directory
+	./input/config : bug report.
+	./input/jarpath : app jar files location.
+	./input/srcpath	: app source code location.
+	
+5.DFix Patch.
+	./patch directory. see the detail.patch file.
+
+6.Discussion.
+	The developers fix this bug by changing the response to be undroppable. The undroppable message will be resent if lost in the network. From high level fixing strategy, it is same with DFix.
