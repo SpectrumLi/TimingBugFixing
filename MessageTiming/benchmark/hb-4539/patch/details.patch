@@ -1,0 +1,19 @@
+--- ZKAssign.java	2019-02-25 11:22:01.312644000 -0600
++++ ../patch/ZKAssign.java	2019-03-21 20:51:10.300070083 -0500
+@@ -269,7 +269,15 @@
+     Stat stat = new Stat();
+     zkw.sync(node);
+     int version=-100;
+-    version = ZKUtil.checkExists(zkw, node);
++    while(DFix.ShuoldLoop()){
++	try{
++	    version = ZKUtil.checkExists(zkw, node);
++	    break;
++	}catch(Exception e_e){
++	    if(DFix.Timeout()) throw e_e;
++	}
++    }
++    
+     if (version == -1) {
+       // While trying to transit a node to OFFLINE that was in previously in 
+       // OPENING state but before it could transit to OFFLINE state if RS had 

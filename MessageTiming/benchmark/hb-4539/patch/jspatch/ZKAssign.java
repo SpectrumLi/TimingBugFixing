@@ -20,7 +20,6 @@
 package org.apache.hadoop.hbase.zookeeper;
 
 import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.hbase.HRegionInfo;
@@ -33,6 +32,8 @@ import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.KeeperException.NoNodeException;
 import org.apache.zookeeper.KeeperException.NodeExistsException;
 import org.apache.zookeeper.data.Stat;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Utility class for doing region assignment in ZooKeeper.  This class extends
@@ -89,31 +90,31 @@ import org.apache.zookeeper.data.Stat;
  * </ol>
  */
 public class ZKAssign {
-  private static final Log LOG = LogFactory.getLog(ZKAssign.class);
 
-  /**
+    private static final Log LOG = LogFactory.getLog(ZKAssign.class);
+
+    /**
    * Gets the full path node name for the unassigned node for the specified
    * region.
    * @param zkw zk reference
    * @param regionName region name
    * @return full path node name
    */
-  public static String getNodeName(ZooKeeperWatcher zkw, String regionName) {
-    return ZKUtil.joinZNode(zkw.assignmentZNode, regionName);
-  }
+    public static String getNodeName(ZooKeeperWatcher zkw, String regionName) {
+        return ZKUtil.joinZNode(zkw.assignmentZNode, regionName);
+    }
 
-  /**
+    /**
    * Gets the region name from the full path node name of an unassigned node.
    * @param path full zk path
    * @return region name
    */
-  public static String getRegionName(ZooKeeperWatcher zkw, String path) {
-    return path.substring(zkw.assignmentZNode.length()+1);
-  }
+    public static String getRegionName(ZooKeeperWatcher zkw, String path) {
+        return path.substring(zkw.assignmentZNode.length() + 1);
+    }
 
-  // Master methods
-
-  /**
+    // Master methods
+    /**
    * Creates a new unassigned node in the OFFLINE state for the specified region.
    *
    * <p>Does not transition nodes from other states.  If a node already exists
@@ -130,24 +131,18 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NodeExistsException if node already exists
    */
-  public static void createNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName)
-  throws KeeperException, KeeperException.NodeExistsException {
-    createNodeOffline(zkw, region, serverName, EventType.M_ZK_REGION_OFFLINE);
-  }
+    public static void createNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName) throws KeeperException, KeeperException.NodeExistsException {
+        createNodeOffline(zkw, region, serverName, EventType.M_ZK_REGION_OFFLINE);
+    }
 
-  public static void createNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName, final EventType event)
-  throws KeeperException, KeeperException.NodeExistsException {
-    LOG.debug(zkw.prefix("Creating unassigned node for " +
-      region.getEncodedName() + " in OFFLINE state"));
-    RegionTransitionData data = new RegionTransitionData(event,
-      region.getRegionName(), serverName);
-    String node = getNodeName(zkw, region.getEncodedName());
-    ZKUtil.createAndWatch(zkw, node, data.getBytes());
-  }
+    public static void createNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, final EventType event) throws KeeperException, KeeperException.NodeExistsException {
+        LOG.debug(zkw.prefix("Creating unassigned node for " + region.getEncodedName() + " in OFFLINE state"));
+        RegionTransitionData data = new RegionTransitionData(event, region.getRegionName(), serverName);
+        String node = getNodeName(zkw, region.getEncodedName());
+        ZKUtil.createAndWatch(zkw, node, data.getBytes());
+    }
 
-  /**
+    /**
    * Creates an unassigned node in the OFFLINE state for the specified region.
    * <p>
    * Runs asynchronously.  Depends on no pre-existing znode.
@@ -162,19 +157,14 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NodeExistsException if node already exists
    */
-  public static void asyncCreateNodeOffline(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName,
-      final AsyncCallback.StringCallback cb, final Object ctx)
-  throws KeeperException {
-    LOG.debug(zkw.prefix("Async create of unassigned node for " +
-      region.getEncodedName() + " with OFFLINE state"));
-    RegionTransitionData data = new RegionTransitionData(
-        EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
-    String node = getNodeName(zkw, region.getEncodedName());
-    ZKUtil.asyncCreate(zkw, node, data.getBytes(), cb, ctx);
-  }
+    public static void asyncCreateNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, final AsyncCallback.StringCallback cb, final Object ctx) throws KeeperException {
+        LOG.debug(zkw.prefix("Async create of unassigned node for " + region.getEncodedName() + " with OFFLINE state"));
+        RegionTransitionData data = new RegionTransitionData(EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
+        String node = getNodeName(zkw, region.getEncodedName());
+        ZKUtil.asyncCreate(zkw, node, data.getBytes(), cb, ctx);
+    }
 
-  /**
+    /**
    * Forces an existing unassigned node to the OFFLINE state for the specified
    * region.
    *
@@ -192,18 +182,14 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static void forceNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName)
-  throws KeeperException, KeeperException.NoNodeException {
-    LOG.debug(zkw.prefix("Forcing existing unassigned node for " +
-      region.getEncodedName() + " to OFFLINE state"));
-    RegionTransitionData data = new RegionTransitionData(
-        EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
-    String node = getNodeName(zkw, region.getEncodedName());
-    ZKUtil.setData(zkw, node, data.getBytes());
-  }
+    public static void forceNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName) throws KeeperException, KeeperException.NoNodeException {
+        LOG.debug(zkw.prefix("Forcing existing unassigned node for " + region.getEncodedName() + " to OFFLINE state"));
+        RegionTransitionData data = new RegionTransitionData(EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
+        String node = getNodeName(zkw, region.getEncodedName());
+        ZKUtil.setData(zkw, node, data.getBytes());
+    }
 
-  /**
+    /**
    * Creates or force updates an unassigned node to the OFFLINE state for the
    * specified region.
    * <p>
@@ -223,12 +209,11 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NodeExistsException if node already exists
    */
-  public static int createOrForceNodeOffline(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName) throws KeeperException {
-    return createOrForceNodeOffline(zkw, region, serverName, false, true);
-  }
+    public static int createOrForceNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName) throws KeeperException {
+        return createOrForceNodeOffline(zkw, region, serverName, false, true);
+    }
 
-  /**
+    /**
    * Creates or force updates an unassigned node to the OFFLINE state for the
    * specified region.
    * <p>
@@ -257,81 +242,57 @@ public class ZKAssign {
    * @throws KeeperException.NodeExistsException
    *           if node already exists
    */
-  public static int createOrForceNodeOffline(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName,
-      boolean hijack, boolean allowCreation)
-  throws KeeperException {
-    LOG.debug(zkw.prefix("Creating (or updating) unassigned node for " +
-      region.getEncodedName() + " with OFFLINE state"));
-    RegionTransitionData data = new RegionTransitionData(
-        EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
-    String node = getNodeName(zkw, region.getEncodedName());
-    Stat stat = new Stat();
-    zkw.sync(node);
-    int version=-100;
-    while(DFix.ShuoldLoop()){
-	try{
-	    version = ZKUtil.checkExists(zkw, node);
-	    break;
-	}catch(Exception e_e){
-	    if(DFix.Timeout()) throw e_e;
-	}
-    }
-    
-    if (version == -1) {
-      // While trying to transit a node to OFFLINE that was in previously in 
-      // OPENING state but before it could transit to OFFLINE state if RS had 
-      // opened the region then the Master deletes the assigned region znode. 
-      // In that case the znode will not exist. So we should not
-      // create the znode again which will lead to double assignment.
-      if (hijack && !allowCreation) {
-        return -1;
-      }
-      return ZKUtil.createAndWatch(zkw, node, data.getBytes());
-    } else {
-      RegionTransitionData curDataInZNode = ZKAssign.getDataNoWatch(zkw, region
-          .getEncodedName(), stat);
-      // Do not move the node to OFFLINE if znode is in any of the following
-      // state.
-      // Because these are already executed states.
-      if (hijack && null != curDataInZNode) {
-        EventType eventType = curDataInZNode.getEventType();
-        if (eventType.equals(EventType.RS_ZK_REGION_CLOSING)
-            || eventType.equals(EventType.RS_ZK_REGION_CLOSED)
-            || eventType.equals(EventType.RS_ZK_REGION_OPENED)) {
-          return -1;
+    public static int createOrForceNodeOffline(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, boolean hijack, boolean allowCreation) throws KeeperException {
+        LOG.debug(zkw.prefix("Creating (or updating) unassigned node for " + region.getEncodedName() + " with OFFLINE state"));
+        RegionTransitionData data = new RegionTransitionData(EventType.M_ZK_REGION_OFFLINE, region.getRegionName(), serverName);
+        String node = getNodeName(zkw, region.getEncodedName());
+        Stat stat = new Stat();
+        zkw.sync(node);
+        int version = -100;
+    while(DFix.ShouldLoop(this) { try{     version = ZKUtil.checkExists(zkw, node); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
+        if (version == -1) {
+            // create the znode again which will lead to double assignment.
+            if (hijack && !allowCreation) {
+                return -1;
+            }
+            return ZKUtil.createAndWatch(zkw, node, data.getBytes());
+        } else {
+            RegionTransitionData curDataInZNode = ZKAssign.getDataNoWatch(zkw, region.getEncodedName(), stat);
+            // Because these are already executed states.
+            if (hijack && null != curDataInZNode) {
+                EventType eventType = curDataInZNode.getEventType();
+                if (eventType.equals(EventType.RS_ZK_REGION_CLOSING) || eventType.equals(EventType.RS_ZK_REGION_CLOSED) || eventType.equals(EventType.RS_ZK_REGION_OPENED)) {
+                    return -1;
+                }
+            }
+            boolean setData = false;
+            try {
+                setData = ZKUtil.setData(zkw, node, data.getBytes(), version);
+            // Setdata throws KeeperException which aborts the Master. So we are
+            // catching it here.
+            // If just before setting the znode to OFFLINE if the RS has made any
+            // change to the
+            // znode state then we need to return -1.
+            } catch (KeeperException kpe) {
+                LOG.info("Version mismatch while setting the node to OFFLINE state.");
+                return -1;
+            }
+            if (!setData) {
+                return -1;
+            } else {
+                // We successfully forced to OFFLINE, reset watch and handle if
+                // the state changed in between our set and the watch
+                RegionTransitionData curData = ZKAssign.getData(zkw, region.getEncodedName());
+                if (curData.getEventType() != data.getEventType()) {
+                    // state changed, need to process
+                    return -1;
+                }
+            }
         }
-      }
-
-      boolean setData = false;
-      try {
-        setData = ZKUtil.setData(zkw, node, data.getBytes(), version);
-        // Setdata throws KeeperException which aborts the Master. So we are
-        // catching it here.
-        // If just before setting the znode to OFFLINE if the RS has made any
-        // change to the
-        // znode state then we need to return -1.
-      } catch (KeeperException kpe) {
-        LOG.info("Version mismatch while setting the node to OFFLINE state.");
-        return -1;
-      }
-      if (!setData) {
-        return -1;
-      } else {
-        // We successfully forced to OFFLINE, reset watch and handle if
-        // the state changed in between our set and the watch
-        RegionTransitionData curData =
-          ZKAssign.getData(zkw, region.getEncodedName());
-        if (curData.getEventType() != data.getEventType()) {
-          // state changed, need to process
-          return -1;
-        }
-      }
+        return stat.getVersion() + 1;
     }
-    return stat.getVersion() + 1;
-  }
 
-  /**
+    /**
    * Deletes an existing unassigned node that is in the OPENED state for the
    * specified region.
    *
@@ -351,13 +312,11 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static boolean deleteOpenedNode(ZooKeeperWatcher zkw,
-      String regionName)
-  throws KeeperException, KeeperException.NoNodeException {
-    return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_OPENED);
-  }
+    public static boolean deleteOpenedNode(ZooKeeperWatcher zkw, String regionName) throws KeeperException, KeeperException.NoNodeException {
+        return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_OPENED);
+    }
 
-  /**
+    /**
    * Deletes an existing unassigned node that is in the OFFLINE state for the
    * specified region.
    *
@@ -376,13 +335,11 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static boolean deleteOfflineNode(ZooKeeperWatcher zkw,
-      String regionName)
-  throws KeeperException, KeeperException.NoNodeException {
-    return deleteNode(zkw, regionName, EventType.M_ZK_REGION_OFFLINE);
-  }
+    public static boolean deleteOfflineNode(ZooKeeperWatcher zkw, String regionName) throws KeeperException, KeeperException.NoNodeException {
+        return deleteNode(zkw, regionName, EventType.M_ZK_REGION_OFFLINE);
+    }
 
-  /**
+    /**
    * Deletes an existing unassigned node that is in the CLOSED state for the
    * specified region.
    *
@@ -402,13 +359,11 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static boolean deleteClosedNode(ZooKeeperWatcher zkw,
-      String regionName)
-  throws KeeperException, KeeperException.NoNodeException {
-    return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_CLOSED);
-  }
+    public static boolean deleteClosedNode(ZooKeeperWatcher zkw, String regionName) throws KeeperException, KeeperException.NoNodeException {
+        return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_CLOSED);
+    }
 
-  /**
+    /**
    * Deletes an existing unassigned node that is in the CLOSING state for the
    * specified region.
    *
@@ -428,14 +383,12 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static boolean deleteClosingNode(ZooKeeperWatcher zkw,
-      HRegionInfo region)
-  throws KeeperException, KeeperException.NoNodeException {
-    String regionName = region.getEncodedName();
-    return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_CLOSING);
-  }
+    public static boolean deleteClosingNode(ZooKeeperWatcher zkw, HRegionInfo region) throws KeeperException, KeeperException.NoNodeException {
+        String regionName = region.getEncodedName();
+        return deleteNode(zkw, regionName, EventType.RS_ZK_REGION_CLOSING);
+    }
 
-  /**
+    /**
    * Deletes an existing unassigned node that is in the specified state for the
    * specified region.
    *
@@ -456,38 +409,30 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NoNodeException if node does not exist
    */
-  public static boolean deleteNode(ZooKeeperWatcher zkw, String regionName,
-      EventType expectedState)
-  throws KeeperException, KeeperException.NoNodeException {
-    LOG.debug(zkw.prefix("Deleting existing unassigned " +
-      "node for " + regionName + " that is in expected state " + expectedState));
-    String node = getNodeName(zkw, regionName);
-    zkw.sync(node);
-    Stat stat = new Stat();
-    byte [] bytes = ZKUtil.getDataNoWatch(zkw, node, stat);
-    if (bytes == null) {
-      // If it came back null, node does not exist.
-      throw KeeperException.create(Code.NONODE);
+    public static boolean deleteNode(ZooKeeperWatcher zkw, String regionName, EventType expectedState) throws KeeperException, KeeperException.NoNodeException {
+        LOG.debug(zkw.prefix("Deleting existing unassigned " + "node for " + regionName + " that is in expected state " + expectedState));
+        String node = getNodeName(zkw, regionName);
+        zkw.sync(node);
+        Stat stat = new Stat();
+        byte[] bytes = ZKUtil.getDataNoWatch(zkw, node, stat);
+        if (bytes == null) {
+            // If it came back null, node does not exist.
+            throw KeeperException.create(Code.NONODE);
+        }
+        RegionTransitionData data = RegionTransitionData.fromBytes(bytes);
+        if (!data.getEventType().equals(expectedState)) {
+            LOG.warn(zkw.prefix("Attempting to delete unassigned " + "node " + regionName + " in " + expectedState + " state but node is in " + data.getEventType() + " state"));
+            return false;
+        }
+        if (!ZKUtil.deleteNode(zkw, node, stat.getVersion())) {
+            LOG.warn(zkw.prefix("Attempting to delete " + "unassigned node in " + expectedState + " state but after verifying state, we got a version mismatch"));
+            return false;
+        }
+        LOG.debug(zkw.prefix("Successfully deleted unassigned node for region " + regionName + " in expected state " + expectedState));
+        return true;
     }
-    RegionTransitionData data = RegionTransitionData.fromBytes(bytes);
-    if (!data.getEventType().equals(expectedState)) {
-      LOG.warn(zkw.prefix("Attempting to delete unassigned " +
-        "node " + regionName + " in " + expectedState +
-        " state but node is in " + data.getEventType() + " state"));
-      return false;
-    }
-    if(!ZKUtil.deleteNode(zkw, node, stat.getVersion())) {
-      LOG.warn(zkw.prefix("Attempting to delete " +
-          "unassigned node in " + expectedState +
-          " state but after verifying state, we got a version mismatch"));
-      return false;
-    }
-    LOG.debug(zkw.prefix("Successfully deleted unassigned node for region " +
-        regionName + " in expected state " + expectedState));
-    return true;
-  }
 
-  /**
+    /**
    * Deletes all unassigned nodes regardless of their state.
    *
    * <p>No watchers are set.
@@ -498,15 +443,13 @@ public class ZKAssign {
    * @param zkw zk reference
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static void deleteAllNodes(ZooKeeperWatcher zkw)
-  throws KeeperException {
-    LOG.debug(zkw.prefix("Deleting any existing unassigned nodes"));
-    ZKUtil.deleteChildrenRecursively(zkw, zkw.assignmentZNode);
-  }
+    public static void deleteAllNodes(ZooKeeperWatcher zkw) throws KeeperException {
+        LOG.debug(zkw.prefix("Deleting any existing unassigned nodes"));
+        ZKUtil.deleteChildrenRecursively(zkw, zkw.assignmentZNode);
+    }
 
-  // RegionServer methods
-
-  /**
+    // RegionServer methods
+    /**
    * Creates a new unassigned node in the CLOSING state for the specified
    * region.
    *
@@ -528,20 +471,14 @@ public class ZKAssign {
    * @throws KeeperException if unexpected zookeeper exception
    * @throws KeeperException.NodeExistsException if node already exists
    */
-  public static int createNodeClosing(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName)
-  throws KeeperException, KeeperException.NodeExistsException {
-    LOG.debug(zkw.prefix("Creating unassigned node for " +
-      region.getEncodedName() + " in a CLOSING state"));
+    public static int createNodeClosing(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName) throws KeeperException, KeeperException.NodeExistsException {
+        LOG.debug(zkw.prefix("Creating unassigned node for " + region.getEncodedName() + " in a CLOSING state"));
+        RegionTransitionData data = new RegionTransitionData(EventType.RS_ZK_REGION_CLOSING, region.getRegionName(), serverName);
+        String node = getNodeName(zkw, region.getEncodedName());
+        return ZKUtil.createAndWatch(zkw, node, data.getBytes());
+    }
 
-    RegionTransitionData data = new RegionTransitionData(
-        EventType.RS_ZK_REGION_CLOSING, region.getRegionName(), serverName);
-
-    String node = getNodeName(zkw, region.getEncodedName());
-    return ZKUtil.createAndWatch(zkw, node, data.getBytes());
-  }
-
-  /**
+    /**
    * Transitions an existing unassigned node for the specified region which is
    * currently in the CLOSING state to be in the CLOSED state.
    *
@@ -567,15 +504,11 @@ public class ZKAssign {
    * @return version of node after transition, -1 if unsuccessful transition
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static int transitionNodeClosed(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName, int expectedVersion)
-  throws KeeperException {
-    return transitionNode(zkw, region, serverName,
-        EventType.RS_ZK_REGION_CLOSING,
-        EventType.RS_ZK_REGION_CLOSED, expectedVersion);
-  }
+    public static int transitionNodeClosed(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, int expectedVersion) throws KeeperException {
+        return transitionNode(zkw, region, serverName, EventType.RS_ZK_REGION_CLOSING, EventType.RS_ZK_REGION_CLOSED, expectedVersion);
+    }
 
-  /**
+    /**
    * Transitions an existing unassigned node for the specified region which is
    * currently in the OFFLINE state to be in the OPENING state.
    *
@@ -601,21 +534,15 @@ public class ZKAssign {
    * @return version of node after transition, -1 if unsuccessful transition
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static int transitionNodeOpening(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName)
-  throws KeeperException {
-    return transitionNodeOpening(zkw, region, serverName,
-      EventType.M_ZK_REGION_OFFLINE);
-  }
+    public static int transitionNodeOpening(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName) throws KeeperException {
+        return transitionNodeOpening(zkw, region, serverName, EventType.M_ZK_REGION_OFFLINE);
+    }
 
-  public static int transitionNodeOpening(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName, final EventType beginState)
-  throws KeeperException {
-    return transitionNode(zkw, region, serverName, beginState,
-      EventType.RS_ZK_REGION_OPENING, -1);
-  }
+    public static int transitionNodeOpening(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, final EventType beginState) throws KeeperException {
+        return transitionNode(zkw, region, serverName, beginState, EventType.RS_ZK_REGION_OPENING, -1);
+    }
 
-  /**
+    /**
    * Retransitions an existing unassigned node for the specified region which is
    * currently in the OPENING state to be in the OPENING state.
    *
@@ -641,15 +568,11 @@ public class ZKAssign {
    * @return version of node after transition, -1 if unsuccessful transition
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static int retransitionNodeOpening(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName, int expectedVersion)
-  throws KeeperException {
-    return transitionNode(zkw, region, serverName,
-        EventType.RS_ZK_REGION_OPENING,
-        EventType.RS_ZK_REGION_OPENING, expectedVersion);
-  }
+    public static int retransitionNodeOpening(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, int expectedVersion) throws KeeperException {
+        return transitionNode(zkw, region, serverName, EventType.RS_ZK_REGION_OPENING, EventType.RS_ZK_REGION_OPENING, expectedVersion);
+    }
 
-  /**
+    /**
    * Transitions an existing unassigned node for the specified region which is
    * currently in the OPENING state to be in the OPENED state.
    *
@@ -677,15 +600,11 @@ public class ZKAssign {
    * @return version of node after transition, -1 if unsuccessful transition
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static int transitionNodeOpened(ZooKeeperWatcher zkw,
-      HRegionInfo region, ServerName serverName, int expectedVersion)
-  throws KeeperException {
-    return transitionNode(zkw, region, serverName,
-        EventType.RS_ZK_REGION_OPENING,
-        EventType.RS_ZK_REGION_OPENED, expectedVersion);
-  }
+    public static int transitionNodeOpened(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, int expectedVersion) throws KeeperException {
+        return transitionNode(zkw, region, serverName, EventType.RS_ZK_REGION_OPENING, EventType.RS_ZK_REGION_OPENED, expectedVersion);
+    }
 
-  /**
+    /**
    * Method that actually performs unassigned node transitions.
    *
    * <p>Attempts to transition the unassigned node for the specified region
@@ -713,98 +632,60 @@ public class ZKAssign {
    * @return version of node after transition, -1 if unsuccessful transition
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static int transitionNode(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName, EventType beginState, EventType endState,
-      int expectedVersion)
-  throws KeeperException {
-    return transitionNode(zkw, region, serverName, beginState, endState,
-        expectedVersion, null);
-  }
-
-  public static int transitionNode(ZooKeeperWatcher zkw, HRegionInfo region,
-      ServerName serverName, EventType beginState, EventType endState,
-      int expectedVersion, final byte [] payload)
-  throws KeeperException {
-    String encoded = region.getEncodedName();
-    if(LOG.isDebugEnabled()) {
-      LOG.debug(zkw.prefix("Attempting to transition node " +
-        HRegionInfo.prettyPrint(encoded) +
-        " from " + beginState.toString() + " to " + endState.toString()));
+    public static int transitionNode(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, EventType beginState, EventType endState, int expectedVersion) throws KeeperException {
+        return transitionNode(zkw, region, serverName, beginState, endState, expectedVersion, null);
     }
 
-    String node = getNodeName(zkw, encoded);
-    zkw.sync(node);
-
-    // Read existing data of the node
-    Stat stat = new Stat();
-    byte [] existingBytes = ZKUtil.getDataNoWatch(zkw, node, stat);
-    if (existingBytes == null) {
-      // Node no longer exists.  Return -1. It means unsuccessful transition.
-      return -1;
+    public static int transitionNode(ZooKeeperWatcher zkw, HRegionInfo region, ServerName serverName, EventType beginState, EventType endState, int expectedVersion, final byte[] payload) throws KeeperException {
+        String encoded = region.getEncodedName();
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(zkw.prefix("Attempting to transition node " + HRegionInfo.prettyPrint(encoded) + " from " + beginState.toString() + " to " + endState.toString()));
+        }
+        String node = getNodeName(zkw, encoded);
+        zkw.sync(node);
+        // Read existing data of the node
+        Stat stat = new Stat();
+        byte[] existingBytes = ZKUtil.getDataNoWatch(zkw, node, stat);
+        if (existingBytes == null) {
+            // Node no longer exists.  Return -1. It means unsuccessful transition.
+            return -1;
+        }
+        RegionTransitionData existingData = RegionTransitionData.fromBytes(existingBytes);
+        // Verify it is the expected version
+        if (expectedVersion != -1 && stat.getVersion() != expectedVersion) {
+            LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for " + encoded + " from " + beginState + " to " + endState + " failed, " + "the node existed but was version " + stat.getVersion() + " not the expected version " + expectedVersion));
+            return -1;
+        } else if (beginState.equals(EventType.M_ZK_REGION_OFFLINE) && endState.equals(EventType.RS_ZK_REGION_OPENING) && expectedVersion == -1 && stat.getVersion() != 0) {
+            // the below check ensures that double assignment doesnot happen.
+            // When the node is created for the first time then the expected version
+            // that is passed will be -1 and the version in znode will be 0.
+            // In all other cases the version in znode will be > 0.
+            LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for " + encoded + " from " + beginState + " to " + endState + " failed, " + "the node existed but was version " + stat.getVersion() + " not the expected version " + expectedVersion));
+            return -1;
+        }
+        // Verify it is in expected state
+        if (!existingData.getEventType().equals(beginState)) {
+            LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for " + encoded + " from " + beginState + " to " + endState + " failed, " + "the node existed but was in the state " + existingData.getEventType() + " set by the server " + serverName));
+            return -1;
+        }
+        // Write new data, ensuring data has not changed since we last read it
+        try {
+            RegionTransitionData data = new RegionTransitionData(endState, region.getRegionName(), serverName, payload);
+            if (!ZKUtil.setData(zkw, node, data.getBytes(), stat.getVersion())) {
+                LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for " + encoded + " from " + beginState + " to " + endState + " failed, " + "the node existed and was in the expected state but then when " + "setting data we got a version mismatch"));
+                return -1;
+            }
+            if (LOG.isDebugEnabled()) {
+                LOG.debug(zkw.prefix("Successfully transitioned node " + encoded + " from " + beginState + " to " + endState));
+            }
+            return stat.getVersion() + 1;
+        } catch (KeeperException.NoNodeException nne) {
+            LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for " + encoded + " from " + beginState + " to " + endState + " failed, " + "the node existed and was in the expected state but then when " + "setting data it no longer existed"));
+            return -1;
+        }
     }
-    RegionTransitionData existingData =
-      RegionTransitionData.fromBytes(existingBytes);
 
-    // Verify it is the expected version
-    if(expectedVersion != -1 && stat.getVersion() != expectedVersion) {
-      LOG.warn(zkw.prefix("Attempt to transition the " +
-        "unassigned node for " + encoded +
-        " from " + beginState + " to " + endState + " failed, " +
-        "the node existed but was version " + stat.getVersion() +
-        " not the expected version " + expectedVersion));
-        return -1;
-    } else if (beginState.equals(EventType.M_ZK_REGION_OFFLINE)
-        && endState.equals(EventType.RS_ZK_REGION_OPENING)
-        && expectedVersion == -1 && stat.getVersion() != 0) {
-      // the below check ensures that double assignment doesnot happen.
-      // When the node is created for the first time then the expected version
-      // that is passed will be -1 and the version in znode will be 0.
-      // In all other cases the version in znode will be > 0.
-      LOG.warn(zkw.prefix("Attempt to transition the " + "unassigned node for "
-          + encoded + " from " + beginState + " to " + endState + " failed, "
-          + "the node existed but was version " + stat.getVersion()
-          + " not the expected version " + expectedVersion));
-      return -1;
-    }
-
-    // Verify it is in expected state
-    if(!existingData.getEventType().equals(beginState)) {
-      LOG.warn(zkw.prefix("Attempt to transition the " +
-        "unassigned node for " + encoded +
-        " from " + beginState + " to " + endState + " failed, " +
-        "the node existed but was in the state " + existingData.getEventType() +
-        " set by the server " + serverName));
-      return -1;
-    }
-
-    // Write new data, ensuring data has not changed since we last read it
-    try {
-      RegionTransitionData data = new RegionTransitionData(endState,
-          region.getRegionName(), serverName, payload);
-      if(!ZKUtil.setData(zkw, node, data.getBytes(), stat.getVersion())) {
-        LOG.warn(zkw.prefix("Attempt to transition the " +
-        "unassigned node for " + encoded +
-        " from " + beginState + " to " + endState + " failed, " +
-        "the node existed and was in the expected state but then when " +
-        "setting data we got a version mismatch"));
-        return -1;
-      }
-      if(LOG.isDebugEnabled()) {
-        LOG.debug(zkw.prefix("Successfully transitioned node " + encoded +
-          " from " + beginState + " to " + endState));
-      }
-      return stat.getVersion() + 1;
-    } catch (KeeperException.NoNodeException nne) {
-      LOG.warn(zkw.prefix("Attempt to transition the " +
-        "unassigned node for " + encoded +
-        " from " + beginState + " to " + endState + " failed, " +
-        "the node existed and was in the expected state but then when " +
-        "setting data it no longer existed"));
-      return -1;
-    }
-  }
-
-  /**
+    /**
    * Gets the current data in the unassigned node for the specified region name
    * or fully-qualified path.
    *
@@ -817,19 +698,16 @@ public class ZKAssign {
    * @return data for the unassigned node
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static RegionTransitionData getData(ZooKeeperWatcher zkw,
-      String pathOrRegionName)
-  throws KeeperException {
-    String node = pathOrRegionName.startsWith("/") ?
-        pathOrRegionName : getNodeName(zkw, pathOrRegionName);
-    byte [] data = ZKUtil.getDataAndWatch(zkw, node);
-    if(data == null) {
-      return null;
+    public static RegionTransitionData getData(ZooKeeperWatcher zkw, String pathOrRegionName) throws KeeperException {
+        String node = pathOrRegionName.startsWith("/") ? pathOrRegionName : getNodeName(zkw, pathOrRegionName);
+        byte[] data = ZKUtil.getDataAndWatch(zkw, node);
+        if (data == null) {
+            return null;
+        }
+        return RegionTransitionData.fromBytes(data);
     }
-    return RegionTransitionData.fromBytes(data);
-  }
 
-  /**
+    /**
    * Gets the current data in the unassigned node for the specified region name
    * or fully-qualified path.
    *
@@ -843,32 +721,28 @@ public class ZKAssign {
    * @return data for the unassigned node or null if node does not exist
    * @throws KeeperException if unexpected zookeeper exception
    */
-  public static RegionTransitionData getDataNoWatch(ZooKeeperWatcher zkw,
-      String pathOrRegionName, Stat stat)
-  throws KeeperException {
-    String node = pathOrRegionName.startsWith("/") ?
-        pathOrRegionName : getNodeName(zkw, pathOrRegionName);
-    byte [] data = ZKUtil.getDataNoWatch(zkw, node, stat);
-    if (data == null) {
-      return null;
+    public static RegionTransitionData getDataNoWatch(ZooKeeperWatcher zkw, String pathOrRegionName, Stat stat) throws KeeperException {
+        String node = pathOrRegionName.startsWith("/") ? pathOrRegionName : getNodeName(zkw, pathOrRegionName);
+        byte[] data = ZKUtil.getDataNoWatch(zkw, node, stat);
+        if (data == null) {
+            return null;
+        }
+        return RegionTransitionData.fromBytes(data);
     }
-    return RegionTransitionData.fromBytes(data);
-  }
 
-  /**
+    /**
    * Get the version of the specified znode
    * @param zkw zk reference
    * @param region region's info
    * @return the version of the znode, -1 if it doesn't exist
    * @throws KeeperException
    */
-  public static int getVersion(ZooKeeperWatcher zkw, HRegionInfo region)
-    throws KeeperException {
-    String znode = getNodeName(zkw, region.getEncodedName());
-    return ZKUtil.checkExists(zkw, znode);
-  }
+    public static int getVersion(ZooKeeperWatcher zkw, HRegionInfo region) throws KeeperException {
+        String znode = getNodeName(zkw, region.getEncodedName());
+        return ZKUtil.checkExists(zkw, znode);
+    }
 
-  /**
+    /**
    * Delete the assignment node regardless of its current state.
    * <p>
    * Fail silent even if the node does not exist at all.
@@ -876,14 +750,12 @@ public class ZKAssign {
    * @param regionInfo
    * @throws KeeperException
    */
-  public static void deleteNodeFailSilent(ZooKeeperWatcher watcher,
-      HRegionInfo regionInfo)
-  throws KeeperException {
-    String node = getNodeName(watcher, regionInfo.getEncodedName());
-    ZKUtil.deleteNodeFailSilent(watcher, node);
-  }
+    public static void deleteNodeFailSilent(ZooKeeperWatcher watcher, HRegionInfo regionInfo) throws KeeperException {
+        String node = getNodeName(watcher, regionInfo.getEncodedName());
+        ZKUtil.deleteNodeFailSilent(watcher, node);
+    }
 
-  /**
+    /**
    * Blocks until there are no node in regions in transition.
    * <p>
    * Used in testing only.
@@ -891,21 +763,19 @@ public class ZKAssign {
    * @throws KeeperException
    * @throws InterruptedException
    */
-  public static void blockUntilNoRIT(ZooKeeperWatcher zkw)
-  throws KeeperException, InterruptedException {
-    while (ZKUtil.nodeHasChildren(zkw, zkw.assignmentZNode)) {
-      List<String> znodes =
-        ZKUtil.listChildrenAndWatchForNewChildren(zkw, zkw.assignmentZNode);
-      if (znodes != null && !znodes.isEmpty()) {
-        for (String znode : znodes) {
-          LOG.debug("ZK RIT -> " + znode);
+    public static void blockUntilNoRIT(ZooKeeperWatcher zkw) throws KeeperException, InterruptedException {
+        while (ZKUtil.nodeHasChildren(zkw, zkw.assignmentZNode)) {
+            List<String> znodes = ZKUtil.listChildrenAndWatchForNewChildren(zkw, zkw.assignmentZNode);
+            if (znodes != null && !znodes.isEmpty()) {
+                for (String znode : znodes) {
+                    LOG.debug("ZK RIT -> " + znode);
+                }
+            }
+            Thread.sleep(100);
         }
-      }
-      Thread.sleep(100);
     }
-  }
 
-  /**
+    /**
    * Blocks until there is at least one node in regions in transition.
    * <p>
    * Used in testing only.
@@ -913,19 +783,17 @@ public class ZKAssign {
    * @throws KeeperException
    * @throws InterruptedException
    */
-  public static void blockUntilRIT(ZooKeeperWatcher zkw)
-  throws KeeperException, InterruptedException {
-    while (!ZKUtil.nodeHasChildren(zkw, zkw.assignmentZNode)) {
-      List<String> znodes =
-        ZKUtil.listChildrenAndWatchForNewChildren(zkw, zkw.assignmentZNode);
-      if (znodes == null || znodes.isEmpty()) {
-        LOG.debug("No RIT in ZK");
-      }
-      Thread.sleep(100);
+    public static void blockUntilRIT(ZooKeeperWatcher zkw) throws KeeperException, InterruptedException {
+        while (!ZKUtil.nodeHasChildren(zkw, zkw.assignmentZNode)) {
+            List<String> znodes = ZKUtil.listChildrenAndWatchForNewChildren(zkw, zkw.assignmentZNode);
+            if (znodes == null || znodes.isEmpty()) {
+                LOG.debug("No RIT in ZK");
+            }
+            Thread.sleep(100);
+        }
     }
-  }
 
-  /**
+    /**
    * Verifies that the specified region is in the specified state in ZooKeeper.
    * <p>
    * Returns true if region is in transition and in the specified state in
@@ -939,29 +807,25 @@ public class ZKAssign {
    * @param expectedState
    * @return true if region exists and is in expected state
    */
-  public static boolean verifyRegionState(ZooKeeperWatcher zkw,
-      HRegionInfo region, EventType expectedState)
-  throws KeeperException {
-    String encoded = region.getEncodedName();
-
-    String node = getNodeName(zkw, encoded);
-    zkw.sync(node);
-
-    // Read existing data of the node
-    byte [] existingBytes = null;
-    try {
-      existingBytes = ZKUtil.getDataAndWatch(zkw, node);
-    } catch (KeeperException.NoNodeException nne) {
-      return false;
-    } catch (KeeperException e) {
-      throw e;
+    public static boolean verifyRegionState(ZooKeeperWatcher zkw, HRegionInfo region, EventType expectedState) throws KeeperException {
+        String encoded = region.getEncodedName();
+        String node = getNodeName(zkw, encoded);
+        zkw.sync(node);
+        // Read existing data of the node
+        byte[] existingBytes = null;
+        try {
+            existingBytes = ZKUtil.getDataAndWatch(zkw, node);
+        } catch (KeeperException.NoNodeException nne) {
+            return false;
+        } catch (KeeperException e) {
+            throw e;
+        }
+        if (existingBytes == null)
+            return false;
+        RegionTransitionData existingData = RegionTransitionData.fromBytes(existingBytes);
+        if (existingData.getEventType() == expectedState) {
+            return true;
+        }
+        return false;
     }
-    if (existingBytes == null) return false;
-    RegionTransitionData existingData =
-      RegionTransitionData.fromBytes(existingBytes);
-    if (existingData.getEventType() == expectedState){
-      return true;
-    }
-    return false;
-  }
 }

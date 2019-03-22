@@ -1,0 +1,32 @@
+--- BootStrapper.java	2019-02-25 11:22:01.300644155 -0600
++++ ../patch/BootStrapper.java	2019-03-21 20:42:44.721783733 -0500
+@@ -211,7 +211,7 @@
+         public void doVerb(Message message)
+         {
+             StorageService ss = StorageService.instance; String tokenString=null;
+-            tokenString = ss.getBootstrapToken().toString();
++            tokenString = DFix.Wait(this)?ss.getBootstrapToken().toString():DFix.INVALID_VALUE;
+             Message response;
+             try
+             {
+--- StorageService.java	2019-02-25 11:22:01.304644267 -0600
++++ ../patch/StorageService.java	2019-03-21 20:44:24.604608223 -0500
+@@ -359,7 +359,10 @@
+                 throw new UnsupportedOperationException(s);
+             }
+             setMode("Joining: getting bootstrap token", true); Token token = null;
++	    while(DFix.ShouldLoop(this)){
+             token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
++	    if (DFix.IsNotInvalid(token)) break;
++	    }
+             startBootstrap(token);
+             // don't finish startup (enabling thrift) until after bootstrap is done
+             while (isBootstrapMode)
+@@ -602,6 +605,7 @@
+         }
+         
+         calculatePendingRanges(1);
++	DFix.SET(this);
+         if (!isClientMode)
+             SystemTable.updateToken(endPoint, token);
+     }

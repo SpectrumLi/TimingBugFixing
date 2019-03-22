@@ -1,0 +1,19 @@
+--- AssignmentManager.java	2019-03-21 10:44:41.323249162 -0500
++++ ../patch/AssignmentManager.java	2019-03-21 23:05:26.571021842 -0500
+@@ -1748,7 +1748,15 @@
+ 	LOG.info("Create Node Closing is to running");
+          // Create the znode in CLOSING state
+         try {
+-          ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
++	     while(DFix.ShouldLoop(this){ 
++		 try{           
++		     ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName()); 
++		     break;
++		 }catch(Exception e_e){ 
++		     if(DFix.Timeout(this)) 
++			     throw e_e;
++		 }
++	     }
+         } catch (KeeperException e) {
+           master.abort("Unexpected ZK exception creating node CLOSING", e);
+           return;

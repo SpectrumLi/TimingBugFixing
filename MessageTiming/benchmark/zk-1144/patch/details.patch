@@ -1,0 +1,35 @@
+--- Leader.java	2019-03-21 11:08:33.224060955 -0500
++++ ../patch/Leader.java	2019-03-21 23:08:44.748617467 -0500
+@@ -335,6 +335,7 @@
+             // us. We do this by waiting for the NEWLEADER packet to get
+             // acknowledged
+             newLeaderProposal.ackSet.add(self.getId());
++	    DFix.Signal(newLeaderProposal.ackSet);
+             while (!self.getQuorumVerifier().containsQuorum(newLeaderProposal.ackSet)){
+             //while (newLeaderProposal.ackCount <= self.quorumPeers.size() / 2) {
+                 if (self.tick > self.initLimit) {
+@@ -501,6 +502,7 @@
+             LOG.debug("Count for zxid: 0x" + Long.toHexString(zxid)
+                     + " is " + p.ackSet.size());
+         }
++	if (!DFix.Wait(p.ackSet)) throw new DFixException ();
+         if (self.getQuorumVerifier().containsQuorum(p.ackSet)){             
+             if (zxid != lastCommitted+1) {
+                 LOG.warn("Commiting zxid 0x" + Long.toHexString(zxid)
+--- LearnerHandler.java	2019-03-21 11:08:33.224060955 -0500
++++ ../patch/LearnerHandler.java	2019-03-21 23:10:20.715326774 -0500
+@@ -408,8 +408,12 @@
+                 LOG.error("Next packet was supposed to be an ACK");
+                 return;
+             }
+-            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+-            
++            while(DFix.ShouldLoop(this)){ 
++		try{             
++		    leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress()); 
++		    break;
++		}catch(DFixException e_e){}
++	    }  
+             /*
+              * Wait until leader starts up
+              */

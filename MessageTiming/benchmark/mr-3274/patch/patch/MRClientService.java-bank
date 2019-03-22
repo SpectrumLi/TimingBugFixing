@@ -335,16 +335,16 @@ public class MRClientService extends AbstractService
         recordFactory.newRecordInstance(KillTaskResponse.class);
       return response;
     }
+    
     @Override
     public KillTaskAttemptResponse killTaskAttempt(
         KillTaskAttemptRequest request) throws YarnRemoteException {
       TaskAttemptId taskAttemptId = request.getTaskAttemptId();
       String message = "Kill task attempt received from client " + taskAttemptId;
-      LOG.info(message);
       verifyAndGetAttempt(taskAttemptId, true);
-      appContext.getEventHandler().handle(new TaskAttemptDiagnosticsUpdateEvent(taskAttemptId, message));
-      appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
-      DFix.EventWait(this);
+      appContext.getEventHandler().handle( new TaskAttemptDiagnosticsUpdateEvent(taskAttemptId, message));
+      appContext.getEventHandler().handle( new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
+
 
       KillTaskAttemptResponse response = 
         recordFactory.newRecordInstance(KillTaskAttemptResponse.class);
