@@ -1,5 +1,5 @@
---- src/Learner.java	2019-03-12 23:22:26.303800856 -0500
-+++ patch/Learner.java	2019-03-12 23:24:36.527677982 -0500
+--- Learner.java	2019-03-21 15:04:35.458524289 -0500
++++ ../patch/Learner.java	2019-03-21 15:04:35.482524992 -0500
 @@ -482,9 +482,12 @@
                             e.printStackTrace();
                         }
@@ -14,8 +14,8 @@
                      writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
                      break;
                  }
---- src/QuorumPeer.java	2019-03-16 18:18:50.490776234 -0500
-+++ patch/QuorumPeer.java	2019-03-16 18:28:13.627802992 -0500
+--- QuorumPeer.java	2019-03-21 15:04:35.462524406 -0500
++++ ../patch/QuorumPeer.java	2019-03-21 15:04:35.502525579 -0500
 @@ -651,6 +651,7 @@
              	        currentEpoch);
              	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);

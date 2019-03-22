@@ -1,5 +1,5 @@
---- src/AntiEntropyService.java	2019-03-17 21:35:39.141317441 -0500
-+++ patch/AntiEntropyService.java	2019-03-17 21:58:20.234263864 -0500
+--- AntiEntropyService.java	2019-03-21 15:01:08.800448401 -0500
++++ ../patch/AntiEntropyService.java	2019-03-21 15:01:08.820448991 -0500
 @@ -908,7 +908,10 @@
                      for (InetAddress endpoint : endpoints)
                          MessagingService.instance().sendRR(new SnapshotCommand(tablename, cfname, sessionName, false), endpoint, callback);

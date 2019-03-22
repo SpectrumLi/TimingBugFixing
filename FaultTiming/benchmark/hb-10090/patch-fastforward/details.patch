@@ -1,5 +1,5 @@
---- src/AssignmentManager.java	2019-03-17 23:01:59.883228300 -0500
-+++ patch/AssignmentManager.java	2019-03-17 23:10:17.842013263 -0500
+--- AssignmentManager.java	2019-03-21 15:01:53.141755413 -0500
++++ ../patch/AssignmentManager.java	2019-03-21 15:01:53.165756122 -0500
 @@ -561,6 +561,7 @@
        //break;
        //}
@@ -8,8 +8,8 @@
        LOG.info("********************waitForMeta in infinite while loop **********************");
      } 
      //  if (s_flag == 0 ) break;
---- src/OpenRegionHandler.java	2019-03-17 23:01:36.978546056 -0500
-+++ patch/OpenRegionHandler.java	2019-03-17 23:18:53.965286224 -0500
+--- OpenRegionHandler.java	2019-03-21 15:01:53.137755295 -0500
++++ ../patch/OpenRegionHandler.java	2019-03-21 15:01:53.165756122 -0500
 @@ -220,7 +220,7 @@
            }
        } catch (Exception e) { LOG.info("Exception while reading crash flag ", e); }

@@ -1,5 +1,5 @@
---- src/ReplicationSourceManager.java	2019-03-12 22:30:10.102380308 -0500
-+++ patch/ReplicationSourceManager.java	2019-03-16 18:54:45.751742684 -0500
+--- ReplicationSourceManager.java	2019-03-21 15:04:02.137547105 -0500
++++ ../patch/ReplicationSourceManager.java	2019-03-21 15:04:02.181548396 -0500
 @@ -299,12 +299,16 @@
        LOG.info("Not transferring queue since we are shutting down");
        return;
@@ -17,8 +17,8 @@
      this.zkHelper.deleteRsQueues(rsZnode);
      if (newQueues == null || newQueues.size() == 0) {
        return;
---- src/ReplicationZookeeper.java	2019-03-12 22:41:31.642668189 -0500
-+++ patch/ReplicationZookeeper.java	2019-03-12 22:43:26.786095117 -0500
+--- ReplicationZookeeper.java	2019-03-21 15:04:02.145547340 -0500
++++ ../patch/ReplicationZookeeper.java	2019-03-21 15:04:02.169548044 -0500
 @@ -550,6 +550,7 @@
          // number-startcode-number-otherstartcode-number-anotherstartcode-etc
          String newCluster = cluster+"-"+znode;
