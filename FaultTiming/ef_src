@@ -1,4 +1,0 @@
-export EF_Location=/home/guanpu/Desktop/DFix-Public/public/FFix/Exclusion.txt
-export PATH=/home/guanpu/Desktop/DFix-Public/public/DFix/lib/apache-ant-1.9.0/bin:/home/guanpu/Desktop/DFix-Public/public/DFix/lib/apache-maven-3.0.4/bin:$PATH
-export java_runtime_dir=/usr/lib/jvm/java-8-oracle/jre/lib
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
