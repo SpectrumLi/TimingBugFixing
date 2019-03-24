@@ -1,9 +1,0 @@
---------  PATCH DETAILS  --------
-
-In the AssignmentManager.java
-
----            ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName());
-+++            while(DFix.ShouldLoop(this) { try{           ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName()); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
-
---------  IMPL  DETAILS  --------
-

@@ -1,9 +1,0 @@
---------  PATCH DETAILS  --------
-
-In the ZKAssign.java
-
----      version = ZKUtil.checkExists(zkw, node);
-+++      while(DFix.ShouldLoop(this) { try{     version = ZKUtil.checkExists(zkw, node); break;}catch(Exception e_e){ if(DFix.Timeout(this)) throw e_e;}}
-
---------  IMPL  DETAILS  --------
-
