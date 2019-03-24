@@ -6,7 +6,7 @@
 	https://issues.apache.org/jira/browse/Mapreduce-3274
 
 3.Manual Patch.
-	https://issues.apache.org/jira/secure/attachment/12501485/MR-3274.txt
+	./patch/Manual.patch.
 
 4.Input for DFix.
 	./input directory.
@@ -19,8 +19,7 @@
 	./temp directory. The intermediate files for patch generation.
 	
 6.DFix Patch.
-	./patch directory.
-	see the details.patch file.
+	./patch/DFix.patch.
 
 7.Discussion.
 	Developers fix this bug by changing the data sturcture so that the kill command and getTask from container never race with each other. When the bad timing occurs, the kill command will return "task does not exist".

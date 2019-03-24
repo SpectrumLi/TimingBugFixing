@@ -1,0 +1,20 @@
+Index: src/java/main/org/apache/zookeeper/server/quorum/Leader.java
+===================================================================
+--- src/java/main/org/apache/zookeeper/server/quorum/Leader.java	(revision 1154725)
++++ src/java/main/org/apache/zookeeper/server/quorum/Leader.java	(working copy)
+@@ -326,6 +326,7 @@
+                         + Long.toHexString(newLeaderProposal.packet.getZxid()));
+             }
+             outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
++            newLeaderProposal.ackSet.add(self.getId());
+             
+             readyToStart = true;
+             waitForEpochAck(self.getId(), leaderStateSummary);
+@@ -334,7 +335,6 @@
+             // We have to get at least a majority of servers in sync with
+             // us. We do this by waiting for the NEWLEADER packet to get
+             // acknowledged
+-            newLeaderProposal.ackSet.add(self.getId());
+             while (!self.getQuorumVerifier().containsQuorum(newLeaderProposal.ackSet)){
+             //while (newLeaderProposal.ackCount <= self.quorumPeers.size() / 2) {
+                 if (self.tick > self.initLimit) {

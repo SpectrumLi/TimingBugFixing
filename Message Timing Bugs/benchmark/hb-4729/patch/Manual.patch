@@ -1,0 +1,38 @@
+Index: src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
+===================================================================
+--- src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java	(revision 1202340)
++++ src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java	(working copy)
+@@ -85,6 +85,7 @@
+ import org.apache.zookeeper.AsyncCallback;
+ import org.apache.zookeeper.KeeperException;
+ import org.apache.zookeeper.KeeperException.NoNodeException;
++import org.apache.zookeeper.KeeperException.NodeExistsException;
+ import org.apache.zookeeper.data.Stat;
+ 
+ /**
+@@ -1746,6 +1747,25 @@
+           ZKAssign.createNodeClosing(
+             master.getZooKeeper(), region, master.getServerName());
+         } catch (KeeperException e) {
++          // Handle race between online altering and splitting
++          if (e instanceof NodeExistsException) {
++            NodeExistsException nee = (NodeExistsException) e;
++            String path = nee.getPath();
++            try {
++              RegionTransitionData data =
++                ZKAssign.getData(master.getZooKeeper(), path);
++              EventType evt = data.getEventType();
++              if (evt == EventType.RS_ZK_REGION_SPLIT ||
++                  evt == EventType.RS_ZK_REGION_SPLITTING) {
++                // region just split
++                debugLog(region, "Attempting to unassign region " +
++                    region.getRegionNameAsString() + " but it is in " +
++                    evt + " state");
++                return;
++              }
++            } catch (KeeperException ke) {
++            }
++          }
+           master.abort("Unexpected ZK exception creating node CLOSING", e);
+           return;
+         }

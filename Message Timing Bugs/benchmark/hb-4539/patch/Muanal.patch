@@ -1,0 +1,343 @@
+Index: src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
+===================================================================
+--- src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java	(revision 1179238)
++++ src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java	(working copy)
+@@ -426,7 +426,9 @@
+       final HRegionInfo regionInfo,
+       final Map<ServerName,List<Pair<HRegionInfo,Result>>> deadServers)
+   throws KeeperException, IOException {
+-    RegionTransitionData data = ZKAssign.getData(watcher, encodedRegionName);
++    Stat stat = new Stat();
++    RegionTransitionData data = ZKAssign.getDataAndWatch(watcher,
++        encodedRegionName, stat);
+     if (data == null) return false;
+     HRegionInfo hri = regionInfo;
+     if (hri == null) {
+@@ -435,13 +437,14 @@
+       if (p == null) return false;
+       hri = p.getFirst();
+     }
+-    processRegionsInTransition(data, hri, deadServers);
++    processRegionsInTransition(data, hri, deadServers, stat.getVersion());
+     return true;
+   }
+ 
+   void processRegionsInTransition(final RegionTransitionData data,
+       final HRegionInfo regionInfo,
+-      final Map<ServerName,List<Pair<HRegionInfo,Result>>> deadServers)
++      final Map<ServerName, List<Pair<HRegionInfo, Result>>> deadServers,
++      int expectedVersion)
+   throws KeeperException {
+     String encodedRegionName = regionInfo.getEncodedName();
+     LOG.info("Processing region " + regionInfo.getRegionNameAsString() +
+@@ -516,7 +519,8 @@
+                 || regionInfo.isMetaRegion() || regionInfo.isRootRegion())) {
+           forceOffline(regionInfo, data);
+         } else {
+-          new OpenedRegionHandler(master, this, regionInfo, sn).process();
++          new OpenedRegionHandler(master, this, regionInfo, sn, expectedVersion)
++              .process();
+         }
+         break;
+       }
+@@ -593,8 +597,9 @@
+    * This deals with skipped transitions (we got a CLOSED but didn't see CLOSING
+    * yet).
+    * @param data
++   * @param expectedVersion 
+    */
+-  private void handleRegion(final RegionTransitionData data) {
++  private void handleRegion(final RegionTransitionData data, int expectedVersion) {
+     synchronized(regionsInTransition) {
+       if (data == null || data.getOrigin() == null) {
+         LOG.warn("Unexpected NULL input " + data);
+@@ -755,7 +760,7 @@
+               data.getStamp(), data.getOrigin());
+           this.executorService.submit(
+             new OpenedRegionHandler(master, this, regionState.getRegion(),
+-              data.getOrigin()));
++              data.getOrigin(), expectedVersion));
+           break;
+       }
+     }
+@@ -907,11 +912,12 @@
+   public void nodeCreated(String path) {
+     if(path.startsWith(watcher.assignmentZNode)) {
+       try {
+-        RegionTransitionData data = ZKAssign.getData(watcher, path);
++        Stat stat = new Stat();
++        RegionTransitionData data = ZKAssign.getDataAndWatch(watcher, path, stat);
+         if (data == null) {
+           return;
+         }
+-        handleRegion(data);
++        handleRegion(data, stat.getVersion());
+       } catch (KeeperException e) {
+         master.abort("Unexpected ZK exception reading unassigned node data", e);
+       }
+@@ -934,11 +940,12 @@
+   public void nodeDataChanged(String path) {
+     if(path.startsWith(watcher.assignmentZNode)) {
+       try {
+-        RegionTransitionData data = ZKAssign.getData(watcher, path);
++        Stat stat = new Stat();
++        RegionTransitionData data = ZKAssign.getDataAndWatch(watcher, path, stat);
+         if (data == null) {
+           return;
+         }
+-        handleRegion(data);
++        handleRegion(data, stat.getVersion());
+       } catch (KeeperException e) {
+         master.abort("Unexpected ZK exception reading unassigned node data", e);
+       }
+Index: src/main/java/org/apache/hadoop/hbase/master/handler/OpenedRegionHandler.java
+===================================================================
+--- src/main/java/org/apache/hadoop/hbase/master/handler/OpenedRegionHandler.java	(revision 1179238)
++++ src/main/java/org/apache/hadoop/hbase/master/handler/OpenedRegionHandler.java	(working copy)
+@@ -26,7 +26,9 @@
+ import org.apache.hadoop.hbase.Server;
+ import org.apache.hadoop.hbase.ServerName;
+ import org.apache.hadoop.hbase.executor.EventHandler;
++import org.apache.hadoop.hbase.executor.EventHandler.EventType;
+ import org.apache.hadoop.hbase.master.AssignmentManager;
++import org.apache.hadoop.hbase.master.AssignmentManager.RegionState;
+ import org.apache.hadoop.hbase.zookeeper.ZKAssign;
+ import org.apache.zookeeper.KeeperException;
+ 
+@@ -39,6 +41,7 @@
+   private final HRegionInfo regionInfo;
+   private final ServerName sn;
+   private final OpenedPriority priority;
++  private final int expectedVersion;
+ 
+   private enum OpenedPriority {
+     ROOT (1),
+@@ -56,11 +59,12 @@
+ 
+   public OpenedRegionHandler(Server server,
+       AssignmentManager assignmentManager, HRegionInfo regionInfo,
+-      ServerName sn) {
++      ServerName sn, int expectedVersion) {
+     super(server, EventType.RS_ZK_REGION_OPENED);
+     this.assignmentManager = assignmentManager;
+     this.regionInfo = regionInfo;
+     this.sn = sn;
++    this.expectedVersion = expectedVersion;
+     if(regionInfo.isRootRegion()) {
+       priority = OpenedPriority.ROOT;
+     } else if(regionInfo.isMetaRegion()) {
+@@ -91,37 +95,55 @@
+ 
+   @Override
+   public void process() {
+-    debugLog(regionInfo, "Handling OPENED event for " +
+-      this.regionInfo.getRegionNameAsString() + " from " + this.sn.toString()
+-      + "; deleting unassigned node");
+-    // Remove region from in-memory transition and unassigned node from ZK
+-    try {
+-      ZKAssign.deleteOpenedNode(server.getZooKeeper(),
+-          regionInfo.getEncodedName());
+-    } catch (KeeperException e) {
+-      server.abort("Error deleting OPENED node in ZK for transition ZK node ("
+-        + regionInfo.getRegionNameAsString() + ")", e);
+-    }
+     // Code to defend against case where we get SPLIT before region open
+     // processing completes; temporary till we make SPLITs go via zk -- 0.92.
+-    if (this.assignmentManager.isRegionInTransition(regionInfo) != null) {
+-      this.assignmentManager.regionOnline(regionInfo, this.sn);
+-      debugLog(regionInfo, "region online: "
+-        + regionInfo.getRegionNameAsString() + " on " + this.sn.toString());
++    RegionState regionState = this.assignmentManager.isRegionInTransition(regionInfo);
++    if (regionState != null
++        && regionState.getState().equals(RegionState.State.OPEN)) {
++      if (deleteOpenedNode(expectedVersion)) {
++        // Remove region from in-memory transition and unassigned node from ZK
++        this.assignmentManager.regionOnline(regionInfo, this.sn);
++        debugLog(regionInfo, "region online: "
++            + regionInfo.getRegionNameAsString() + " on " + this.sn.toString());
++        debugLog(regionInfo, "Opened region "
++            + regionInfo.getRegionNameAsString() + " on " + this.sn.toString());
++      } else {
++        LOG.error("The znode of region " + regionInfo.getRegionNameAsString() + 
++          " could not be deleted.");
++      }
+     } else {
+       LOG.warn("Skipping the onlining of " + regionInfo.getRegionNameAsString() +
+         " because regions is NOT in RIT -- presuming this is because it SPLIT");
+     }
++      
+     if (this.assignmentManager.getZKTable().isDisablingOrDisabledTable(
+         regionInfo.getTableNameAsString())) {
+       debugLog(regionInfo,
+           "Opened region " + regionInfo.getRegionNameAsString() + " but "
+           + "this table is disabled, triggering close of region");
+       assignmentManager.unassign(regionInfo);
+-    } else {
+-      debugLog(regionInfo, "Opened region " + regionInfo.getRegionNameAsString() +
+-          " on " + this.sn.toString());
++    } 
++  }
++
++  private boolean deleteOpenedNode(int expectedVersion) {
++    debugLog(regionInfo, "Handling OPENED event for " +
++      this.regionInfo.getRegionNameAsString() + " from " + this.sn.toString() + 
++      "; deleting unassigned node");    
++    try {
++      // delete the opened znode only if the version matches.
++      return ZKAssign.deleteNode(server.getZooKeeper(),
++          regionInfo.getEncodedName(), EventType.RS_ZK_REGION_OPENED, expectedVersion);
++    }catch(KeeperException.NoNodeException e){
++      // Getting no node exception here means that already the region has been opened. 
++      LOG.warn("The znode of the region " + regionInfo.getRegionNameAsString() +
++        " would have already been deleted");
++      return false;
++      		
++    } catch (KeeperException e) {
++      server.abort("Error deleting OPENED node in ZK for transition ZK node (" +
++        regionInfo.getRegionNameAsString() + ")", e);
+     }
++    return false;
+   }
+   
+   private void debugLog(HRegionInfo region, String string) {
+Index: src/main/java/org/apache/hadoop/hbase/zookeeper/ZKAssign.java
+===================================================================
+--- src/main/java/org/apache/hadoop/hbase/zookeeper/ZKAssign.java	(revision 1179238)
++++ src/main/java/org/apache/hadoop/hbase/zookeeper/ZKAssign.java	(working copy)
+@@ -477,6 +477,64 @@
+         regionName + " in expected state " + expectedState));
+     return true;
+   }
++  
++  /**
++   * Deletes an existing unassigned node that is in the specified state for the
++   * specified region.
++   *
++   * <p>If a node does not already exist for this region, a
++   * {@link NoNodeException} will be thrown.
++   *
++   * <p>No watcher is set whether this succeeds or not.
++   *
++   * <p>Returns false if the node was not in the proper state but did exist.
++   *
++   * <p>This method is used during table disables when a region finishes
++   * successfully closing.  This is the Master acknowledging completion
++   * of the specified regions transition to being closed.
++   *
++   * @param zkw zk reference
++   * @param regionName region to be deleted from zk
++   * @param expectedState state region must be in for delete to complete
++   * @param expectedVersion of the znode that is to be deleted.
++   * @throws KeeperException if unexpected zookeeper exception
++   * @throws KeeperException.NoNodeException if node does not exist
++   */
++  public static boolean deleteNode(ZooKeeperWatcher zkw, String regionName,
++      EventType expectedState,int expectedVersion)
++  throws KeeperException, KeeperException.NoNodeException {
++    LOG.debug(zkw.prefix("Deleting existing unassigned " +
++      "node for " + regionName + " that is in expected state " + expectedState));
++    String node = getNodeName(zkw, regionName);
++    zkw.sync(node);
++    Stat stat = new Stat();
++    byte [] bytes = ZKUtil.getDataNoWatch(zkw, node, stat);
++    if (bytes == null) {
++      // If it came back null, node does not exist.
++      throw KeeperException.create(Code.NONODE);
++    }
++    RegionTransitionData data = RegionTransitionData.fromBytes(bytes);
++    if (!data.getEventType().equals(expectedState)) {
++      LOG.warn(zkw.prefix("Attempting to delete unassigned " +
++        "node " + regionName + " in " + expectedState +
++        " state but node is in " + data.getEventType() + " state"));
++      return false;
++    }
++    if(stat.getVersion() != expectedVersion){
++      LOG.warn("The node we are trying to delete is not the expected one. " +
++      		"Got a version mismatch");
++      return false;
++    }
++    if(!ZKUtil.deleteNode(zkw, node, stat.getVersion())) {
++      LOG.warn(zkw.prefix("Attempting to delete " +
++          "unassigned node in " + expectedState +
++          " state but after verifying state, we got a version mismatch"));
++      return false;
++    }
++    LOG.debug(zkw.prefix("Successfully deleted unassigned node for region " +
++        regionName + " in expected state " + expectedState));
++    return true;
++  }
+ 
+   /**
+    * Deletes all unassigned nodes regardless of their state.
+@@ -819,6 +877,32 @@
+     }
+     return RegionTransitionData.fromBytes(data);
+   }
++  
++  /**
++   * Gets the current data in the unassigned node for the specified region name
++   * or fully-qualified path.
++   *
++   * <p>Returns null if the region does not currently have a node.
++   *
++   * <p>Sets a watch on the node if the node exists.
++   *
++   * @param zkw zk reference
++   * @param pathOrRegionName fully-specified path or region name
++   * @param stat object to populate the version.
++   * @return data for the unassigned node
++   * @throws KeeperException if unexpected zookeeper exception
++   */
++  public static RegionTransitionData getDataAndWatch(ZooKeeperWatcher zkw,
++      String pathOrRegionName, Stat stat)
++  throws KeeperException {
++    String node = pathOrRegionName.startsWith("/") ?
++        pathOrRegionName : getNodeName(zkw, pathOrRegionName);
++    byte [] data = ZKUtil.getDataAndWatch(zkw, node, stat);
++    if(data == null) {
++      return null;
++    }
++    return RegionTransitionData.fromBytes(data);
++  }
+ 
+   /**
+    * Gets the current data in the unassigned node for the specified region name
+Index: src/main/java/org/apache/hadoop/hbase/zookeeper/ZKUtil.java
+===================================================================
+--- src/main/java/org/apache/hadoop/hbase/zookeeper/ZKUtil.java	(revision 1179238)
++++ src/main/java/org/apache/hadoop/hbase/zookeeper/ZKUtil.java	(working copy)
+@@ -483,9 +483,32 @@
+    */
+   public static byte [] getDataAndWatch(ZooKeeperWatcher zkw, String znode)
+   throws KeeperException {
++    return getDataInternal(zkw, znode, null, true);
++  }
++  
++  /**
++   * Get the data at the specified znode and set a watch.
++   *
++   * Returns the data and sets a watch if the node exists.  Returns null and no
++   * watch is set if the node does not exist or there is an exception.
++   *
++   * @param zkw zk reference
++   * @param znode path of node
++   * @param stat object to populate the version of the znode
++   * @return data of the specified znode, or null
++   * @throws KeeperException if unexpected zookeeper exception
++   */
++  public static byte[] getDataAndWatch(ZooKeeperWatcher zkw, String znode,
++      Stat stat) throws KeeperException {
++    return getDataInternal(zkw, znode, stat, true);
++  }
++
++  private static byte[] getDataInternal(ZooKeeperWatcher zkw, String znode, Stat stat,
++      boolean watcherSet)
++      throws KeeperException {
+     try {
+-      byte [] data = zkw.getRecoverableZooKeeper().getData(znode, zkw, null);
+-      logRetrievedMsg(zkw, znode, data, true);
++      byte [] data = zkw.getRecoverableZooKeeper().getData(znode, zkw, stat);
++      logRetrievedMsg(zkw, znode, data, watcherSet);
+       return data;
+     } catch (KeeperException.NoNodeException e) {
+       LOG.debug(zkw.prefix("Unable to get data of znode " + znode + " " +

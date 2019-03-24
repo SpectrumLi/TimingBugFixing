@@ -1,0 +1,167 @@
+diff --git src/java/main/org/apache/zookeeper/server/quorum/Leader.java src/java/main/org/apache/zookeeper/server/quorum/Leader.java
+index a44f1ee..8278a75 100644
+--- src/java/main/org/apache/zookeeper/server/quorum/Leader.java
++++ src/java/main/org/apache/zookeeper/server/quorum/Leader.java
+@@ -281,6 +281,7 @@ public class Leader {
+     long epoch = -1;
+     boolean waitingForNewEpoch = true;
+     volatile boolean readyToStart = false;
++    volatile boolean newLeaderQueued = false;
+ 
+     /**
+      * This method is main function that is called to lead
+@@ -331,6 +332,12 @@ public class Leader {
+             outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
+             newLeaderProposal.ackSet.add(self.getId());
+ 
++            /*
++             * Boolean variable to make sure that we process the ack in LearnerHandler only
++             * after queuing the NEWLEADER message
++             */
++            newLeaderQueued = true;
++
+             waitForEpochAck(self.getId(), leaderStateSummary);
+             self.setCurrentEpoch(epoch);
+ 
+diff --git src/java/main/org/apache/zookeeper/server/quorum/LearnerHandler.java src/java/main/org/apache/zookeeper/server/quorum/LearnerHandler.java
+index 2d0714f..f37b73f 100644
+--- src/java/main/org/apache/zookeeper/server/quorum/LearnerHandler.java
++++ src/java/main/org/apache/zookeeper/server/quorum/LearnerHandler.java
+@@ -440,6 +440,13 @@ public class LearnerHandler extends Thread {
+                 LOG.error("Next packet was supposed to be an ACK");
+                 return;
+             }
++
++            // See ZOOKEEPER-1270 for more insight, race condition btw getting
++            // the proposal queued and getting the ack.
++            while(!leader.newLeaderQueued){
++                Thread.sleep(20);
++            }
++
+             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+ 
+             /*
+diff --git src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
+index 38a3c57..c2cfd7a 100644
+--- src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
++++ src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
+@@ -28,6 +28,7 @@ import java.net.InetSocketAddress;
+ import java.nio.ByteBuffer;
+ import java.nio.channels.SocketChannel;
+ import java.util.Map;
++import java.util.Map.Entry;
+ import java.util.regex.Pattern;
+ 
+ import org.apache.log4j.Layout;
+@@ -144,7 +145,8 @@ public class QuorumPeerMainTest extends QuorumPeerTestBase {
+             mt[i].start();
+         }
+ 
+-        waitForAll(zk, States.CONNECTED);
++        waitForAll(zk, States.CONNECTED);          
++                          
+ 
+         // ok lets find the leader and kill everything else, we have a few
+         // seconds, so it should be plenty of time
+@@ -312,13 +314,14 @@ public class QuorumPeerMainTest extends QuorumPeerTestBase {
+     private void waitForAll(ZooKeeper[] zks, States state) throws InterruptedException {
+         int iterations = 10;
+         boolean someoneNotConnected = true;
+-        while (someoneNotConnected) {
++        while (someoneNotConnected) {           
+             if (iterations-- == 0) {
++                ClientBase.logAllStackTraces();
+                 throw new RuntimeException("Waiting too long");
+             }
+ 
+             someoneNotConnected = false;
+-            for (ZooKeeper zk : zks) {
++            for (ZooKeeper zk : zks) {                
+                 if (zk.getState() != state) {
+                     someoneNotConnected = true;
+                 }
+diff --git src/java/test/org/apache/zookeeper/test/ClientBase.java src/java/test/org/apache/zookeeper/test/ClientBase.java
+index f3dc1ba..2ce8214 100644
+--- src/java/test/org/apache/zookeeper/test/ClientBase.java
++++ src/java/test/org/apache/zookeeper/test/ClientBase.java
+@@ -91,17 +91,22 @@ public abstract class ClientBase extends ZKTestCase {
+         // XXX this doesn't need to be volatile! (Should probably be final)
+         volatile CountDownLatch clientConnected;
+         volatile boolean connected;
+-
++        volatile boolean rwconnected;
+         public CountdownWatcher() {
+             reset();
+         }
+         synchronized public void reset() {
+             clientConnected = new CountDownLatch(1);
+             connected = false;
++            rwconnected=false;
+         }
+         synchronized public void process(WatchedEvent event) {
+-            if (event.getState() == KeeperState.SyncConnected ||
+-                event.getState() == KeeperState.ConnectedReadOnly) {
++            if (event.getState() == KeeperState.SyncConnected) {
++                rwconnected = true;
++                notifyAll();
++                clientConnected.countDown();
++            }
++            else if(event.getState() == KeeperState.ConnectedReadOnly) {
+                 connected = true;
+                 notifyAll();
+                 clientConnected.countDown();
+@@ -111,16 +116,28 @@ public abstract class ClientBase extends ZKTestCase {
+             }
+         }
+         synchronized boolean isConnected() {
+-            return connected;
++            return (rwconnected || connected);
+         }
+         synchronized void waitForConnected(long timeout) throws InterruptedException, TimeoutException {
+             long expire = System.currentTimeMillis() + timeout;
+             long left = timeout;
+-            while(!connected && left > 0) {
++            while(!(connected || rwconnected) && left > 0) {
++                wait(left);
++                left = expire - System.currentTimeMillis();
++            }
++            if (!(connected || rwconnected)) {
++                throw new TimeoutException("Did not connect");
++
++            }
++        }
++        synchronized void waitForRWConnected(long timeout) throws InterruptedException, TimeoutException {
++            long expire = System.currentTimeMillis() + timeout;
++            long left = timeout;
++            while(!rwconnected && left > 0) {
+                 wait(left);
+                 left = expire - System.currentTimeMillis();
+             }
+-            if (!connected) {
++            if (!rwconnected) {
+                 throw new TimeoutException("Did not connect");
+ 
+             }
+@@ -128,11 +145,11 @@ public abstract class ClientBase extends ZKTestCase {
+         synchronized void waitForDisconnected(long timeout) throws InterruptedException, TimeoutException {
+             long expire = System.currentTimeMillis() + timeout;
+             long left = timeout;
+-            while(connected && left > 0) {
++            while(isConnected() && left > 0) {
+                 wait(left);
+                 left = expire - System.currentTimeMillis();
+             }
+-            if (connected) {
++            if (isConnected()) {
+                 throw new TimeoutException("Did not disconnect");
+ 
+             }
+@@ -513,7 +530,7 @@ public abstract class ClientBase extends ZKTestCase {
+         return d.delete();
+     }
+ 
+-    private static void logAllStackTraces() {
++    public static void logAllStackTraces() {
+         StringBuilder sb = new StringBuilder();
+         sb.append("Starting logAllStackTraces()\n");
+         Map<Thread, StackTraceElement[]> threads = Thread.getAllStackTraces();

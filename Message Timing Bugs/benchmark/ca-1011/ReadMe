@@ -6,7 +6,7 @@
 	https://issues.apache.org/jira/browse/CASSANDRA-1011
 
 3.Manual Patch.
-	No patch.
+	./patch/Manual.patch. If no manual patch, this file would be empty.
 
 4.Input for DFix.
 	./input directory.
@@ -20,8 +20,8 @@
 	./temp directory. The intermediate files for patch generation.
 	
 6.DFix Patch.
-	./patch directory.
-	see the details.patch file.
+	./patch/DFix.patch.
+
 
 7.Discussion.
 	The developers decide to change the key-generation algorithm so that two replica nodes never get the same token.

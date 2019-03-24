@@ -6,8 +6,7 @@
 	https://issues.apache.org/jira/browse/HBASE-4539
 
 3.Manual Patch.
-	This bug depends on hb-4540. 
-	https://issues.apache.org/jira/secure/attachment/12497860/HBASE-4540_1.patch
+	./patch/Manual.patch
 
 4.Input for DFix.
 	./input directory.
@@ -20,8 +19,7 @@
 	./temp directory. The intermediate files for patch generation.
 		
 6.DFix Patch.
-	./patch directory.
-	see the details.patch file.
+	./patch/DFix.patch
 
 7.Discussion.
 	Manual patch is check if the ZKNode exists before deleting.
