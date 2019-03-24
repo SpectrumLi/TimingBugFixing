@@ -6,6 +6,7 @@
 	https://issues.apache.org/jira/browse/CASSANDRA-6415
 
 3.Manual Patch.
+	./patch-fastforward/Manual.patch
 	https://issues.apache.org/jira/secure/attachment/12616573/6415-1.2.txt
 
 4.Input for DFix.
@@ -15,7 +16,7 @@
 	./input/srcpath	: app source code location.
 	
 5.DFix Patch.
-	./patch directory. see the detail.patch file.
+	./patch-fastforward/DFix.patch
 
 6.Discussion.
 	The developers fix this bug by changing the response to be undroppable. The undroppable message will be resent if lost in the network. From high level fixing strategy, it is same with DFix.

@@ -1,0 +1,138 @@
+diff --git hbase-server/src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java hbase-server/src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
+index 61ce9f7..00975a3 100644
+--- hbase-server/src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
++++ hbase-server/src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
+@@ -525,16 +525,23 @@ public class AssignmentManager extends ZooKeeperListener {
+    */
+   boolean processRegionInTransitionAndBlockUntilAssigned(final HRegionInfo hri)
+       throws InterruptedException, KeeperException, IOException {
+-    boolean intransistion = processRegionInTransition(hri.getEncodedName(), hri);
+-    if (!intransistion) return intransistion;
+-    LOG.debug("Waiting on " + HRegionInfo.prettyPrint(hri.getEncodedName()));
++    String encodedRegionName = hri.getEncodedName();
++    if (!processRegionInTransition(encodedRegionName, hri)) {
++      return false; // The region is not in transition
++    }
++    LOG.debug("Waiting on " + HRegionInfo.prettyPrint(encodedRegionName));
+     while (!this.server.isStopped() &&
+-      this.regionStates.isRegionInTransition(hri.getEncodedName())) {
+-      // We put a timeout because we may have the region getting in just between the test
+-      //  and the waitForUpdate
++        this.regionStates.isRegionInTransition(encodedRegionName)) {
++      RegionState state = this.regionStates.getRegionTransitionState(encodedRegionName);
++      if (state == null || !serverManager.isServerOnline(state.getServerName())) {
++        // The region is not in transition, or not in transition on an online
++        // server. Doesn't help to block here any more. Caller need to
++        // verify the region is actually assigned.
++        break;
++      }
+       this.regionStates.waitForUpdate(100);
+     }
+-    return intransistion;
++    return true;
+   }
+ 
+   /**
+@@ -613,14 +620,12 @@ public class AssignmentManager extends ZooKeeperListener {
+       return true;
+     }
+     if (!serverManager.isServerOnline(sn)) {
+-      // It was on a dead server, it's closed now. Force to OFFLINE and put
+-      // it in transition. Try to re-assign it, but it will fail most likely,
+-      // since we have not done log splitting for the dead server yet.
++      // It was transitioning on a dead server, so it's closed now.
++      // Force to OFFLINE and put it in transition, but not assign it
++      // since log splitting for the dead server is not done yet.
+       LOG.debug("RIT " + encodedName + " in state=" + rt.getEventType() +
+         " was on deadserver; forcing offline");
+-      ZKAssign.createOrForceNodeOffline(this.watcher, regionInfo, sn);
+       regionStates.updateRegionState(regionInfo, State.OFFLINE, sn);
+-      invokeAssign(regionInfo);
+       return false;
+     }
+     switch (et) {
+diff --git hbase-server/src/main/java/org/apache/hadoop/hbase/master/HMaster.java hbase-server/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
+index 1486026..2ded22d 100644
+--- hbase-server/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
++++ hbase-server/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
+@@ -1004,16 +1004,17 @@ MasterServices, Server {
+       // We will wait for it to be assigned in enableSSHandWaitForMeta below.
+       assigned++;
+       if (!rit) {
+-        // Assign meta since not already in transition
+-        if (currentMetaServer != null) {
+-          if (expireIfOnline(currentMetaServer)) {
+-            splitMetaLogBeforeAssignment(currentMetaServer);
+-            if (this.distributedLogReplay) {
+-              logReplayFailedMetaServer = currentMetaServer;
+-            }
++        if (expireIfOnline(currentMetaServer)) {
++          // On a dead server. SSH will reassign it
++          splitMetaLogBeforeAssignment(currentMetaServer);
++          if (this.distributedLogReplay) {
++            logReplayFailedMetaServer = currentMetaServer;
+           }
++        } else {
++          // Assign meta since not already in transition,
++          // and it is not on a known dead server
++          assignmentManager.assignMeta();
+         }
+-        assignmentManager.assignMeta();
+       }
+     } else {
+       // Region already assigned. We didn't assign it. Add to in-memory state.
+diff --git hbase-server/src/main/java/org/apache/hadoop/hbase/master/RegionStates.java hbase-server/src/main/java/org/apache/hadoop/hbase/master/RegionStates.java
+index c09fe84..040f7b1 100644
+--- hbase-server/src/main/java/org/apache/hadoop/hbase/master/RegionStates.java
++++ hbase-server/src/main/java/org/apache/hadoop/hbase/master/RegionStates.java
+@@ -511,9 +511,13 @@ public class RegionStates {
+         // region is not open on this server. So the region must be
+         // moving to this server from another one (i.e. opening or
+         // pending open on this server, was open on another one.
++
+         // It could be in failed_close state too if tried several times
+         // to open it while the server is not reachable.
+-        if (state.isPendingOpenOrOpening() || state.isFailedClose()) {
++
++        // Offline is also kind of pending open, if in transition.
++        if (state.isPendingOpenOrOpening()
++            || state.isFailedClose() || state.isOffline()) {
+           LOG.info("Found opening region " + state + " to be reassigned by SSH for " + sn);
+           rits.add(hri);
+         } else {
+diff --git hbase-server/src/test/java/org/apache/hadoop/hbase/master/TestAssignmentManager.java hbase-server/src/test/java/org/apache/hadoop/hbase/master/TestAssignmentManager.java
+index 6fc0330..bd3cdcb 100644
+--- hbase-server/src/test/java/org/apache/hadoop/hbase/master/TestAssignmentManager.java
++++ hbase-server/src/test/java/org/apache/hadoop/hbase/master/TestAssignmentManager.java
+@@ -832,8 +832,8 @@ public class TestAssignmentManager {
+ 
+   /**
+    * Test the scenario when the master is in failover and trying to process a
+-   * region which is in Opening state on a dead RS. Master should immediately
+-   * assign the region and not wait for Timeout Monitor.(Hbase-5882).
++   * region which is in Opening state on a dead RS. Master will force offline the
++   * region and put it in transition. AM relies on SSH to reassign it.
+    */
+   @Test(timeout = 60000)
+   public void testRegionInOpeningStateOnDeadRSWhileMasterFailover() throws IOException,
+@@ -851,7 +851,10 @@ public class TestAssignmentManager {
+     am.getRegionStates().logSplit(SERVERNAME_A); // Assume log splitting is done
+     am.getRegionStates().createRegionState(REGIONINFO);
+     am.gate.set(false);
+-    am.processRegionsInTransition(rt, REGIONINFO, version);
++    CatalogTracker ct = Mockito.mock(CatalogTracker.class);
++    assertFalse(am.processRegionsInTransition(rt, REGIONINFO, version));
++    am.getZKTable().setEnabledTable(REGIONINFO.getTable());
++    processServerShutdownHandler(ct, am, false);
+     // Waiting for the assignment to get completed.
+     while (!am.gate.get()) {
+       Thread.sleep(10);
+@@ -1159,6 +1162,8 @@ public class TestAssignmentManager {
+     public void assign(List<HRegionInfo> regions)
+         throws IOException, InterruptedException {
+       assignInvoked = (regions != null && regions.size() > 0);
++      super.assign(regions);
++      this.gate.set(true);
+     }
+ 
+     /** reset the watcher */

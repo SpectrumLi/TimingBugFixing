@@ -1,0 +1,86 @@
+From 4c0d2e3d1fea5986ce5b8ddafaf4ad8c5b87feed Mon Sep 17 00:00:00 2001
+From: Jason Brown <jasedbrown@gmail.com>
+Date: Wed, 17 Apr 2013 16:39:01 -0700
+Subject: [PATCH] CASSANDRA-5393: retry some kinds of verbs when a socket
+ connection is discovered broken.
+
+---
+ .../cassandra/net/OutboundTcpConnection.java       |   32 +++++++++++++++++---
+ 1 file changed, 28 insertions(+), 4 deletions(-)
+
+diff --git a/src/java/org/apache/cassandra/net/OutboundTcpConnection.java b/src/java/org/apache/cassandra/net/OutboundTcpConnection.java
+index 73d0c15..541f28c 100644
+--- a/src/java/org/apache/cassandra/net/OutboundTcpConnection.java
++++ b/src/java/org/apache/cassandra/net/OutboundTcpConnection.java
+@@ -25,6 +25,7 @@ import java.io.BufferedOutputStream;
+ import java.io.DataOutputStream;
+ import java.io.IOException;
+ import java.net.Socket;
++import java.net.SocketException;
+ import java.util.concurrent.BlockingQueue;
+ import java.util.concurrent.LinkedBlockingQueue;
+ import java.util.concurrent.atomic.AtomicLong;
+@@ -127,7 +128,7 @@ public class OutboundTcpConnection extends Thread
+             if (entry.timestamp < System.currentTimeMillis() - DatabaseDescriptor.getRpcTimeout())
+                 dropped.incrementAndGet();
+             else if (socket != null || connect())
+-                writeConnected(m, id);
++                writeConnected(entry, id);
+             else
+                 // clear out the queue, else gossip messages back up.
+                 active.clear();
+@@ -149,8 +150,9 @@ public class OutboundTcpConnection extends Thread
+         return dropped.get();
+     }
+ 
+-    private void writeConnected(Message message, String id)
++    private void writeConnected(Entry entry, String id)
+     {
++        Message message = entry.message;
+         try
+         {
+             write(message, id, out);
+@@ -164,9 +166,30 @@ public class OutboundTcpConnection extends Thread
+         {
+             // Non IO exceptions is likely a programming error so let's not silence it
+             if (!(e instanceof IOException))
++            {
+                 logger.error("error writing to " + poolReference.endPoint(), e);
+-            else if (logger.isDebugEnabled())
+-                logger.debug("error writing to " + poolReference.endPoint(), e);
++            }
++            else
++            {
++                if (logger.isDebugEnabled())
++                    logger.debug("error writing to " + poolReference.endPoint(), e);
++                if(e instanceof SocketException)
++                {
++                    if (!entry.hasAttempedRetry & !MessagingService.DROPPABLE_VERBS.contains(message.getVerb()))
++                    {
++                        logger.debug(String.format("Replaying verb %s", message.getVerb()));
++                        entry.hasAttempedRetry = true;
++                        try
++                        {
++                            backlog.put(entry);
++                        }
++                        catch (InterruptedException e1)
++                        {
++                            throw new AssertionError(e);
++                        }
++                    }
++                }
++            }
+             disconnect();
+         }
+     }
+@@ -288,6 +311,7 @@ public class OutboundTcpConnection extends Thread
+         final Message message;
+         final String id;
+         final long timestamp;
++        boolean hasAttempedRetry;
+ 
+         Entry(Message message, String id, long timestamp)
+         {
+-- 
+1.7.10.4
+

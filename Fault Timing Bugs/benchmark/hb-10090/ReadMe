@@ -5,6 +5,7 @@
 	https://issues.apache.org/jira/browse/HBASE-10090
 
 3.Manual Patch.
+	./patch-fastforward/Manual.patch
 	https://issues.apache.org/jira/secure/attachment/12617234/trunk-10090.patch
 
 4.Input for DFix.
@@ -14,7 +15,7 @@
 	./input/srcpath	: app source code location.
 	
 5.DFix Patch.
-	./patch directory. see the detail.patch file.
+	./patch-fastforward/DFix.patch.
 
 6.Discussion.
 	The developers fix this bug by breaking the loop and relying on a later error handler. DFix fixes it by resending the missing message.

@@ -5,6 +5,7 @@
 	https://issues.apache.org/jira/browse/ZooKeeper-1653
 
 3.Manual Patch.
+	./patch-rollback/Manual.patch
 	https://issues.apache.org/jira/secure/attachment/12575121/ZOOKEEPER-1653.patch
 
 4.Input for DFix.
@@ -14,7 +15,7 @@
 	./input/srcpath	: app source code location.
 	
 5.DFix Patch.
-	./patch directory. see the detail.patch file.
+	./patch-rollback/DFix.patch.
 
 6.Discussion.
 	The manual patching strategy is same with the DFix fastforward patch.

@@ -5,6 +5,7 @@
 	https://issues.apache.org/jira/browse/HBase-3596
 
 3.Manual Patch.
+	./patch-rollback/Manual.patch
 	https://issues.apache.org/jira/secure/attachment/12473717/HBASE-3596.patch
 
 4.Input for DFix.
@@ -14,7 +15,7 @@
 	./input/srcpath	: app source code location.
 	
 5.DFix Patch.
-	./patch directory. see the detail.patch file.
+	./patch-rollback/DFix.patch
 
 6.Discussion.
 	The manual patch add a random sleep before the HLog taking over, which does not fix the bug at all. DFix cleans the taken HLog so that other node can start it from scratch.
