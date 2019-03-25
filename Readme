@@ -1,8 +1,11 @@
-We will provide details of our bug benchmarks of DFix in this repository.
+This is a repository accompanying our PLDI'19 paper "DFix: Automatically Fixing Timing Bugs in Distributed Systems".
+In this repository, you can find:
+- our open-source tool DFix, a tool that helps automatically fix distributed timing bugs;
+- Bug benchmarks we used to evaluate DFix.
 
-We have two main categories of distributed timing bugs : fault timing bugs and message timing bugs.
+DFix tackles two types of distributed timing bugs: fault-timing bugs and message-timing bugs.
 
-For each category, we include the source code of DFix and the benchmarks.
+For each type, we include the source code of DFix and the benchmarks.
 
 For every benchmark bug, it contains the following information.
 
