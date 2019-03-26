@@ -54,6 +54,8 @@ import org.apache.cassandra.net.MessagingService;
 import org.apache.cassandra.streaming.*;
 import org.apache.cassandra.utils.*;
 
+import com.uchicago.DFix.*;
+
 /**
  * AntiEntropyService encapsulates "validating" (hashing) individual column families,
  * exchanging MerkleTrees with remote nodes via a TreeRequest/Response conversation,
@@ -244,9 +246,10 @@ public class AntiEntropyService
             if (!validator.request.endpoint.equals(FBUtilities.getBroadcastAddress()))
                 logger.info(String.format("[repair #%s] Sending completed merkle tree to %s for %s", validator.request.sessionid, validator.request.endpoint, validator.request.cf));
             p1 = message; p2 = validator.request.endpoint;
-	    DFix.LogMessage(message, validator.request.endpoint);
+	    DFix.PreComputeTask();
+	    DFix.DF_FF_Start(message, validator.request.endpoint);
             ms.sendOneWay(message, validator.request.endpoint);
-	    DFix.FinishMessage(message, validator.request.endpoint);
+	    DFix.DF_FF_End(message, validator.request.endpoint);
         }
         catch (Exception e)
         {
@@ -723,9 +726,9 @@ public class AntiEntropyService
                 // block whatever thread started this session until all requests have been returned:
                 // if this thread dies, the session will still complete in the background
                 logger.info("GGGGGGG enter waitsite Anti-721");
-		while(DFix.ShouldLoop(completed)){
+		while(DFix.DF_CHECK(completed)){
                 completed.await(DFix.TIME_PERIOD);
-		if(DFix.ShouldLoop(completed)) DFix.FastForward();
+		if(DFix.DF_CHECK(completed)) DFix.FastFwd();
 		}
                 logger.info("GGGGGGG exit waitsite Anti-722");
                 if (exception == null)

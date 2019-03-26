@@ -54,6 +54,8 @@ import org.apache.cassandra.net.MessagingService;
 import org.apache.cassandra.streaming.*;
 import org.apache.cassandra.utils.*;
 
+import com.uchicago.DFix.*;
+
 /**
  * AntiEntropyService encapsulates "validating" (hashing) individual column families,
  * exchanging MerkleTrees with remote nodes via a TreeRequest/Response conversation,
@@ -908,9 +910,9 @@ public class AntiEntropyService
                     for (InetAddress endpoint : endpoints)
                         MessagingService.instance().sendRR(new SnapshotCommand(tablename, cfname, sessionName, false), endpoint, callback);
                     logger.info("GGGGGGG enter waitsite Anti-911");
-		    while(DFix.ShouldLoop(snapshotLatch)){
+		    while(DFix.DF_CHECK(snapshotLatch)){
                     snapshotLatch.await(DFix.TIME_PEROID);
-		    if (DFix.ShouldLoop(snapshotLatch)) DFix.FastForward(snapshotLatch); // here fastforward means snapshotLatch.countDown();
+		    if (DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
 		    }
                     logger.info("GGGGGGG exit waitsite Anti-911");
                     snapshotLatch = null;

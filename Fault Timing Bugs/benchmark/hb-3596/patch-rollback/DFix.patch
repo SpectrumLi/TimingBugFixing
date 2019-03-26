@@ -1,11 +1,20 @@
 --- ReplicationSourceManager.java	2019-03-21 15:04:02.137547105 -0500
-+++ ../patch/ReplicationSourceManager.java	2019-03-21 15:04:02.181548396 -0500
-@@ -299,12 +299,16 @@
++++ ../patched-code/ReplicationSourceManager.java	2019-03-26 11:44:45.665433386 -0500
+@@ -40,6 +40,8 @@
+ import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
+ import org.apache.zookeeper.KeeperException;
+ 
++import com.uchicago.DFix.*; 
++
+ /**
+  * This class is responsible to manage all the replication
+  * sources. There are two classes of sources:
+@@ -299,12 +301,16 @@
        LOG.info("Not transferring queue since we are shutting down");
        return;
      }
-+    DFix.RollBack();
-+    DFix.StartMark();
++    if (DFix.CHECK()) DFix.RollBack();
++    DFix.DF_FF_Start();
 +    DFix.RecordZK(this.zookeeper, rsZnode);
      if (!this.zkHelper.lockOtherRS(rsZnode)) {
        return;
@@ -13,13 +22,22 @@
      LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
      SortedMap<String, SortedSet<String>> newQueues =
          this.zkHelper.copyQueuesFromRS(rsZnode);
-+    DFix.EndMark();
++    DFix.DF_FF_End();
      this.zkHelper.deleteRsQueues(rsZnode);
      if (newQueues == null || newQueues.size() == 0) {
        return;
 --- ReplicationZookeeper.java	2019-03-21 15:04:02.145547340 -0500
-+++ ../patch/ReplicationZookeeper.java	2019-03-21 15:04:02.169548044 -0500
-@@ -550,6 +550,7 @@
++++ ../patched-code/ReplicationZookeeper.java	2019-03-26 11:45:16.242323148 -0500
+@@ -45,6 +45,8 @@
+ import org.apache.hadoop.util.StringUtils;
+ import org.apache.zookeeper.KeeperException;
+ 
++import com.uchicago.DFix.*;
++
+ /**
+  * This class serves as a helper for all things related to zookeeper
+  * in replication.
+@@ -550,6 +552,7 @@
          // number-startcode-number-otherstartcode-number-anotherstartcode-etc
          String newCluster = cluster+"-"+znode;
          String newClusterZnode = ZKUtil.joinZNode(rsServerNameZnode, newCluster);
@@ -27,7 +45,7 @@
          ZKUtil.createNodeIfNotExistsAndWatch(this.zookeeper, newClusterZnode,
            HConstants.EMPTY_BYTE_ARRAY);
          String clusterPath = ZKUtil.joinZNode(nodePath, cluster);
-@@ -565,6 +566,7 @@
+@@ -565,6 +568,7 @@
            byte [] position = ZKUtil.getData(this.zookeeper, z);
            LOG.debug("Creating " + hlog + " with data " + Bytes.toString(position));
            String child = ZKUtil.joinZNode(newClusterZnode, hlog);
@@ -35,7 +53,7 @@
            ZKUtil.createAndWatch(this.zookeeper, child, position);
            logQueue.add(hlog);
          }
-@@ -701,4 +703,4 @@
+@@ -701,4 +705,4 @@
        }
      }
    }

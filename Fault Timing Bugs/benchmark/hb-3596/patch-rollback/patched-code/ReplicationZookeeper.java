@@ -45,6 +45,8 @@ import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
 import org.apache.hadoop.util.StringUtils;
 import org.apache.zookeeper.KeeperException;
 
+import com.uchicago.DFix.*;
+
 /**
  * This class serves as a helper for all things related to zookeeper
  * in replication.

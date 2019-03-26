@@ -95,6 +95,8 @@ import org.apache.zookeeper.data.Stat;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.LinkedHashMultimap;
 
+import com.uchicago.DFix.*;
+
 /**
  * Manages and performs region assignment.
  * <p>
@@ -561,7 +563,7 @@ public class AssignmentManager extends ZooKeeperListener {
       //break;
       //}
       this.regionStates.waitForUpdate(100);
-      if (DFix.ShouldLoop()) DFix.FastForward();
+      if (DFix.DF_CHECK()) DFix.FastFwd();
       LOG.info("********************waitForMeta in infinite while loop **********************");
     } 
     //  if (s_flag == 0 ) break;

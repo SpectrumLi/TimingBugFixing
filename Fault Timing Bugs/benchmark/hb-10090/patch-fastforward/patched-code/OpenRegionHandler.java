@@ -38,6 +38,9 @@ import org.apache.hadoop.hbase.util.CancelableProgressable;
 import org.apache.hadoop.hbase.zookeeper.ZKAssign;
 import org.apache.hadoop.hbase.zookeeper.ZKUtil;
 import org.apache.zookeeper.KeeperException;
+
+import com.uchicago.DFix.*;
+
 /**
  * Handles opening of a region on a region server.
  * <p>
@@ -168,7 +171,8 @@ public class OpenRegionHandler extends EventHandler {
         region.setRecovering(true);
         recoveringRegions.put(region.getRegionInfo().getEncodedName(), region);
       }
-
+      DFix.PreComputeTask();
+      DFix.DF_FF_Start(region);
       boolean failed = true;
       if (tickleOpening("post_region_open")) {
         if (updateMeta(region)) {
@@ -177,6 +181,7 @@ public class OpenRegionHandler extends EventHandler {
       }
       if (failed || this.server.isStopped() ||
           this.rsServices.isStopping()) {
+        DFix.DF_FF_End(region);
         return;
       }      
       
@@ -220,16 +225,16 @@ public class OpenRegionHandler extends EventHandler {
           }
       } catch (Exception e) { LOG.info("Exception while reading crash flag ", e); }
 */
-      DFix.LogMessage(region);
       if (!isRegionStillOpening() || !transitionToOpened(region)) {
         // If we fail to transition to opened, it's because of one of two cases:
         //    (a) we lost our ZK lease
         // OR (b) someone else opened the region before us
         // OR (c) someone cancelled the open
         // In all cases, we try to transition to failed_open to be safe.
+	DFix.DF_FF_End(region);
         return;
       }
-      DFix.FinishMessage(region);
+      DFix.DF_FF_End(region);
       LOG.info("HHHHH RS Transfer Meta successfully");
       
       // We have a znode in the opened state now. We can't really delete it as the master job.

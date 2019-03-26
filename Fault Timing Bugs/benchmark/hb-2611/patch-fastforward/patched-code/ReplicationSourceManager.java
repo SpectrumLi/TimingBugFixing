@@ -40,6 +40,8 @@ import org.apache.hadoop.hbase.zookeeper.ZooKeeperListener;
 import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
 import org.apache.zookeeper.KeeperException;
 
+import com.uchicago.DFix.*;
+
 /**
  * This class is responsible to manage all the replication
  * sources. There are two classes of sources:
@@ -305,11 +307,11 @@ public class ReplicationSourceManager {
     LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
     SortedMap<String, SortedSet<String>> newQueues =
         this.zkHelper.copyQueuesFromRS(rsZnode);
-    DFix.FastForward();
-    DFix.ZKPreComputedTask(this.zookeeper, rsZnode, "delete");
-    DFix.StartMark();
+    if (DFix.CHECK()) DFix.FastFwd();
+    DFix.PreComputeTask(this.zookeeper, rsZnode, "delete");
+    DFix.DF_FF_Start();
     this.zkHelper.deleteRsQueues(rsZnode);
-    DFix.EndMark();
+    DFix.DF_FF_End();
     if (newQueues == null || newQueues.size() == 0) {
       return;
     }

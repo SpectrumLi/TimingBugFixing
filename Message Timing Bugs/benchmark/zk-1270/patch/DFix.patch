@@ -1,0 +1,57 @@
+--- Leader.java	2019-03-21 11:19:06.761894075 -0500
++++ ../patched-code/Leader.java	2019-03-26 10:33:04.186058188 -0500
+@@ -46,6 +46,8 @@
+ import org.apache.zookeeper.server.quorum.flexible.QuorumVerifier;
+ import org.apache.zookeeper.server.util.ZxidUtils;
+ 
++import com.uchicago.dfix.*;
++
+ /**
+  * This class has the control logic for the Leader.
+  */
+@@ -329,7 +331,8 @@
+                         + Long.toHexString(newLeaderProposal.packet.getZxid()));
+             }
+             outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
+-            newLeaderProposal.ackSet.add(self.getId());
++            DFix.Signal(outstandingProposals);
++	    newLeaderProposal.ackSet.add(self.getId());
+ 
+             waitForEpochAck(self.getId(), leaderStateSummary);
+             self.setCurrentEpoch(epoch);
+@@ -473,7 +476,7 @@
+             }
+             LOG.trace("outstanding proposals all");
+         }
+-
++	if (!DFix.Wait(outstandingProposals)) throw new DFixException ();
+         if (outstandingProposals.size() == 0) {
+             if (LOG.isDebugEnabled()) {
+                 LOG.debug("outstanding is 0");
+--- LearnerHandler.java	2019-03-21 11:19:06.761894075 -0500
++++ ../patched-code/LearnerHandler.java	2019-03-26 10:34:00.355615462 -0500
+@@ -48,6 +48,8 @@
+ import org.apache.zookeeper.server.util.ZxidUtils;
+ import org.apache.zookeeper.txn.TxnHeader;
+ 
++import com.uchicago.dfix.*;
++
+ /**
+  * There will be an instance of this class created by the Leader for each
+  * learner. All communication with a learner is handled by this
+@@ -441,7 +443,14 @@
+                 return;
+             }
+             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+-
++	    /*DF_ReEx_Start*/
++	    while(DFix.ShouldLoop(this)){ 
++		try{
++		    leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress()); 
++		    break;
++		}catch(DFixException e_e){}
++	    } 
++	    /*DF_ReEx_End*/
+             /*
+              * Wait until leader starts up
+              */

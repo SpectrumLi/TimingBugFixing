@@ -56,6 +56,8 @@ import org.apache.zookeeper.server.util.ZxidUtils;
 import org.apache.zookeeper.txn.SetDataTxn;
 import org.apache.zookeeper.txn.TxnHeader;
 
+import com.uchicago.DFix.*;
+
 /**
  * This class is the superclass of two of the three main actors in a ZK
  * ensemble: Followers and Observers. Both Followers and Observers share 
@@ -482,12 +484,12 @@ public class Learner {
                            e.printStackTrace();
                        }
                    }
-                    DFix.StartMark(); 
+                    DFix.DF_FF_Start(); 
 		    DFix.RecordSnapShot(); // snapshot is a determistic location for zookeeper
                     zk.takeSnapshot();
 		    DFix.RecordCEpoch();// current epoch location is also determistic 
                     self.setCurrentEpoch(newEpoch);
-		    DFix.EndMark();
+		    DFix.DF_FF_End();
                     writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
                     break;
                 }
