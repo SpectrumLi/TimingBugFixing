@@ -77,6 +77,8 @@ import org.apache.hadoop.yarn.ipc.YarnRPC;
 import org.apache.hadoop.yarn.security.ApplicationTokenIdentifier;
 import org.apache.hadoop.yarn.util.BuilderUtils;
 
+import com.uchicago.dfix.*;
+
 public class ClientServiceDelegate {
   private static final Log LOG = LogFactory.getLog(ClientServiceDelegate.class);
 
@@ -286,6 +288,7 @@ public class ClientServiceDelegate {
     while (true) {
       try {
 	MRClientProtocol dfix_proxy = getProxy();
+	/*DF_ReEx_Start*/
 	while(DFix.ShouldLoop(this)) { 
 	    try{         
 		return methodOb.invoke(dfix_proxy, args);
@@ -293,6 +296,7 @@ public class ClientServiceDelegate {
 		if(DFix.Timeout(this)) throw e_e;
 	    }
 	}
+	/*DF_ReEx_End*/
       } catch (YarnRemoteException yre) {
         LOG.warn("Exception thrown by remote end.", yre);
         throw yre;

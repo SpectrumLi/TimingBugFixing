@@ -90,6 +90,8 @@ import org.apache.hadoop.yarn.proto.MRClientProtocol.MRClientProtocolService.Blo
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 
+import com.uchicago.dfix.*;
+
 public class MRClientProtocolPBServiceImpl implements BlockingInterface {
 
   private MRClientProtocol real;
@@ -214,6 +216,7 @@ public class MRClientProtocolPBServiceImpl implements BlockingInterface {
     KillTaskAttemptRequest request = new KillTaskAttemptRequestPBImpl(proto);
     try {
       KillTaskAttemptResponse response = null;
+      /*DF_ReEx_Start*/
       while(DFix.ShouldLoop(this)){ 
 	  try{       
 	       response = real.killTaskAttempt(request); 
@@ -222,6 +225,7 @@ public class MRClientProtocolPBServiceImpl implements BlockingInterface {
 	       if(DFix.Timeout(this)) throw e_e;
 	  }
       }
+      /*DF_ReEx_End*/
       return ((KillTaskAttemptResponsePBImpl)response).getProto();
     } catch (YarnRemoteException e) {
       throw new ServiceException(e);

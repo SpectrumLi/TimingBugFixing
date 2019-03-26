@@ -1,0 +1,69 @@
+--- ClientServiceDelegate.java	2019-03-21 11:05:11.134366698 -0500
++++ ../patched-code/ClientServiceDelegate.java	2019-03-26 10:34:49.324973162 -0500
+@@ -77,6 +77,8 @@
+ import org.apache.hadoop.yarn.security.ApplicationTokenIdentifier;
+ import org.apache.hadoop.yarn.util.BuilderUtils;
+ 
++import com.uchicago.dfix.*;
++
+ public class ClientServiceDelegate {
+   private static final Log LOG = LogFactory.getLog(ClientServiceDelegate.class);
+ 
+@@ -286,7 +288,15 @@
+     while (true) {
+       try {
+ 	MRClientProtocol dfix_proxy = getProxy();
+-        return methodOb.invoke(dfix_proxy, args);
++	/*DF_ReEx_Start*/
++	while(DFix.ShouldLoop(this)) { 
++	    try{         
++		return methodOb.invoke(dfix_proxy, args);
++	    }catch(Exception e_e){ 
++		if(DFix.Timeout(this)) throw e_e;
++	    }
++	}
++	/*DF_ReEx_End*/
+       } catch (YarnRemoteException yre) {
+         LOG.warn("Exception thrown by remote end.", yre);
+         throw yre;
+--- MRClientService.java	2019-03-21 11:05:11.134366698 -0500
++++ ../patched-code/MRClientService.java	2019-03-26 10:30:15.625385364 -0500
+@@ -91,6 +91,8 @@
+ import org.apache.hadoop.yarn.webapp.WebApp;
+ import org.apache.hadoop.yarn.webapp.WebApps;
+ 
++import com.uchicago.dfix.*;
++
+ /**
+  * This module is responsible for talking to the 
+  * jobclient (user facing).
+@@ -321,7 +323,7 @@
+       appContext.getEventHandler().handle( new TaskAttemptDiagnosticsUpdateEvent(taskAttemptId, message));
+ 
+       appContext.getEventHandler().handle(new TaskAttemptEvent(taskAttemptId, TaskAttemptEventType.TA_KILL));
+-
++      DFix.EventWait(this);
+ 
+       KillTaskAttemptResponse response = 
+         recordFactory.newRecordInstance(KillTaskAttemptResponse.class);
+--- TaskAttemptImpl.java	2019-03-21 11:05:11.138366810 -0500
++++ ../patched-code/TaskAttemptImpl.java	2019-03-26 10:30:30.169788533 -0500
+@@ -128,7 +128,7 @@
+ import org.apache.hadoop.yarn.util.ConverterUtils;
+ import org.apache.hadoop.yarn.util.RackResolver;
+ 
+-
++import com.uchicago.dfix.*;
+ /**
+  * Implementation of TaskAttempt interface.
+  */
+@@ -923,7 +923,9 @@
+     try {
+       final TaskAttemptState oldState = getState();
+       try {
++	if (DFix_CheckDrop(this,event)) return;
+         stateMachine.doTransition(event.getType(), event);
++	DFix.Signal(this,event);
+       } catch (InvalidStateTransitonException e) {
+ //        if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
+ //            eventHandler.handle(event);

@@ -128,7 +128,7 @@ import org.apache.hadoop.yarn.util.BuilderUtils;
 import org.apache.hadoop.yarn.util.ConverterUtils;
 import org.apache.hadoop.yarn.util.RackResolver;
 
-
+import com.uchicago.dfix.*;
 /**
  * Implementation of TaskAttempt interface.
  */

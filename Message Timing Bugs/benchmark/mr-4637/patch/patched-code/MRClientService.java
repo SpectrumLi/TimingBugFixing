@@ -91,6 +91,8 @@ import org.apache.hadoop.yarn.service.AbstractService;
 import org.apache.hadoop.yarn.webapp.WebApp;
 import org.apache.hadoop.yarn.webapp.WebApps;
 
+import com.uchicago.dfix.*;
+
 /**
  * This module is responsible for talking to the 
  * jobclient (user facing).

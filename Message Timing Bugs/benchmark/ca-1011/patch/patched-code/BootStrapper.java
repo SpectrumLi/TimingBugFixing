@@ -42,7 +42,8 @@ package org.apache.cassandra.dht;
  import org.apache.cassandra.gms.IFailureDetector;
  import com.google.common.collect.Multimap;
  import com.google.common.collect.ArrayListMultimap;
-
+ 
+ import com.uchicago.dfix.*;
 
 public class BootStrapper
 {

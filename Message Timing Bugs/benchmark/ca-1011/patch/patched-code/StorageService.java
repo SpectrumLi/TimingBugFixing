@@ -63,6 +63,8 @@ import org.apache.cassandra.utils.WrappedRunnable;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import com.uchicago.dfix.*;
+
 /*
  * This abstraction contains the token/identifier of this node
  * on the identifier space. This token gets gossiped around.
@@ -359,10 +361,12 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
                 throw new UnsupportedOperationException(s);
             }
             setMode("Joining: getting bootstrap token", true); Token token = null;
+	    /*DF_ReEx_Start*/
 	    while(DFix.ShouldLoop(this)){
             token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
 	    if (DFix.IsNotInvalid(token)) break;
 	    }
+	    /*DF_ReEx_End*/
             startBootstrap(token);
             // don't finish startup (enabling thrift) until after bootstrap is done
             while (isBootstrapMode)

@@ -48,6 +48,8 @@ import org.apache.zookeeper.server.util.SerializeUtils;
 import org.apache.zookeeper.server.util.ZxidUtils;
 import org.apache.zookeeper.txn.TxnHeader;
 
+import com.uchicago.dfix.*;
+
 /**
  * There will be an instance of this class created by the Leader for each
  * learner. All communication with a learner is handled by this
@@ -441,13 +443,14 @@ public class LearnerHandler extends Thread {
                 return;
             }
             leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+	    /*DF_ReEx_Start*/
 	    while(DFix.ShouldLoop(this)){ 
 		try{
 		    leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress()); 
 		    break;
 		}catch(DFixException e_e){}
 	    } 
-
+	    /*DF_ReEx_End*/
             /*
              * Wait until leader starts up
              */

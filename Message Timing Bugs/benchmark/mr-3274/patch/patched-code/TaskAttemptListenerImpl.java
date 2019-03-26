@@ -54,6 +54,8 @@ import org.apache.hadoop.security.authorize.PolicyProvider;
 import org.apache.hadoop.yarn.YarnException;
 import org.apache.hadoop.yarn.service.CompositeService;
 
+import com.uchicago.dfix.*;
+
 /**
  * This class is responsible for talking to the task umblical.
  * It also converts all the old data structures

@@ -47,6 +47,8 @@ import org.apache.zookeeper.server.quorum.QuorumPeer.LearnerType;
 import org.apache.zookeeper.server.quorum.flexible.QuorumVerifier;
 import org.apache.zookeeper.server.util.ZxidUtils;
 
+import com.uchicago.dfix.*;
+
 /**
  * This class has the control logic for the Leader.
  */

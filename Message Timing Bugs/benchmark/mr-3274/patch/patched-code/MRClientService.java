@@ -93,6 +93,9 @@ import org.apache.hadoop.yarn.webapp.WebApps;
 
 import org.apache.hadoop.mapred.TaskAttemptListenerImpl;
 import org.apache.hadoop.yarn.exceptions.impl.pb.YarnRemoteExceptionPBImpl;
+
+import com.uchicago.dfix.*;
+
 /**
  * This module is responsible for talking to the 
  * jobclient (user facing).

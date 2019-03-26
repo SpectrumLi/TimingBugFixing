@@ -34,6 +34,8 @@ import org.apache.zookeeper.KeeperException.NoNodeException;
 import org.apache.zookeeper.KeeperException.NodeExistsException;
 import org.apache.zookeeper.data.Stat;
 
+import com.uchicago.dfix.*;
+
 /**
  * Utility class for doing region assignment in ZooKeeper.  This class extends
  * stuff done in {@link ZKUtil} to cover specific assignment operations.
@@ -269,7 +271,8 @@ public class ZKAssign {
     Stat stat = new Stat();
     zkw.sync(node);
     int version=-100;
-    while(DFix.ShuoldLoop()){
+    /*DF_ReEx_Start*/
+    while(DFix.ShouldLoop()){
 	try{
 	    version = ZKUtil.checkExists(zkw, node);
 	    break;
@@ -277,7 +280,7 @@ public class ZKAssign {
 	    if(DFix.Timeout()) throw e_e;
 	}
     }
-    
+    /*DF_ReEx_End*/
     if (version == -1) {
       // While trying to transit a node to OFFLINE that was in previously in 
       // OPENING state but before it could transit to OFFLINE state if RS had 

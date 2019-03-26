@@ -87,6 +87,8 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.NoNodeException;
 import org.apache.zookeeper.data.Stat;
 
+import com.uchicago.dfix.*;
+
 /**
  * Manages and performs region assignment.
  * <p>
@@ -1748,6 +1750,7 @@ public class AssignmentManager extends ZooKeeperListener {
 	LOG.info("Create Node Closing is to running");
          // Create the znode in CLOSING state
         try {
+	     /*DF_ReEx_Start*/
 	     while(DFix.ShouldLoop(this){ 
 		 try{           
 		     ZKAssign.createNodeClosing(master.getZooKeeper(), region, master.getServerName()); 
@@ -1757,6 +1760,7 @@ public class AssignmentManager extends ZooKeeperListener {
 			     throw e_e;
 		 }
 	     }
+	     /*DF_ReEx_End*/
         } catch (KeeperException e) {
           master.abort("Unexpected ZK exception creating node CLOSING", e);
           return;

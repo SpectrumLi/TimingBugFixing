@@ -6,6 +6,7 @@
 	https://issues.apache.org/jira/browse/Mapreduce-4637
 
 3.Manual Patch.
+	./patch/Manual.patch.
 	https://issues.apache.org/jira/secure/attachment/12543899/MAPREDUCE-4637-trunk.patch
 
 4.Input for DFix.
@@ -19,8 +20,7 @@
 	./temp directory. The intermediate files for patch generation.
 	
 6.DFix Patch.
-	./patch directory.
-	see the details.patch file.
+	./patch/DFix.patch.
 
 7.Discussion.
 	The developers patch the bug by defining the transfer rule for kill event at Inited state.

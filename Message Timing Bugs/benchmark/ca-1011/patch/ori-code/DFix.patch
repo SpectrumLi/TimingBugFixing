@@ -1,6 +1,16 @@
 --- BootStrapper.java	2019-02-25 11:22:01.300644155 -0600
-+++ ../patch/BootStrapper.java	2019-03-21 20:42:44.721783733 -0500
-@@ -211,7 +211,7 @@
++++ ../patched-code/BootStrapper.java	2019-03-26 10:40:29.686410821 -0500
+@@ -42,7 +42,8 @@
+  import org.apache.cassandra.gms.IFailureDetector;
+  import com.google.common.collect.Multimap;
+  import com.google.common.collect.ArrayListMultimap;
+-
++ 
++ import com.uchicago.dfix.*;
+ 
+ public class BootStrapper
+ {
+@@ -211,7 +212,7 @@
          public void doVerb(Message message)
          {
              StorageService ss = StorageService.instance; String tokenString=null;
@@ -10,19 +20,30 @@
              try
              {
 --- StorageService.java	2019-02-25 11:22:01.304644267 -0600
-+++ ../patch/StorageService.java	2019-03-21 20:44:24.604608223 -0500
-@@ -359,7 +359,10 @@
++++ ../patched-code/StorageService.java	2019-03-26 10:41:18.755771538 -0500
+@@ -63,6 +63,8 @@
+ import org.apache.log4j.Level;
+ import org.apache.log4j.Logger;
+ 
++import com.uchicago.dfix.*;
++
+ /*
+  * This abstraction contains the token/identifier of this node
+  * on the identifier space. This token gets gossiped around.
+@@ -359,7 +361,12 @@
                  throw new UnsupportedOperationException(s);
              }
              setMode("Joining: getting bootstrap token", true); Token token = null;
++	    /*DF_ReEx_Start*/
 +	    while(DFix.ShouldLoop(this)){
              token = BootStrapper.getBootstrapToken(tokenMetadata_, StorageLoadBalancer.instance.getLoadInfo());
 +	    if (DFix.IsNotInvalid(token)) break;
 +	    }
++	    /*DF_ReEx_End*/
              startBootstrap(token);
              // don't finish startup (enabling thrift) until after bootstrap is done
              while (isBootstrapMode)
-@@ -602,6 +605,7 @@
+@@ -602,6 +609,7 @@
          }
          
          calculatePendingRanges(1);
