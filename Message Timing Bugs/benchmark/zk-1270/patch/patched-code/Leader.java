@@ -331,7 +331,7 @@ public class Leader {
                         + Long.toHexString(newLeaderProposal.packet.getZxid()));
             }
             outstandingProposals.put(newLeaderProposal.packet.getZxid(), newLeaderProposal);
-            DFix.Signal(outstandingProposals);
+            DFix.SET(outstandingProposals);
 	    newLeaderProposal.ackSet.add(self.getId());
 
             waitForEpochAck(self.getId(), leaderStateSummary);

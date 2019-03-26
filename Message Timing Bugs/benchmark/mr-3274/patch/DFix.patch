@@ -48,7 +48,7 @@
        KillTaskAttemptResponse response = 
          recordFactory.newRecordInstance(KillTaskAttemptResponse.class);
 --- TaskAttemptListenerImpl.java	2019-03-21 10:57:56.750089297 -0500
-+++ ../patched-code/TaskAttemptListenerImpl.java	2019-03-26 10:28:52.799089554 -0500
++++ ../patched-code/TaskAttemptListenerImpl.java	2019-03-26 15:51:56.251413625 -0500
 @@ -54,6 +54,8 @@
  import org.apache.hadoop.yarn.YarnException;
  import org.apache.hadoop.yarn.service.CompositeService;
@@ -62,7 +62,7 @@
      WrappedJvmID wJvmID = new WrappedJvmID(jvmId.getJobId(), jvmId.isMap,
          jvmId.getId());
      org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);
-+    DFix.Signal(jvmIDToAttemptMap,wJvmID);
++    DFix.SET(jvmIDToAttemptMap,wJvmID);
      if (task != null) { //there may be lag in the attempt getting added here
        LOG.info("JVM with ID: " + jvmId + " given task: " + task.getTaskID());
        JvmTask jvmTask = new JvmTask(task, false);

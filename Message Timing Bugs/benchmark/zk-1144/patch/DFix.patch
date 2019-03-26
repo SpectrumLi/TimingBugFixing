@@ -1,5 +1,5 @@
 --- Leader.java	2019-03-21 11:08:33.224060955 -0500
-+++ ../patched-code/Leader.java	2019-03-26 10:31:00.526630041 -0500
++++ ../patched-code/Leader.java	2019-03-26 15:52:58.789190709 -0500
 @@ -47,6 +47,8 @@
  import org.apache.zookeeper.server.quorum.flexible.QuorumVerifier;
  import org.apache.zookeeper.server.util.ZxidUtils;
@@ -13,7 +13,7 @@
              // us. We do this by waiting for the NEWLEADER packet to get
              // acknowledged
              newLeaderProposal.ackSet.add(self.getId());
-+	    DFix.Signal(newLeaderProposal.ackSet);
++	    DFix.SET(newLeaderProposal.ackSet);
              while (!self.getQuorumVerifier().containsQuorum(newLeaderProposal.ackSet)){
              //while (newLeaderProposal.ackCount <= self.quorumPeers.size() / 2) {
                  if (self.tick > self.initLimit) {

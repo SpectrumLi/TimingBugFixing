@@ -419,7 +419,7 @@ public class TaskAttemptListenerImpl extends CompositeService
     WrappedJvmID wJvmID = new WrappedJvmID(jvmId.getJobId(), jvmId.isMap,
         jvmId.getId());
     org.apache.hadoop.mapred.Task task = jvmIDToAttemptMap.get(wJvmID);
-    DFix.Signal(jvmIDToAttemptMap,wJvmID);
+    DFix.SET(jvmIDToAttemptMap,wJvmID);
     if (task != null) { //there may be lag in the attempt getting added here
       LOG.info("JVM with ID: " + jvmId + " given task: " + task.getTaskID());
       JvmTask jvmTask = new JvmTask(task, false);

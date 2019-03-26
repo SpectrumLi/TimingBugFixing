@@ -1,5 +1,5 @@
---- BootStrapper.java	2019-02-25 11:22:01.300644155 -0600
-+++ ../patched-code/BootStrapper.java	2019-03-26 10:40:29.686410821 -0500
+--- BootStrapper.java	2019-03-26 15:25:52.543053850 -0500
++++ ../patched-code/BootStrapper.java	2019-03-26 15:25:52.543053850 -0500
 @@ -42,7 +42,8 @@
   import org.apache.cassandra.gms.IFailureDetector;
   import com.google.common.collect.Multimap;
@@ -19,8 +19,8 @@
              Message response;
              try
              {
---- StorageService.java	2019-02-25 11:22:01.304644267 -0600
-+++ ../patched-code/StorageService.java	2019-03-26 15:53:48.110592274 -0500
+--- StorageService.java	2019-03-26 15:25:52.543053850 -0500
++++ ../patched-code/StorageService.java	2019-03-26 15:49:36.263435950 -0500
 @@ -63,6 +63,8 @@
  import org.apache.log4j.Level;
  import org.apache.log4j.Logger;
@@ -30,7 +30,15 @@
  /*
   * This abstraction contains the token/identifier of this node
   * on the identifier space. This token gets gossiped around.
-@@ -359,7 +361,13 @@
+@@ -193,6 +195,7 @@
+             logger_.debug("Setting token to " + token);
+         SystemTable.updateToken(token);
+         tokenMetadata_.updateNormalToken(token, FBUtilities.getLocalAddress());
++	DFix.SET(this);
+     }
+ 
+     public StorageService()
+@@ -359,7 +362,12 @@
                  throw new UnsupportedOperationException(s);
              }
              setMode("Joining: getting bootstrap token", true); Token token = null;
@@ -40,15 +48,6 @@
 +	    if (DFix.IsNotInvalid(token)) break;
 +	    }
 +	    /*DF_ReEx_End*/
-+	    DFix.SET(this);
              startBootstrap(token);
              // don't finish startup (enabling thrift) until after bootstrap is done
              while (isBootstrapMode)
-@@ -602,6 +610,7 @@
-         }
-         
-         calculatePendingRanges(1);
-+	DFix.UNSET(this);
-         if (!isClientMode)
-             SystemTable.updateToken(endPoint, token);
-     }

@@ -195,6 +195,7 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
             logger_.debug("Setting token to " + token);
         SystemTable.updateToken(token);
         tokenMetadata_.updateNormalToken(token, FBUtilities.getLocalAddress());
+	DFix.SET(this);
     }
 
     public StorageService()
@@ -367,7 +368,6 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
 	    if (DFix.IsNotInvalid(token)) break;
 	    }
 	    /*DF_ReEx_End*/
-	    DFix.SET(this);
             startBootstrap(token);
             // don't finish startup (enabling thrift) until after bootstrap is done
             while (isBootstrapMode)
@@ -610,7 +610,6 @@ public class StorageService implements IEndPointStateChangeSubscriber, StorageSe
         }
         
         calculatePendingRanges(1);
-	DFix.UNSET(this);
         if (!isClientMode)
             SystemTable.updateToken(endPoint, token);
     }

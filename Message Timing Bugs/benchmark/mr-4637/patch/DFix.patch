@@ -47,7 +47,7 @@
        KillTaskAttemptResponse response = 
          recordFactory.newRecordInstance(KillTaskAttemptResponse.class);
 --- TaskAttemptImpl.java	2019-03-21 11:05:11.138366810 -0500
-+++ ../patched-code/TaskAttemptImpl.java	2019-03-26 10:30:30.169788533 -0500
++++ ../patched-code/TaskAttemptImpl.java	2019-03-26 15:52:44.908796276 -0500
 @@ -128,7 +128,7 @@
  import org.apache.hadoop.yarn.util.ConverterUtils;
  import org.apache.hadoop.yarn.util.RackResolver;
@@ -63,7 +63,7 @@
        try {
 +	if (DFix_CheckDrop(this,event)) return;
          stateMachine.doTransition(event.getType(), event);
-+	DFix.Signal(this,event);
++	DFix.SET(this,event);
        } catch (InvalidStateTransitonException e) {
  //        if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
  //            eventHandler.handle(event);

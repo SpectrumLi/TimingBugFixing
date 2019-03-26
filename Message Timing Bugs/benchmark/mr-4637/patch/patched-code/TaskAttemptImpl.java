@@ -925,7 +925,7 @@ public abstract class TaskAttemptImpl implements
       try {
 	if (DFix_CheckDrop(this,event)) return;
         stateMachine.doTransition(event.getType(), event);
-	DFix.Signal(this,event);
+	DFix.SET(this,event);
       } catch (InvalidStateTransitonException e) {
 //        if (event.getType().toString().equals("TA_DIAGNOSTICS_UPDATE")){
 //            eventHandler.handle(event);

@@ -337,7 +337,7 @@ public class Leader {
             // us. We do this by waiting for the NEWLEADER packet to get
             // acknowledged
             newLeaderProposal.ackSet.add(self.getId());
-	    DFix.Signal(newLeaderProposal.ackSet);
+	    DFix.SET(newLeaderProposal.ackSet);
             while (!self.getQuorumVerifier().containsQuorum(newLeaderProposal.ackSet)){
             //while (newLeaderProposal.ackCount <= self.quorumPeers.size() / 2) {
                 if (self.tick > self.initLimit) {
