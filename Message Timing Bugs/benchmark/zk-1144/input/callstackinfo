@@ -1,5 +1,0 @@
-org.apache.zookeeper.server.quorum.QuorumPeer run 729
-org.apache.zookeeper.server.quorum.Leader lead 312
-org.apache.zookeeper.server.quorum.Leader ---------
-
-LearnerHandler
