@@ -106,7 +106,7 @@ Manual Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/Manual.patch](
 
 DFix Rollback Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/DFix.patch)
 
-DFix Fastforward Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-fastforward/DFix.patch](Fault Timing Bugs/benchmark/hb-2611/patch-fastforward/DFix.patch)
+DFix Fastforward Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-fastforward/DFix.patch)
 
 DFix Input: [Fault Timing Bugs/benchmark/hb-2611/input](Fault%20Timing%20Bugs/benchmark/hb-2611/input)
 
