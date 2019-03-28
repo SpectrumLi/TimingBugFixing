@@ -5,7 +5,7 @@ In this repository, you can find:
 
 DFix tackles two types of distributed timing bugs: fault-timing bugs and message-timing bugs.
 
-For each type, we include the source code of DFix and the benchmarks.
+For each type, we include the source code of DFix and the benchmarks in the "FaultTiming" and "MessageTiming" sub-directories respectively.
 
 For every benchmark bug, it contains the following information.
 
