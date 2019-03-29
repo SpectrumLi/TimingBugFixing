@@ -14,8 +14,8 @@ For every benchmark bug, it contains the following information:
 Links that directly point to each benchmark in our paper are put below for quick checking. 
 Note that:
   * The IDs like "AM1", "AM2" refer to the IDs in Table 1 of our paper.
-  * Two message timing bugs (?? and ??) share the same patch, as fixing one can guarantee also fixing the other.
-  * Two fault timing bugs (?? and ??) share the same patch, as their buggy window can be merged to a larger one.
+  * Two message timing bugs (OM4&OM6) share the same patch, as fixing one can guarantee also fixing the other.
+  * Two fault timing bugs (AF1&AF3 and OF2&OF3) share the same patch, as their buggy window can be merged to a larger one.
 
 Bug AM1 (CA-1011)
 
