@@ -1,0 +1,283 @@
+Index: src/java/test/org/apache/zookeeper/server/quorum/Zab1_0Test.java
+===================================================================
+--- src/java/test/org/apache/zookeeper/server/quorum/Zab1_0Test.java	(revision 1172381)
++++ src/java/test/org/apache/zookeeper/server/quorum/Zab1_0Test.java	(working copy)
+@@ -44,7 +44,15 @@
+ import org.apache.zookeeper.server.ZooKeeperServer.DataTreeBuilder;
+ import org.apache.zookeeper.server.persistence.FileTxnSnapLog;
+ import org.apache.zookeeper.server.quorum.Leader;
++import org.apache.zookeeper.server.quorum.LearnerInfo;
++import org.apache.zookeeper.server.quorum.QuorumPacket;
++import org.apache.zookeeper.server.quorum.QuorumPeer;
++import org.apache.zookeeper.server.quorum.StateSummary;
+ import org.apache.zookeeper.server.quorum.QuorumPeer.QuorumServer;
++import org.apache.zookeeper.server.quorum.Zab1_0Test.FollowerMockThread1;
++import org.apache.zookeeper.server.quorum.Zab1_0Test.FollowerMockThread2;
++import org.apache.zookeeper.server.quorum.Zab1_0Test.LeadThread;
++import org.apache.zookeeper.server.quorum.Zab1_0Test.LeaderConversation;
+ import org.apache.zookeeper.server.quorum.flexible.QuorumMaj;
+ import org.apache.zookeeper.server.util.ZxidUtils;
+ import org.junit.Assert;
+@@ -68,6 +76,62 @@
+             }
+         }
+     }
++    
++    private static final class FollowerMockThread1 extends Thread {
++    	private final Leader leader;
++    	private final long followerSid;
++    	public long epoch = -1;
++    	
++    	private FollowerMockThread1(long followerSid, Leader leader) {
++            this.leader = leader;
++            this.followerSid = followerSid;
++        }
++
++        public void run() {
++            try {
++                epoch = leader.getEpochToPropose(followerSid, 0);
++                System.out.println("here");
++            } catch (Exception e) {  
++            	 System.out.println("here1");
++            }
++        }
++    }
++    
++    private static final class FollowerMockThread2 extends Thread {
++    	private final Leader leader;
++    	private final long followerSid;
++    	private boolean errorDetected = false;
++    	
++    	private FollowerMockThread2(long followerSid, Leader leader) {
++            this.leader = leader;
++            this.followerSid = followerSid;
++        }
++
++        public void run() {
++            try {
++            	leader.getEpochToPropose(followerSid, 0);
++            	
++                leader.waitForEpochAck(followerSid, new StateSummary(0, 0));
++                
++                if (leader.outstandingProposals.size() == 0) {
++                	errorDetected = true;
++                	return;
++                }
++                
++                long key = leader.outstandingProposals.keySet().iterator().next();
++                
++                if ((key & 0xffffffffL) != 0) {
++                	errorDetected = true;
++                }
++                
++            } catch (Exception e) {            	
++            }
++        }
++        
++        public boolean wasErrorDetected() {
++        	return errorDetected;
++        }
++    }
+     private static final class NullServerCnxnFactory extends ServerCnxnFactory {
+         public void startup(ZooKeeperServer zkServer) throws IOException,
+                 InterruptedException {
+@@ -124,7 +188,7 @@
+     }
+     
+     static public interface LeaderConversation {
+-        void converseWithLeader(InputArchive ia, OutputArchive oa) throws Exception;
++        void converseWithLeader(InputArchive ia, OutputArchive oa, Leader l) throws Exception;
+     }
+     
+     static public interface FollowerConversation {
+@@ -160,7 +224,7 @@
+             OutputArchive oa = BinaryOutputArchive.getArchive(followerSocket
+                     .getOutputStream());
+ 
+-            conversation.converseWithLeader(ia, oa);
++            conversation.converseWithLeader(ia, oa, leader);
+         } finally {
+             recursiveDelete(tmpDir);
+             if (leader != null) {
+@@ -176,7 +240,7 @@
+     @Test
+     public void testNormalRun() throws Exception {
+         testConversation(new LeaderConversation() {
+-            public void converseWithLeader(InputArchive ia, OutputArchive oa)
++            public void converseWithLeader(InputArchive ia, OutputArchive oa, Leader l)
+                     throws IOException {
+                 /* we test a normal run. everything should work out well. */
+                 LearnerInfo li = new LearnerInfo(1, 0x10000);
+@@ -209,7 +273,7 @@
+     @Test
+     public void testLeaderBehind() throws Exception {
+         testConversation(new LeaderConversation() {
+-            public void converseWithLeader(InputArchive ia, OutputArchive oa)
++            public void converseWithLeader(InputArchive ia, OutputArchive oa, Leader l)
+                     throws IOException {
+                 /* we test a normal run. everything should work out well. */
+                 LearnerInfo li = new LearnerInfo(1, 0x10000);
+@@ -240,7 +304,111 @@
+         });
+     }
+ 
++    /**
++     * Tests that when a quorum of followers send LearnerInfo but do not ack the epoch (which is sent
++     * by the leader upon receipt of LearnerInfo from a quorum), the leader does not start using this epoch
++     * as it would in the normal case (when a quorum do ack the epoch). This tests ZK-1192
++     * @throws Exception
++     */
++    @Test
++    public void testAbandonBeforeACKEpoch() throws Exception {
++        testConversation(new LeaderConversation() {
++            public void converseWithLeader(InputArchive ia, OutputArchive oa, Leader l)
++                    throws IOException, InterruptedException {
++            	/* we test a normal run. everything should work out well. */            	
++                LearnerInfo li = new LearnerInfo(1, 0x10000);
++                byte liBytes[] = new byte[12];
++                ByteBufferOutputStream.record2ByteBuffer(li,
++                        ByteBuffer.wrap(liBytes));
++                QuorumPacket qp = new QuorumPacket(Leader.FOLLOWERINFO, 0,
++                        liBytes, null);
++                oa.writeRecord(qp, null);
++                readPacketSkippingPing(ia, qp);
++                Assert.assertEquals(Leader.LEADERINFO, qp.getType());
++                Assert.assertEquals(ZxidUtils.makeZxid(1, 0), qp.getZxid());
++                Assert.assertEquals(ByteBuffer.wrap(qp.getData()).getInt(),
++                        0x10000);                
++                Thread.sleep(l.self.getInitLimit()*l.self.getTickTime() + 5000);
++                
++                // The leader didn't get a quorum of acks - make sure that leader's current epoch is not advanced
++                Assert.assertEquals(0, l.self.getCurrentEpoch());			
++            }
++        });
++    }
++    
++    @Test
++    public void testLeaderInConnectingFollwers() throws Exception {    
++        File tmpDir = File.createTempFile("test", "dir");
++        tmpDir.delete();
++        tmpDir.mkdir();
++        Leader leader = null;
++        try {
++            QuorumPeer peer = createQuorumPeer(tmpDir);
++            leader = createLeader(tmpDir, peer);
++            peer.leader = leader;
++            peer.setAcceptedEpoch(5);
++            
++            FollowerMockThread1 f1 = new FollowerMockThread1(1, leader);
++            FollowerMockThread1 f2 = new FollowerMockThread1(2, leader);
++            f1.start();
++            f2.start();
+ 
++            f1.join(leader.self.getInitLimit()*leader.self.getTickTime() + 5000);
++            f2.join(leader.self.getInitLimit()*leader.self.getTickTime() + 5000);
++            
++            long epoch = leader.getEpochToPropose(leader.self.getId(), leader.self.getAcceptedEpoch());
++            
++            Assert.assertEquals(6, epoch);	
++                      
++        } finally {
++            recursiveDelete(tmpDir);
++            if (leader != null) {
++                leader.shutdown("end of test");
++            }
++        }
++    }
++    
++    @Test
++    public void testLeaderInElectingFollwers() throws Exception {    
++        File tmpDir = File.createTempFile("test", "dir");
++        tmpDir.delete();
++        tmpDir.mkdir();
++        Leader leader = null;
++        LeadThread leadThread = null;
++        try {
++            QuorumPeer peer = createQuorumPeer(tmpDir);
++            leader = createLeader(tmpDir, peer);
++            peer.leader = leader;
++            
++            FollowerMockThread2 f1 = new FollowerMockThread2(1, leader);
++            FollowerMockThread2 f2 = new FollowerMockThread2(2, leader);
++            f1.start();
++            f2.start();
++            
++            Thread.sleep(100);
++            
++            leadThread = new LeadThread(leader);
++            leadThread.start();
++            // when the leader reaches waitForEpochAck, it will release
++            
++            f1.join(leader.self.getInitLimit()*leader.self.getTickTime() + 5000);
++            f2.join(leader.self.getInitLimit()*leader.self.getTickTime() + 5000);
++            Assert.assertFalse(f1.wasErrorDetected());
++            Assert.assertFalse(f2.wasErrorDetected());
++            
++        } finally {
++            recursiveDelete(tmpDir);
++            if (leader != null) {
++                leader.shutdown("end of test");
++            }
++            if (leadThread != null) {
++                leadThread.interrupt();
++                leadThread.join();
++            }
++        }
++    }
++
++    
+     private void recursiveDelete(File file) {
+         if (file.isFile()) {
+             file.delete();
+Index: src/java/main/org/apache/zookeeper/server/quorum/Leader.java
+===================================================================
+--- src/java/main/org/apache/zookeeper/server/quorum/Leader.java	(revision 1172381)
++++ src/java/main/org/apache/zookeeper/server/quorum/Leader.java	(working copy)
+@@ -777,13 +777,19 @@
+ 			}
+ 			connectingFollowers.add(sid);
+ 			QuorumVerifier verifier = self.getQuorumVerifier();
+-			if (verifier.containsQuorum(connectingFollowers)) {
++			if (connectingFollowers.contains(self.getId()) && verifier.containsQuorum(connectingFollowers)) {
+ 				waitingForNewEpoch = false;
+ 				connectingFollowers.notifyAll();
+ 			} else {
+-				connectingFollowers.wait(self.getInitLimit()*self.getTickTime());
++				long start = System.currentTimeMillis();
++	    		long cur = start;
++	    		long end = start + self.getInitLimit()*self.getTickTime();
++	    		while(waitingForNewEpoch && cur < end) {
++	    			connectingFollowers.wait(end - cur);
++	    			cur = System.currentTimeMillis();
++	    		}
+ 				if (waitingForNewEpoch) {
+-					throw new InterruptedException("Out of time to propose an epoch");
++					throw new InterruptedException("Timeout while waiting for epoch from quorum");		
+ 				}
+ 			}
+ 			return epoch;
+@@ -804,13 +810,19 @@
+ 				electingFollowers.add(id);
+ 			}
+ 			QuorumVerifier verifier = self.getQuorumVerifier();
+-			if (readyToStart && verifier.containsQuorum(electingFollowers)) {
++			if (electingFollowers.contains(self.getId()) && verifier.containsQuorum(electingFollowers)) {
+ 				electionFinished = true;
+ 				electingFollowers.notifyAll();
+-			} else {
+-				electingFollowers.wait(self.getInitLimit()*self.getTickTime());
+-				if (waitingForNewEpoch) {
+-					throw new InterruptedException("Out of time to propose an epoch");
++			} else {				
++				long start = System.currentTimeMillis();
++	    		long cur = start;
++	    		long end = start + self.getInitLimit()*self.getTickTime();
++	    		while(!electionFinished && cur < end) {
++	    			electingFollowers.wait(end - cur);
++	    			cur = System.currentTimeMillis();
++	    		}
++				if (!electionFinished) {
++					throw new InterruptedException("Timeout while waiting for epoch to be acked by quorum");
+ 				}
+ 			}
+ 		}

@@ -21,7 +21,7 @@ Bug AM1 (CA-1011)
 
 Bug Report: [Message Timing Bugs/benchmark/ca-1011/ReadMe](Message%20Timing%20Bugs/benchmark/ca-1011/ReadMe)
 
-Manual Patch: [Message Timing Bugs/benchmark/ca-1011/patch/Manual.patch](Message%20Timing%20Bugs/benchmark/ca-1011/patch/Manual.patch)
+Manual Patch: No Patch.
 
 DFix Patch: [Message Timing Bugs/benchmark/ca-1011/patch/DFix.patch](Message%20Timing%20Bugs/benchmark/ca-1011/patch/DFix.patch)
 
@@ -51,7 +51,7 @@ Bug OM1 (CA-extra)
 
 Bug Report: [Message Timing Bugs/benchmark/ca-extra/ReadMe](Message%20Timing%20Bugs/benchmark/ca-extra/ReadMe)
 
-Manual Patch: [Message Timing Bugs/benchmark/ca-extra/patch/Manual.patch](Message%20Timing%20Bugs/benchmark/ca-extra/patch/Manual.patch)
+Manual Patch: No Patch.
 
 DFix Patch: [Message Timing Bugs/benchmark/ca-extra/patch/DFix.patch](Message%20Timing%20Bugs/benchmark/ca-extra/patch/DFix.patch)
  
@@ -81,7 +81,9 @@ Bug OM4 & OM6 (ZK-1144/ZK-1194)
 
 Bug Report: [Message Timing Bugs/benchmark/zk-1144/ReadMe](Message%20Timing%20Bugs/benchmark/zk-1144/ReadMe)
 
-Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual.patch)
+ZK-1144 Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual-1144.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1144.patch)
+
+ZK-1194 Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual-1194.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1194.patch)
 
 DFix Patch: [Message Timing Bugs/benchmark/zk-1144/patch/DFix.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/DFix.patch)
 
@@ -102,7 +104,9 @@ Bug AF1 & AF3 (HB-2611/HB-12241)
 
 Bug Report: [Fault Timing Bugs/benchmark/hb-2611/ReadMe](Fault%20Timing%20Bugs/benchmark/hb-2611/ReadMe)
 
-Manual Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/Manual.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/Manual.patch)
+HB-2611 Manual Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/Manual-2611.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/Manual-2611.patch)
+
+HB-12241 Manual Patch: No Patch.
 
 DFix Rollback Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/DFix.patch)
 
@@ -144,7 +148,9 @@ Bug OF2 & OF3(CA-6415/CA-extra2)
 
 Bug Report: [Fault Timing Bugs/benchmark/ca-6415/ReadMe](Fault%20Timing%20Bugs/benchmark/ca-6415/ReadMe)
 
-Manual Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/Manual.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/Manual.patch)
+CA-6415 Manual Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/Manual-6415.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/Manual-6415.patch)
+
+CA-extra Manual Patch: No patch.
 
 DFix Fastforward Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/DFix.patch)
 

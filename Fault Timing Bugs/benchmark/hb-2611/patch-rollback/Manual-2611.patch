@@ -1,22 +1,32 @@
-Index: src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java
-===================================================================
---- src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java	(revision 1439744)
-+++ src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java	(working copy)
-@@ -46,6 +46,7 @@
+diff --git src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java
+index 0e73431..93331c1 100644
+--- src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java
++++ src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.java
+@@ -43,12 +43,17 @@ import org.apache.hadoop.hbase.replication.regionserver.Replication;
+ import org.apache.hadoop.hbase.util.Bytes;
+ import org.apache.hadoop.hbase.zookeeper.ClusterId;
+ import org.apache.hadoop.hbase.zookeeper.ZKUtil;
++import org.apache.hadoop.hbase.zookeeper.ZKUtil.ZKUtilOp;
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperListener;
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperNodeTracker;
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
-+import org.apache.hadoop.hbase.zookeeper.ZKUtil.ZKUtilOp;
++import org.apache.zookeeper.CreateMode;
  import org.apache.zookeeper.KeeperException;
  import org.apache.zookeeper.KeeperException.ConnectionLossException;
++import org.apache.zookeeper.KeeperException.NoNodeException;
  import org.apache.zookeeper.KeeperException.SessionExpiredException;
-@@ -659,6 +660,58 @@
++import org.apache.zookeeper.ZooDefs.Ids;
++import org.apache.zookeeper.Op;
+ 
+ /**
+  * This class serves as a helper for all things related to zookeeper in
+@@ -659,6 +664,57 @@ public class ReplicationZookeeper {
    }
  
    /**
 +   * It "atomically" copies all the hlogs queues from another region server and returns them all
 +   * sorted per peer cluster (appended with the dead server's znode).
-+   * @param znode
++   * @param znode the znode for dead server
 +   * @return HLog queues sorted per peer cluster
 +   */
 +  public SortedMap<String, SortedSet<String>> copyQueuesFromRSUsingMulti(String znode) {
@@ -55,7 +65,7 @@ Index: src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.ja
 +      }
 +      // add delete op for dead rs
 +      listOfOps.add(ZKUtilOp.deleteNodeFailSilent(deadRSZnodePath));
-+      LOG.debug(" The multi list size is: " + listOfOps.size());
++      LOG.debug(" The multi list is: " + listOfOps + ", size: " + listOfOps.size());
 +      ZKUtil.multiOrSequential(this.zookeeper, listOfOps, false);
 +      LOG.info("Atomically moved the dead regionserver logs. ");
 +    } catch (KeeperException e) {
@@ -64,16 +74,15 @@ Index: src/main/java/org/apache/hadoop/hbase/replication/ReplicationZookeeper.ja
 +    }
 +    return queues;
 +  }
-+
 +  /**
     * This methods copies all the hlogs queues from another region server
     * and returns them all sorted per peer cluster (appended with the dead
     * server's znode)
-Index: src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java
-===================================================================
---- src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java	(revision 1439744)
-+++ src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java	(working copy)
-@@ -40,6 +40,7 @@
+diff --git src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java
+index c89de9a..876e418 100644
+--- src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java
++++ src/main/java/org/apache/hadoop/hbase/replication/regionserver/ReplicationSourceManager.java
+@@ -40,6 +40,7 @@ import org.apache.commons.logging.LogFactory;
  import org.apache.hadoop.conf.Configuration;
  import org.apache.hadoop.fs.FileSystem;
  import org.apache.hadoop.fs.Path;
@@ -81,33 +90,37 @@ Index: src/main/java/org/apache/hadoop/hbase/replication/regionserver/Replicatio
  import org.apache.hadoop.hbase.Stoppable;
  import org.apache.hadoop.hbase.replication.ReplicationZookeeper;
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperListener;
-@@ -581,14 +582,22 @@
+@@ -576,17 +577,24 @@ public class ReplicationSourceManager {
          LOG.info("Not transferring queue since we are shutting down");
          return;
        }
 -      if (!zkHelper.lockOtherRS(rsZnode)) {
 -        return;
+-      }
 +      SortedMap<String, SortedSet<String>> newQueues = null;
 +
 +      // check whether there is multi support. If yes, use it.
-+      if (conf.getBoolean(HConstants.ZOOKEEPER_USEMULTI, true)) {
-+        LOG.info("Atomically moving " + rsZnode + "'s hlogs to my queue");
+       LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
+-      SortedMap<String, SortedSet<String>> newQueues =
+-          zkHelper.copyQueuesFromRS(rsZnode);
+-      zkHelper.deleteRsQueues(rsZnode);
+-      if (newQueues == null || newQueues.size() == 0) {
++      if (conf.getBoolean(HConstants.ZOOKEEPER_USEMULTI, false)) {
 +        newQueues = zkHelper.copyQueuesFromRSUsingMulti(rsZnode);
 +      } else {
-+        LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
 +        if (!zkHelper.lockOtherRS(rsZnode)) {
 +          return;
 +        }
 +        newQueues = zkHelper.copyQueuesFromRS(rsZnode);
 +        zkHelper.deleteRsQueues(rsZnode);
-       }
--      LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
--      SortedMap<String, SortedSet<String>> newQueues =
--          zkHelper.copyQueuesFromRS(rsZnode);
--      zkHelper.deleteRsQueues(rsZnode);
--      if (newQueues == null || newQueues.size() == 0) {
++      }
 +      // process of copying over the failed queue is completed.
 +      if (newQueues.size() == 0) {
          return;
        }
- 
+-
++      // change till here
+       for (Map.Entry<String, SortedSet<String>> entry : newQueues.entrySet()) {
+         String peerId = entry.getKey();
+         try {
+
