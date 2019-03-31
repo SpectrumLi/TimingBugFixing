@@ -307,7 +307,7 @@ public class ReplicationSourceManager {
     LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
     SortedMap<String, SortedSet<String>> newQueues =
         this.zkHelper.copyQueuesFromRS(rsZnode);
-    if (DFix.DF_CHECK()) DFix.RollBack();
+    if (!DFix.DF_CHECK()) DFix.RollBack();
     DFix.DF_FF_Start();
     DFix.RecordZK(this.zookeeper, rsZnode);
     this.zkHelper.deleteRsQueues(rsZnode);

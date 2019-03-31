@@ -1,28 +1,27 @@
---- AntiEntropyService.java	2019-03-21 15:01:08.800448401 -0500
-+++ ../patched-code/AntiEntropyService.java	2019-03-26 11:36:30.214858899 -0500
-@@ -54,6 +54,8 @@
- import org.apache.cassandra.streaming.*;
- import org.apache.cassandra.utils.*;
- 
+--- SimpleCondition.java	2019-03-31 14:34:35.561861949 -0500
++++ ../patched-code/SimpleCondition.java	2019-03-31 14:35:48.747912026 -0500
+@@ -24,6 +24,7 @@
+ import java.util.Date;
+ import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.locks.Condition;
 +import com.uchicago.DFix.*;
-+
- /**
-  * AntiEntropyService encapsulates "validating" (hashing) individual column families,
-  * exchanging MerkleTrees with remote nodes via a TreeRequest/Response conversation,
-@@ -908,7 +910,10 @@
-                     for (InetAddress endpoint : endpoints)
-                         MessagingService.instance().sendRR(new SnapshotCommand(tablename, cfname, sessionName, false), endpoint, callback);
-                     logger.info("GGGGGGG enter waitsite Anti-911");
--                    snapshotLatch.await();
-+		    while(DFix.DF_CHECK(snapshotLatch)){
-+                    snapshotLatch.await(DFix.TIME_PEROID);
-+		    if (DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
-+		    }
-                     logger.info("GGGGGGG exit waitsite Anti-911");
-                     snapshotLatch = null;
-                 }
---- SnapshotVerbHandler.java	2019-03-26 11:58:04.392486821 -0500
-+++ ../patched-code/SnapshotVerbHandler.java	2019-03-26 11:58:56.005957541 -0500
+ 
+ // fulfils the Condition interface without spurious wakeup problems
+ // (or lost notify problems either: that is, even if you call await()
+@@ -34,8 +35,10 @@
+ 
+     public synchronized void await() throws InterruptedException
+     {
+-        while (!set)
++        while (!set){
+             wait();
++	    if(!DFix.DF_CHECK(completed)) DFix.FastFwd();
++	}
+     }
+ 
+     public synchronized void reset()
+--- SnapshotVerbHandler.java	2019-03-31 14:17:06.548379997 -0500
++++ ../patched-code/SnapshotVerbHandler.java	2019-03-31 14:17:06.548379997 -0500
 @@ -42,7 +42,10 @@
              Message response = message.getReply(FBUtilities.getBroadcastAddress(), new byte[0], MessagingService.version_);
              if (logger.isDebugEnabled())

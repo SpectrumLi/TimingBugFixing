@@ -16,6 +16,7 @@
 	
 5.DFix Patch.
 	./patch-rollback/DFix.patch.
+	./patch-fastforward/DFix.patch.
 
 6.Discussion.
 	The manual patching strategy is same with the DFix fastforward patch.

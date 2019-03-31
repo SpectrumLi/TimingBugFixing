@@ -1,5 +1,5 @@
 --- AntiEntropyService.java	2019-03-21 15:00:07.258630779 -0500
-+++ ../patched-code/AntiEntropyService.java	2019-03-26 11:52:16.842501046 -0500
++++ ../patched-code/AntiEntropyService.java	2019-03-31 14:37:16.150359704 -0500
 @@ -54,6 +54,8 @@
  import org.apache.cassandra.streaming.*;
  import org.apache.cassandra.utils.*;
@@ -27,7 +27,7 @@
 -                completed.await();
 +		while(DFix.DF_CHECK(completed)){
 +                completed.await(DFix.TIME_PERIOD);
-+		if(DFix.DF_CHECK(completed)) DFix.FastFwd();
++		if(!DFix.DF_CHECK(completed)) DFix.FastFwd();
 +		}
                  logger.info("GGGGGGG exit waitsite Anti-722");
                  if (exception == null)

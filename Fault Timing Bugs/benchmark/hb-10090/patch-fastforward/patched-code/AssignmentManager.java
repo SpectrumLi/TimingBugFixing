@@ -563,7 +563,7 @@ public class AssignmentManager extends ZooKeeperListener {
       //break;
       //}
       this.regionStates.waitForUpdate(100);
-      if (DFix.DF_CHECK()) DFix.FastFwd();
+      if (!DFix.DF_CHECK()) DFix.FastFwd();
       LOG.info("********************waitForMeta in infinite while loop **********************");
     } 
     //  if (s_flag == 0 ) break;

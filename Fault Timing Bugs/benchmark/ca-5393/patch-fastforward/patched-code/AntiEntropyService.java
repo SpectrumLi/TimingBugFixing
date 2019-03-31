@@ -728,7 +728,7 @@ public class AntiEntropyService
                 logger.info("GGGGGGG enter waitsite Anti-721");
 		while(DFix.DF_CHECK(completed)){
                 completed.await(DFix.TIME_PERIOD);
-		if(DFix.DF_CHECK(completed)) DFix.FastFwd();
+		if(!DFix.DF_CHECK(completed)) DFix.FastFwd();
 		}
                 logger.info("GGGGGGG exit waitsite Anti-722");
                 if (exception == null)

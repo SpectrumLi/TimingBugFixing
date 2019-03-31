@@ -912,7 +912,7 @@ public class AntiEntropyService
                     logger.info("GGGGGGG enter waitsite Anti-911");
 		    while(DFix.DF_CHECK(snapshotLatch)){
                     snapshotLatch.await(DFix.TIME_PEROID);
-		    if (DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
+		    if (!DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
 		    }
                     logger.info("GGGGGGG exit waitsite Anti-911");
                     snapshotLatch = null;

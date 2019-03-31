@@ -1,5 +1,5 @@
 --- AntiEntropyService.java	2019-03-21 15:01:08.800448401 -0500
-+++ ../patched-code/AntiEntropyService.java	2019-03-26 11:36:30.214858899 -0500
++++ ../patched-code/AntiEntropyService.java	2019-03-31 14:37:59.315568313 -0500
 @@ -54,6 +54,8 @@
  import org.apache.cassandra.streaming.*;
  import org.apache.cassandra.utils.*;
@@ -16,7 +16,7 @@
 -                    snapshotLatch.await();
 +		    while(DFix.DF_CHECK(snapshotLatch)){
 +                    snapshotLatch.await(DFix.TIME_PEROID);
-+		    if (DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
++		    if (!DFix.DF_CHECK(snapshotLatch)) DFix.FastFwd(snapshotLatch); // here fastforward means snapshotLatch.countDown();
 +		    }
                      logger.info("GGGGGGG exit waitsite Anti-911");
                      snapshotLatch = null;

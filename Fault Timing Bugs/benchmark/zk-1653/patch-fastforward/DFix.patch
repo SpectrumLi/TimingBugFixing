@@ -1,5 +1,5 @@
---- Learner.java	2019-03-21 15:04:35.458524289 -0500
-+++ ../patched-code/Learner.java	2019-03-26 11:42:30.997504322 -0500
+--- Learner.java	2019-03-31 14:40:08.215176724 -0500
++++ ../patched-code/Learner.java	2019-03-31 14:41:40.925771490 -0500
 @@ -56,6 +56,8 @@
  import org.apache.zookeeper.txn.SetDataTxn;
  import org.apache.zookeeper.txn.TxnHeader;
@@ -9,22 +9,21 @@
  /**
   * This class is the superclass of two of the three main actors in a ZK
   * ensemble: Followers and Observers. Both Followers and Observers share 
-@@ -482,9 +484,12 @@
+@@ -482,9 +484,11 @@
                             e.printStackTrace();
                         }
                     }
 -                   
++		    DFix.PreComputeTask(); 
 +                    DFix.DF_FF_Start(); 
-+		    DFix.RecordSnapShot(); // snapshot is a determistic location for zookeeper
                      zk.takeSnapshot();
-+		    DFix.RecordCEpoch();// current epoch location is also determistic 
                      self.setCurrentEpoch(newEpoch);
 +		    DFix.DF_FF_End();
                      writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
                      break;
                  }
---- QuorumPeer.java	2019-03-21 15:04:35.462524406 -0500
-+++ ../patched-code/QuorumPeer.java	2019-03-26 11:43:11.606691057 -0500
+--- QuorumPeer.java	2019-03-31 14:40:08.215176724 -0500
++++ ../patched-code/QuorumPeer.java	2019-03-31 14:40:08.215176724 -0500
 @@ -61,6 +61,8 @@
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@
              	        currentEpoch);
              	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);
              }
-+	    if (DFix.DF_CHECK()) DFix.RollBack();
++	    if (!DFix.DF_CHECK()) DFix.RollBack();
              if (epochOfZxid > currentEpoch) {
                  throw new IOException("The current epoch, " + ZxidUtils.zxidToString(currentEpoch) + ", is older than the last zxid, " + lastProcessedZxid);
              }

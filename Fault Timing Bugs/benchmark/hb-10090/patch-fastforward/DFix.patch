@@ -1,5 +1,5 @@
 --- AssignmentManager.java	2019-03-21 15:01:53.141755413 -0500
-+++ ../patched-code/AssignmentManager.java	2019-03-26 11:39:44.808626634 -0500
++++ ../patched-code/AssignmentManager.java	2019-03-31 14:37:34.830882767 -0500
 @@ -95,6 +95,8 @@
  import com.google.common.base.Preconditions;
  import com.google.common.collect.LinkedHashMultimap;
@@ -13,7 +13,7 @@
        //break;
        //}
        this.regionStates.waitForUpdate(100);
-+      if (DFix.DF_CHECK()) DFix.FastFwd();
++      if (!DFix.DF_CHECK()) DFix.FastFwd();
        LOG.info("********************waitForMeta in infinite while loop **********************");
      } 
      //  if (s_flag == 0 ) break;

@@ -653,7 +653,7 @@ public class QuorumPeer extends Thread implements QuorumStats.Provider {
             	        currentEpoch);
             	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);
             }
-	    if (DFix.DF_CHECK()) DFix.RollBack();
+	    if (!DFix.DF_CHECK()) DFix.RollBack();
             if (epochOfZxid > currentEpoch) {
                 throw new IOException("The current epoch, " + ZxidUtils.zxidToString(currentEpoch) + ", is older than the last zxid, " + lastProcessedZxid);
             }
