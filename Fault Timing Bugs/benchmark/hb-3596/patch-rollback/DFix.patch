@@ -1,5 +1,5 @@
 --- ReplicationSourceManager.java	2019-03-21 15:04:02.137547105 -0500
-+++ ../patched-code/ReplicationSourceManager.java	2019-03-26 11:44:45.665433386 -0500
++++ ../patched-code/ReplicationSourceManager.java	2019-03-31 14:48:22.361003061 -0500
 @@ -40,6 +40,8 @@
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
  import org.apache.zookeeper.KeeperException;
@@ -13,7 +13,7 @@
        LOG.info("Not transferring queue since we are shutting down");
        return;
      }
-+    if (DFix.CHECK()) DFix.RollBack();
++    if (!DFix.CHECK()) DFix.RollBack();
 +    DFix.DF_FF_Start();
 +    DFix.RecordZK(this.zookeeper, rsZnode);
      if (!this.zkHelper.lockOtherRS(rsZnode)) {

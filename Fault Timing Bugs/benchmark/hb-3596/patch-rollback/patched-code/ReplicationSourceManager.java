@@ -301,7 +301,7 @@ public class ReplicationSourceManager {
       LOG.info("Not transferring queue since we are shutting down");
       return;
     }
-    if (DFix.CHECK()) DFix.RollBack();
+    if (!DFix.CHECK()) DFix.RollBack();
     DFix.DF_FF_Start();
     DFix.RecordZK(this.zookeeper, rsZnode);
     if (!this.zkHelper.lockOtherRS(rsZnode)) {

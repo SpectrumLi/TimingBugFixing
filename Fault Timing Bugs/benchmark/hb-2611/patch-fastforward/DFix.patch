@@ -1,5 +1,5 @@
 --- ReplicationSourceManager.java	2019-03-21 15:02:56.407616887 -0500
-+++ ../patched-code/ReplicationSourceManager.java	2019-03-26 11:52:47.695391061 -0500
++++ ../patched-code/ReplicationSourceManager.java	2019-03-31 14:47:36.663724745 -0500
 @@ -40,6 +40,8 @@
  import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
  import org.apache.zookeeper.KeeperException;
@@ -13,7 +13,7 @@
      LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
      SortedMap<String, SortedSet<String>> newQueues =
          this.zkHelper.copyQueuesFromRS(rsZnode);
-+    if (DFix.CHECK()) DFix.FastFwd();
++    if (!DFix.CHECK()) DFix.FastFwd();
 +    DFix.PreComputeTask(this.zookeeper, rsZnode, "delete");
 +    DFix.DF_FF_Start();
      this.zkHelper.deleteRsQueues(rsZnode);
