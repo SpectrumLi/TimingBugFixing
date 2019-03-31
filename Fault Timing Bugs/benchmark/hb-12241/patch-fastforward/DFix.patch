@@ -1,0 +1,23 @@
+--- ReplicationSourceManager.java	2019-03-21 15:02:56.407616887 -0500
++++ ../patched-code/ReplicationSourceManager.java	2019-03-26 11:52:47.695391061 -0500
+@@ -40,6 +40,8 @@
+ import org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher;
+ import org.apache.zookeeper.KeeperException;
+ 
++import com.uchicago.DFix.*;
++
+ /**
+  * This class is responsible to manage all the replication
+  * sources. There are two classes of sources:
+@@ -305,7 +307,11 @@
+     LOG.info("Moving " + rsZnode + "'s hlogs to my queue");
+     SortedMap<String, SortedSet<String>> newQueues =
+         this.zkHelper.copyQueuesFromRS(rsZnode);
++    if (DFix.CHECK()) DFix.FastFwd();
++    DFix.PreComputeTask(this.zookeeper, rsZnode, "delete");
++    DFix.DF_FF_Start();
+     this.zkHelper.deleteRsQueues(rsZnode);
++    DFix.DF_FF_End();
+     if (newQueues == null || newQueues.size() == 0) {
+       return;
+     }

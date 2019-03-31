@@ -1,0 +1,289 @@
+diff --git src/java/main/org/apache/zookeeper/server/quorum/Learner.java src/java/main/org/apache/zookeeper/server/quorum/Learner.java
+index 46ec517..c24694b 100644
+--- src/java/main/org/apache/zookeeper/server/quorum/Learner.java
++++ src/java/main/org/apache/zookeeper/server/quorum/Learner.java
+@@ -23,6 +23,7 @@ import java.io.ByteArrayInputStream;
+ import java.io.ByteArrayOutputStream;
+ import java.io.DataInputStream;
+ import java.io.DataOutputStream;
++import java.io.File;
+ import java.io.IOException;
+ import java.net.ConnectException;
+ import java.net.InetSocketAddress;
+@@ -465,8 +466,23 @@ public class Learner {
+                        }
+                    }
+                    
+-                    zk.takeSnapshot();
+-                    self.setCurrentEpoch(newEpoch);
++                    // Create updatingEpoch file and remove it after current
++                    // epoch is set. QuorumPeer.loadDataBase() uses this file to
++                    // detect the case where the server was terminated after
++                    // taking a snapshot but before setting the current epoch.
++                    File file = new File(self.getTxnFactory().getSnapDir(),
++                                         self.UPDATING_EPOCH_FILENAME);
++                    try {
++                        if (!file.createNewFile()) {
++                            LOG.warn("Failed to create {}", file);
++                        }
++                        zk.takeSnapshot();
++                        self.setCurrentEpoch(newEpoch);
++                    } finally {
++                        if (!file.delete()) {
++                            LOG.warn("Failed to delete {}", file);
++                        }
++                    }
+                     snapshotTaken = true;
+                     writePacket(new QuorumPacket(Leader.ACK, newLeaderZxid, null, null), true);
+                     break;
+diff --git src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java
+index 9a8a33e..8e540a1 100644
+--- src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java
++++ src/java/main/org/apache/zookeeper/server/quorum/QuorumPeer.java
+@@ -607,6 +607,8 @@ public class QuorumPeer extends Thread implements QuorumStats.Provider {
+     }
+ 
+     private void loadDataBase() {
++        File updating = new File(getTxnFactory().getSnapDir(),
++                                 UPDATING_EPOCH_FILENAME);
+         try {
+             zkDb.loadDataBase();
+ 
+@@ -615,6 +617,14 @@ public class QuorumPeer extends Thread implements QuorumStats.Provider {
+             long epochOfZxid = ZxidUtils.getEpochFromZxid(lastProcessedZxid);
+             try {
+                 currentEpoch = readLongFromFile(CURRENT_EPOCH_FILENAME);
++                if (epochOfZxid > currentEpoch && updating.exists()) {
++                    LOG.info("{} found. The server was terminated after " +
++                             "taking a snapshot but before updating current " +
++                             "epoch. Setting current epoch to {}.",
++                             UPDATING_EPOCH_FILENAME, epochOfZxid);
++                    currentEpoch = epochOfZxid;
++                    writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);
++                }
+             } catch(FileNotFoundException e) {
+             	// pick a reasonable epoch number
+             	// this should only happen once when moving to a
+@@ -646,6 +656,10 @@ public class QuorumPeer extends Thread implements QuorumStats.Provider {
+         } catch(IOException ie) {
+             LOG.error("Unable to load database on disk", ie);
+             throw new RuntimeException("Unable to run quorum server ", ie);
++        } finally {
++            if (!updating.delete()) {
++                LOG.warn("Failed to delete {}", updating);
++            }
+         }
+     }
+ 
+@@ -1369,6 +1383,8 @@ public class QuorumPeer extends Thread implements QuorumStats.Provider {
+ 
+     public static final String ACCEPTED_EPOCH_FILENAME = "acceptedEpoch";
+ 
++    public static final String UPDATING_EPOCH_FILENAME = "updatingEpoch";
++
+ 	/**
+ 	 * Write a long value to disk atomically. Either succeeds or an exception
+ 	 * is thrown.
+diff --git src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
+index 2707c26..1a7283f 100644
+--- src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
++++ src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerMainTest.java
+@@ -20,8 +20,13 @@ package org.apache.zookeeper.server.quorum;
+ 
+ import static org.apache.zookeeper.test.ClientBase.CONNECTION_TIMEOUT;
+ 
++import java.io.BufferedReader;
++import java.io.BufferedWriter;
+ import java.io.ByteArrayOutputStream;
++import java.io.File;
++import java.io.FileReader;
+ import java.io.LineNumberReader;
++import java.io.OutputStreamWriter;
+ import java.io.StringReader;
+ import java.io.IOException;
+ import java.net.InetSocketAddress;
+@@ -29,6 +34,7 @@ import java.nio.ByteBuffer;
+ import java.nio.channels.SocketChannel;
+ import java.util.Map;
+ import java.util.Map.Entry;
++import java.util.concurrent.TimeUnit;
+ import java.util.regex.Pattern;
+ 
+ import org.apache.log4j.Layout;
+@@ -42,7 +48,9 @@ import org.apache.zookeeper.ZooDefs.OpCode;
+ import org.apache.zookeeper.ZooKeeper;
+ import org.apache.zookeeper.ZooDefs.Ids;
+ import org.apache.zookeeper.ZooKeeper.States;
++import org.apache.zookeeper.common.AtomicFileOutputStream;
+ import org.apache.zookeeper.server.quorum.Leader.Proposal;
++import org.apache.zookeeper.server.util.ZxidUtils;
+ import org.apache.zookeeper.test.ClientBase;
+ import org.junit.Assert;
+ import org.junit.Test;
+@@ -52,6 +60,9 @@ import org.junit.Test;
+  *
+  */
+ public class QuorumPeerMainTest extends QuorumPeerTestBase {
++    protected static final Logger LOG =
++        Logger.getLogger(QuorumPeerMainTest.class);
++
+     /**
+      * Verify the ability to start a cluster.
+      */
+@@ -663,4 +674,107 @@ public class QuorumPeerMainTest extends QuorumPeerTestBase {
+                     " to shutdown, expected " + maxwait);
+         }
+     }
++
++    static long readLongFromFile(File file) throws IOException {
++        BufferedReader br = new BufferedReader(new FileReader(file));
++        String line = "";
++        try {
++            line = br.readLine();
++            return Long.parseLong(line);
++        } catch(NumberFormatException e) {
++            throw new IOException("Found " + line + " in " + file);
++        } finally {
++            br.close();
++        }
++    }
++
++    static void writeLongToFile(File file, long value) throws IOException {
++        AtomicFileOutputStream out = new AtomicFileOutputStream(file);
++        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
++        boolean aborted = false;
++        try {
++            bw.write(Long.toString(value));
++            bw.flush();
++            out.flush();
++            out.close();
++        } catch (IOException e) {
++            LOG.error("Failed to write new file " + file, e);
++            out.abort();
++            throw e;
++        }
++    }
++
++    /**
++     * ZOOKEEPER-1653 Make sure the server starts if the current epoch is less
++     * than the epoch from last logged zxid and updatingEpoch file exists.
++     */
++    @Test
++    public void testUpdatingEpoch() throws Exception {
++        // Create a cluster and restart them multiple times to bump the epoch.
++        int numServers = 3;
++        Servers servers = LaunchServers(numServers);
++        File currentEpochFile;
++        for (int i = 0; i < 10; i++) {
++            for (int j = 0; j < numServers; j++) {
++                servers.mt[j].shutdown();
++            }
++            waitForAll(servers.zk, States.CONNECTING);
++            for (int j = 0; j < numServers; j++) {
++                servers.mt[j].start();
++            }
++            waitForAll(servers.zk, States.CONNECTED);
++        }
++
++        // Current epoch is 11 now.
++        for (int i = 0; i < numServers; i++) {
++            currentEpochFile = new File(
++                new File(servers.mt[i].dataDir, "version-2"),
++                QuorumPeer.CURRENT_EPOCH_FILENAME);
++            LOG.info("Validating current epoch: " + servers.mt[i].dataDir);
++            Assert.assertEquals("Current epoch should be 11.", 11,
++                                readLongFromFile(currentEpochFile));
++        }
++
++        // Find a follower and get epoch from the last logged zxid.
++        int followerIndex = -1;
++        for (int i = 0; i < numServers; i++) {
++            if (servers.mt[i].main.quorumPeer.leader == null) {
++                followerIndex = i;
++                break;
++            }
++        }
++        Assert.assertTrue("Found a valid follower",
++                          followerIndex >= 0 && followerIndex < numServers);
++        MainThread follower = servers.mt[followerIndex];
++        long zxid = follower.main.quorumPeer.getLastLoggedZxid();
++        long epochFromZxid = ZxidUtils.getEpochFromZxid(zxid);
++
++        // Shut down the cluster
++        for (int i = 0; i < numServers; i++) {
++          servers.mt[i].shutdown();
++        }
++        waitForAll(servers.zk, States.CONNECTING);
++
++        // Make current epoch less than epoch from the last logged zxid.
++        // The server should fail to start.
++        currentEpochFile = new File(new File(follower.dataDir, "version-2"),
++                                    "currentEpoch");
++        writeLongToFile(currentEpochFile, epochFromZxid - 1);
++        follower.start();
++        Assert.assertTrue(follower.mainFailed.await(10, TimeUnit.SECONDS));
++
++        // Touch the updateEpoch file. Now the server should start.
++        File updatingEpochFile = new File(
++                new File(follower.dataDir, "version-2"),
++                QuorumPeer.UPDATING_EPOCH_FILENAME);
++        updatingEpochFile.createNewFile();
++        for (int i = 0; i < numServers; i++) {
++          servers.mt[i].start();
++        }
++        waitForAll(servers.zk, States.CONNECTED);
++        Assert.assertNotNull("Make sure the server started with acceptEpoch",
++                             follower.main.quorumPeer.getActiveServer());
++        Assert.assertFalse("updatingEpoch file should get deleted",
++                           updatingEpochFile.exists());
++    }
+ }
+diff --git src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerTestBase.java src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerTestBase.java
+index 5c91b12..f36ca40 100644
+--- src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerTestBase.java
++++ src/java/test/org/apache/zookeeper/server/quorum/QuorumPeerTestBase.java
+@@ -24,6 +24,7 @@ package org.apache.zookeeper.server.quorum;
+ import java.io.File;
+ import java.io.FileWriter;
+ import java.io.IOException;
++import java.util.concurrent.CountDownLatch;
+ 
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+@@ -73,8 +74,10 @@ public class QuorumPeerTestBase extends ZKTestCase implements Watcher {
+         final File confFile;
+         final File dynamicConfigFile;
+         final File tmpDir;
++        final File dataDir;
+         
+         volatile TestQPMain main;
++        CountDownLatch mainFailed;
+ 
+         public MainThread(int myid, int clientPort, String quorumCfgSection)
+                 throws IOException {
+@@ -82,7 +85,7 @@ public class QuorumPeerTestBase extends ZKTestCase implements Watcher {
+             LOG.info("id = " + myid + " tmpDir = " + tmpDir + " clientPort = "
+                     + clientPort);
+ 
+-            File dataDir = new File(tmpDir, "data");
++            dataDir = new File(tmpDir, "data");
+             if (!dataDir.mkdir()) {
+                 throw new IOException("Unable to mkdir " + dataDir);
+             }
+@@ -131,6 +134,7 @@ public class QuorumPeerTestBase extends ZKTestCase implements Watcher {
+             main = new TestQPMain();
+             currentThread = new Thread(this);
+             currentThread.start();
++            mainFailed = new CountDownLatch(1);
+         }
+ 
+         public void run() {
+@@ -141,6 +145,8 @@ public class QuorumPeerTestBase extends ZKTestCase implements Watcher {
+             } catch (Exception e) {
+                 // test will still fail even though we just log/ignore
+                 LOG.error("unexpected exception in run", e);
++                main.shutdown();
++                mainFailed.countDown();
+             } finally {
+                 currentThread = null;
+             }

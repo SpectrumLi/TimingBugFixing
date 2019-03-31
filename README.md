@@ -107,13 +107,11 @@ DFix Patch: [Message Timing Bugs/benchmark/zk-1194/patch/DFix.patch](Message%20T
 
 DFix Input: [Message Timing Bugs/benchmark/zk-1194/input](Message%20Timing%20Bugs/benchmark/zk-1194/input)
 
-Bug AF1 & AF3 (HB-2611/HB-12241)
+Bug AF1 (HB-2611)
 
 Bug Report: [Fault Timing Bugs/benchmark/hb-2611/ReadMe](Fault%20Timing%20Bugs/benchmark/hb-2611/ReadMe)
 
-HB-2611 Manual Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/Manual-2611.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/Manual-2611.patch)
-
-HB-12241 Manual Patch: No Patch.
+HB-2611 Manual Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/Manual-2611.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/Manual.patch)
 
 DFix Rollback Patch: [Fault Timing Bugs/benchmark/hb-2611/patch-rollback/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-2611/patch-rollback/DFix.patch)
 
@@ -131,6 +129,18 @@ DFix Rollback Patch: [Fault Timing Bugs/benchmark/hb-3596/patch-rollback/DFix.pa
 
 DFix Input: [Fault Timing Bugs/benchmark/hb-3596/input](Fault%20Timing%20Bugs/benchmark/hb-3596/input)
 
+Bug AF3 (HB-12241)
+
+Bug Report: [Fault Timing Bugs/benchmark/hb-12241/ReadMe](Fault%20Timing%20Bugs/benchmark/hb-12241/ReadMe)
+
+HB-12241 Manual Patch: No Patch.
+
+DFix Rollback Patch: [Fault Timing Bugs/benchmark/hb-12241/patch-rollback/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-12241/patch-rollback/DFix.patch)
+
+DFix Fastforward Patch: [Fault Timing Bugs/benchmark/hb-12241/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/hb-12241/patch-fastforward/DFix.patch)
+
+DFix Input: [Fault Timing Bugs/benchmark/hb-2611/input](Fault%20Timing%20Bugs/benchmark/hb-12241/input)
+
 Bug AF4 (ZK-1653)
 
 Bug Report: [Fault Timing Bugs/benchmark/zk-1653/ReadMe](Fault%20Timing%20Bugs/benchmark/zk-1653/ReadMe)
@@ -138,6 +148,8 @@ Bug Report: [Fault Timing Bugs/benchmark/zk-1653/ReadMe](Fault%20Timing%20Bugs/b
 Manual Patch: [Fault Timing Bugs/benchmark/zk-1653/patch-rollback/Manual.patch](Fault%20Timing%20Bugs/benchmark/zk-1653/patch-rollback/Manual.patch)
 
 DFix Rollback Patch: [Fault Timing Bugs/benchmark/zk-1653/patch-rollback/DFix.patch](Fault%20Timing%20Bugs/benchmark/zk-1653/patch-rollback/DFix.patch)
+
+DFix fastforward Patch: [Fault Timing Bugs/benchmark/zk-1653/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/zk-1653/patch-fastforward/DFix.patch)
 
 DFix Input: [Fault Timing Bugs/benchmark/zk-1653/input](Fault%20Timing%20Bugs/benchmark/zk-1653/input)
 
@@ -151,17 +163,28 @@ DFix Fastforward Patch: [Fault Timing Bugs/benchmark/ca-5393/patch-fastforward/D
 
 DFix Input: [Fault Timing Bugs/benchmark/ca-5393/input](Fault%20Timing%20Bugs/benchmark/ca-5393/input)
 
-Bug OF2 & OF3(CA-6415/CA-extra2)
+Bug OF2 (CA-6415)
 
 Bug Report: [Fault Timing Bugs/benchmark/ca-6415/ReadMe](Fault%20Timing%20Bugs/benchmark/ca-6415/ReadMe)
 
-CA-6415 Manual Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/Manual-6415.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/Manual-6415.patch)
-
-CA-extra Manual Patch: No patch.
+CA-6415 Manual Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/Manual.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/Manual-6415.patch)
 
 DFix Fastforward Patch: [Fault Timing Bugs/benchmark/ca-6415/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/ca-6415/patch-fastforward/DFix.patch)
 
 DFix Input: [Fault Timing Bugs/benchmark/ca-6415/input](Fault%20Timing%20Bugs/benchmark/ca-6415/input)
+
+Bug OF3(CA-extra2)
+ 
+Bug Report: [Fault Timing Bugs/benchmark/ca-extra2/ReadMe](Fault%20Timing%20Bugs/benchmark/ca-extra2/ReadMe)
+
+CA-extra2 Manual Patch: [Fault Timing Bugs/benchmark/ca-extra2/patch-fastforward/Manual.patch](Fault%20Timing%20Bugs/benchmark/ca-extra2/patch-fastforward/Manual.patch)
+
+CA-extra2 Manual Patch: No patch.
+
+DFix Fastforward Patch: [Fault Timing Bugs/benchmark/ca-extra2/patch-fastforward/DFix.patch](Fault%20Timing%20Bugs/benchmark/ca-extra2/patch-fastforward/DFix.patch)
+
+DFix Input: [Fault Timing Bugs/benchmark/ca-extra2/input](Fault%20Timing%20Bugs/benchmark/ca-extra2/input)
+
 
 Bug OF4 (HB-10090)
 
