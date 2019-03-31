@@ -1,0 +1,65 @@
+--- Leader.java	2019-03-31 10:58:25.312469114 -0500
++++ ../patched-code/Leader.java	2019-03-31 11:25:51.386073037 -0500
+@@ -47,6 +47,8 @@
+ import org.apache.zookeeper.server.quorum.flexible.QuorumVerifier;
+ import org.apache.zookeeper.server.util.ZxidUtils;
+ 
++import com.uchicago.dfix.*;
++
+ /**
+  * This class has the control logic for the Leader.
+  */
+@@ -329,6 +331,7 @@
+             
+             readyToStart = true;
+             waitForEpochAck(self.getId(), leaderStateSummary);
++	    DFix.SET(this);
+             self.setCurrentEpoch(epoch);
+ 
+             // We have to get at least a majority of servers in sync with
+@@ -769,6 +772,7 @@
+     private HashSet<Long> connectingFollowers = new HashSet<Long>();
+ 	public long getEpochToPropose(long sid, long lastAcceptedEpoch) throws InterruptedException {
+ 		synchronized(connectingFollowers) {
++			if (!DFix.Wait(this)) throw new DFixException ();
+ 			if (!waitingForNewEpoch) {
+ 				return epoch;
+ 			}
+--- LearnerHandler.java	2019-03-31 10:58:25.312469114 -0500
++++ ../patched-code/LearnerHandler.java	2019-03-31 11:23:17.489815347 -0500
+@@ -48,6 +48,8 @@
+ import org.apache.zookeeper.server.util.ZxidUtils;
+ import org.apache.zookeeper.txn.TxnHeader;
+ 
++import com.uchicago.dfix.*;
++
+ /**
+  * There will be an instance of this class created by the Leader for each
+  * learner. All communication with a learner is handled by this
+@@ -273,7 +275,15 @@
+             StateSummary ss = null;
+             if (learnerType == LearnerType.PARTICIPANT) {
+             	long zxid = qp.getZxid();
+-				long newEpoch = leader.getEpochToPropose(this.getSid(), lastAcceptedEpoch);
++		long newEpoch = -1;
++		            /*DF_ReEx_Start*/
++		            while(DFix.ShouldLoop(this)){
++   			        try{  
++				    newEpoch = leader.getEpochToPropose(this.getSid(), lastAcceptedEpoch);
++			            break;
++			        }catch(DFixException e_e){}
++		            }
++		            /*DF_ReEx_End*/
+ 				
+ 				if (this.getVersion() < 0x10000) {
+ 					// we are going to have to extrapolate the epoch information
+@@ -408,8 +418,7 @@
+                 LOG.error("Next packet was supposed to be an ACK");
+                 return;
+             }
+-            leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress());
+-            
++	    leader.processAck(this.sid, qp.getZxid(), sock.getLocalSocketAddress()); 
+             /*
+              * Wait until leader starts up
+              */

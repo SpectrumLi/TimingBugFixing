@@ -77,13 +77,11 @@ DFix Patch: [Message Timing Bugs/benchmark/mr-4637/patch/DFix.patch](Message%20T
 
 DFix Input: [Message Timing Bugs/benchmark/mr-4637/input](Message%20Timing%20Bugs/benchmark/mr-4637/input)
 
-Bug OM4 & OM6 (ZK-1144/ZK-1194)
+Bug OM4 (ZK-1144)
 
 Bug Report: [Message Timing Bugs/benchmark/zk-1144/ReadMe](Message%20Timing%20Bugs/benchmark/zk-1144/ReadMe)
 
-ZK-1144 Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual-1144.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1144.patch)
-
-ZK-1194 Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual-1194.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1194.patch)
+ZK-1144 Manual Patch: [Message Timing Bugs/benchmark/zk-1144/patch/Manual.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1144.patch)
 
 DFix Patch: [Message Timing Bugs/benchmark/zk-1144/patch/DFix.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/DFix.patch)
 
@@ -99,6 +97,15 @@ DFix Patch: [Message Timing Bugs/benchmark/zk-1270/patch/DFix.patch](Message%20T
 
 DFix Input: [Message Timing Bugs/benchmark/zk-1270/input](Message%20Timing%20Bugs/benchmark/zk-1270/input)
 
+Bug OM6 (ZK-1194)
+
+Bug Report: [Message Timing Bugs/benchmark/zk-1194/ReadMe](Message%20Timing%20Bugs/benchmark/zk-1194/ReadMe)
+
+ZK-1194 Manual Patch: [Message Timing Bugs/benchmark/zk-1194/patch/Manual.patch](Message%20Timing%20Bugs/benchmark/zk-1144/patch/Manual-1194.patch)
+
+DFix Patch: [Message Timing Bugs/benchmark/zk-1194/patch/DFix.patch](Message%20Timing%20Bugs/benchmark/zk-1194/patch/DFix.patch)
+
+DFix Input: [Message Timing Bugs/benchmark/zk-1194/input](Message%20Timing%20Bugs/benchmark/zk-1194/input)
 
 Bug AF1 & AF3 (HB-2611/HB-12241)
 
